@@ -23,19 +23,11 @@ export const HeroFragment = gql`
   }
 `;
 
-export const FooterFragment = gql`
-  fragment FooterSection on PageTemplate {
-    footerSection {
-      headline
-      subcopy
-      footerNavCollection {
-        items {
-          menuLabel
-          menuLink
-          menuTarget
-          menuIcon
-        }
-      }
+export const PageQuery = gql`
+  query PageQuery {
+    pageTemplate(id: "4EbpvnShzFsIqzTc7S7bwI") {
+      ...HeroSection
+      ...FooterSection
     }
   }
 `;

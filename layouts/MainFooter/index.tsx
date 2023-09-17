@@ -13,7 +13,7 @@ type MainFooterType = {
 }
 
 const MainFooter: React.FC<MainFooterType> = ({ footerData }) => {
-  const { headline, subcopy, footerNav } = footerData!
+  const { headline, subcopy, footerNavCollection } = footerData!
   const year = useRef(new Date().getFullYear())
 
   return (
@@ -30,7 +30,7 @@ const MainFooter: React.FC<MainFooterType> = ({ footerData }) => {
             <FooterFrom />
           </FooterFormProvider>
 
-          <FooterNav footerNavItems={footerNav} headline='Adonis D. Martin' />
+          <FooterNav footerNavItems={footerNavCollection.items} headline='Adonis D. Martin' />
 
           <p className={styles.copyright}>
             &copy; Copyright {year.current}

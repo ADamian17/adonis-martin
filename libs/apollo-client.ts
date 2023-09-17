@@ -1,4 +1,10 @@
-import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
+import {
+  ApolloClient,
+  createHttpLink,
+  gql,
+  InMemoryCache,
+} from '@apollo/client';
+import { createFragmentRegistry } from '@apollo/client/cache';
 import { setContext } from '@apollo/client/link/context';
 
 const httpLink = createHttpLink({
@@ -18,7 +24,45 @@ const authLink = setContext((_, { headers }) => {
 const createApolloClient = () => {
   return new ApolloClient({
     link: authLink.concat(httpLink),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      fragments: createFragmentRegistry(gql`
+        fragment FooterSection on PageTemplate {
+          footerSection {
+            headline
+            subcopy
+            footerNavCollection {
+              items {
+                menuLabel
+                menuLink
+                menuTarget
+                menuIcon
+              }
+            }
+          }
+        }
+
+        fragment HeroSection on PageTemplate {
+          heroSection {
+            heroCtaLabel
+            heroCtaLink
+            heroHeadline
+            heroSubcopy
+            heroNav {
+              menuItemsCollection {
+                items {
+                  menuLabel
+                  menuLink
+                  menuTarget
+                }
+              }
+            }
+            heroImage {
+              url
+            }
+          }
+        }
+      `),
+    }),
   });
 };
 
