@@ -1,9 +1,12 @@
 import React from "react";
+import Image from "next/image";
+
+import { useGenBlurDataURL } from "@/hooks/useGenBlurDataURL";
+import Button from "../Button";
+import Heading from "../Heading";
 
 import styles from "./Project.module.scss"
-import Heading from "../Heading";
-import Button from "../Button";
-import Image from "next/image";
+
 
 export type ProjectType = {
   projectData: any
@@ -15,21 +18,24 @@ const Project: React.FC<ProjectType> = ({ projectData }) => {
     projectImage,
     demoLink,
     codebaseLink,
-    techUsed
+    techUsedCollection
   } = projectData;
-  const techList = techUsed && techUsed.map((tech: any) => (
+
+  const techList = techUsedCollection?.items && techUsedCollection?.items.map((tech: any) => (
     <li key={tech?.id}>{tech?.name}</li>
   ))
 
   return (
     <div className={styles.project}>
-      <Image
-        width={540}
-        height={400}
-        alt={projectImage?.title!}
-        src={projectImage?.url!}
-        className={styles.img}
-      />
+      <div className={styles.imageWrapper}>
+        <Image
+          alt={projectImage?.title!}
+          src={projectImage?.url!}
+          className={styles.img}
+          width={500}
+          height={500}
+        />
+      </div>
 
       <div className={styles.headlineWrapper}>
         <Heading copy={name!} />

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import type { AppProps } from 'next/app'
 import { ApolloProvider } from "@apollo/client";
-import createApolloClient from '@/libs/apollo-client';
+import createApolloClient from '@/lib/apollo-client';
 import { interVar } from '@/assets/fonts/InterVar';
 
 import "@/styles/global.scss"

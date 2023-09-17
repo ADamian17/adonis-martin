@@ -1,0 +1,49 @@
+@use 'abstracts' as *;
+
+%heading {
+  font-family: $font-display;
+  font-weight: 400;
+}
+
+.headingWrapper {
+  align-items: center;
+  display: flex;
+  grid-column: center-start / center-end;
+  justify-content: center;
+  padding: 1rem;
+
+  h2 {
+    margin: 0;
+  }
+
+  .heading {
+    @extend %heading;
+
+    color: $color-grey-dark-1;
+    font-size: 4rem;
+    line-height: 1;
+
+    &.h2 {
+      font-size: 3.5rem;
+      font-style: italic;
+    }
+
+    &.h3 {
+      color: $color-primary;
+      font-size: 1.6rem;
+      text-transform: uppercase;
+    }
+
+    &.h4 {
+      font-size: 1.9rem;
+    }
+
+    &.headingLight {
+      color: $color-grey-light-2;
+    }
+
+    &.headingDark {
+      color: $color-grey-dark-1;
+    }
+  }
+}

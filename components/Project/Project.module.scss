@@ -4,10 +4,17 @@
   display: grid;
   row-gap: 2rem;
 
-  .img {
-    height: 25.3rem;
-    grid-row: 1;
+  .imageWrapper {
+    display: inline-block;
     grid-column: 1 / -1;
+    grid-row: 1;
+    position: relative;
+
+    .img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .techList,
@@ -33,8 +40,9 @@
   }
 
   @include media-query('xl', 'up') {
-    .img {
+    .imageWrapper {
       height: 40rem;
+      width: 54rem;
     }
 
     .btnGroup {

@@ -1,20 +1,20 @@
 import React from "react";
 
-import Container from "../../UI/Container";
+import Container from "@/components/UI/Container";
 
 import styles from "./SkillsContainer.module.scss";
-import Heading from "../../components/Heading";
-import RingsFigure from "../../components/RingsFigure";
+import RingsFigure from "@/components/RingsFigure";
+import Heading from "@/components/Heading";
 
 export type SkillsContainerType = {
-  skillData: Queries.ContentfulPageTemplate["skillsSection"]
+  skillData: any
 };
 
 const SkillsContainer: React.FC<SkillsContainerType> = ({
   skillData
 }) => {
-  const skillsLits = skillData && skillData.map((skill) => (
-    <div key={skill?.id} className={styles.skillsItem}>
+  const skillsLits = skillData && skillData.map((skill: any) => (
+    <div key={skill.name} className={styles.skillsItem}>
       <Heading copy={skill?.name!} className={styles.skillHeadline} />
       <p className={styles.skillSubcopy}>{skill?.skillYear}</p>
     </div>

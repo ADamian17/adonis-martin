@@ -49,11 +49,12 @@ const MainHero: React.FC<MainHeroType> = ({ heroData }) => {
 
           <div className={styles.heroImg}>
             <Image
-              width={500}
-              height={500}
+              width={heroImage?.width}
+              height={heroImage?.height}
               className={styles.gImg}
               alt='hero img'
               src={heroImage?.url}
+              loading='eager'
             />
           </div>
 

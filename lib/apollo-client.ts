@@ -57,6 +57,8 @@ const createApolloClient = () => {
               }
             }
             heroImage {
+              width
+              height
               url
             }
           }
@@ -76,6 +78,8 @@ const createApolloClient = () => {
               projectImage {
                 title
                 url
+                width
+                height
               }
             }
           }
