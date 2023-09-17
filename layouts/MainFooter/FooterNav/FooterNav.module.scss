@@ -1,0 +1,53 @@
+@use 'abstracts' as *;
+
+.footerNavWrapper {
+  margin-top: 8.7rem;
+  border-top: 1px solid $color-white;
+  padding-top: 3.9rem;
+
+  .footerNavHeadline {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .footerNav {
+    align-items: center;
+    display: flex;
+    gap: 2.56rem;
+    grid-column: center-start / center-end;
+    justify-content: center;
+    list-style: none;
+
+    .footerNavItem {
+      &:where(:link, :visited) {
+        display: inline-block;
+        text-decoration: none;
+        transition: all 0.4s linear;
+      }
+
+      svg {
+        width: 1.92rem;
+        height: 1.92rem;
+        fill: $color-white;
+      }
+
+      &:where(:hover, :active) {
+        svg {
+          fill: $color-green;
+        }
+      }
+    }
+  }
+
+  @include media-query('md', 'up') {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 3rem;
+
+    .footerNavHeadline {
+      text-align: initial;
+      margin-bottom: 0;
+    }
+  }
+}

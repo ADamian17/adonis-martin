@@ -1,0 +1,57 @@
+@use './functions' as *;
+
+@mixin media-query($bp, $direction) {
+  @if get-bp($bp) {
+    @if $direction == 'up' {
+      @media (min-width: get-bp($bp)) {
+        @content;
+      }
+    } @else if $direction == 'down' {
+      @media (max-width: get-bp($bp)) {
+        @content;
+      }
+    } @else {
+      @error "Please enter a valid direction -> (up or down)";
+    }
+  } @else {
+    @error "Please enter a valid break-point -> (xs, sm, md, lg, xl)";
+  }
+}
+
+@mixin main-layout {
+  column-gap: 1.6rem;
+  display: grid;
+  grid-template-columns: set-outer-columns();
+
+  .innerColsCentered {
+    grid-column: center-start / center-end;
+    display: grid;
+    grid-template-columns: set-inner-columns();
+    column-gap: 2.4rem;
+  }
+
+  @include media-query('md', 'up') {
+    grid-template-columns: set-outer-columns(1.4rem);
+
+    .innerColsCentered {
+      grid-template-columns: set-inner-columns(8);
+    }
+  }
+
+  @include media-query('lg', 'up') {
+    .innerColsCentered {
+      max-width: 111rem;
+      width: 100%;
+      grid-template-columns: set-inner-columns(12);
+      justify-self: center;
+    }
+  }
+
+  @include media-query('xl', 'up') {
+    grid-template-columns: set-outer-columns(minmax(1.4rem, 1fr));
+
+    .innerColsCentered {
+      width: 111rem;
+    }
+  }
+}

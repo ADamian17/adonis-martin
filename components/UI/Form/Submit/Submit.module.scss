@@ -1,0 +1,8 @@
+@use 'abstracts' as *;
+
+.submitBtn {
+  @extend %base-btn;
+  border-radius: 0;
+  justify-self: end;
+  outline: none;
+}

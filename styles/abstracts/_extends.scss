@@ -1,0 +1,42 @@
+@use './colors' as *;
+@use './variables' as *;
+@use './mixins' as *;
+
+%base-btn {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid $color-green;
+  color: $color-white;
+  padding: 0 0 1rem;
+  letter-spacing: 2.28571px;
+  text-transform: uppercase;
+
+  &:hover {
+    cursor: pointer;
+    color: $color-green;
+  }
+}
+
+%button {
+  padding: 1.8rem 2.4rem;
+  display: inline-block;
+  border: none;
+  border-radius: 0;
+  font-family: $font-display;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #6356e5;
+  color: #fff;
+
+  &:hover {
+    background-color: $color-primary-dark;
+    color: $color-default-white;
+    box-shadow: 0 1rem 2rem rgba($color-default-black, 0.15);
+  }
+
+  &:active {
+    box-shadow: 0 0.5rem 1rem rgba($color-default-black, 0.15);
+  }
+}

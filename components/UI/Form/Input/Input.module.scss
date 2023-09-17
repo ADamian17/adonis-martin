@@ -1,0 +1,19 @@
+@use 'abstracts' as *;
+
+.input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid $color-white;
+  color: $color-white;
+  padding: 0 2.4rem 1.7rem;
+  grid-row: 1;
+  grid-column: 1 / -1;
+  border-radius: 0;
+  outline: none;
+
+  &:active,
+  &:focus {
+    border-bottom: 1px solid $color-green;
+    outline: none;
+  }
+}

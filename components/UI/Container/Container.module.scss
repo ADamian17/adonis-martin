@@ -1,0 +1,17 @@
+@use 'abstracts' as *;
+
+.container {
+  @include main-layout;
+
+  .fullWidth {
+    grid-column: full-start / full-end;
+  }
+
+  .centered {
+    @extend .innerColsCentered;
+
+    > * {
+      grid-column: 1 / -1;
+    }
+  }
+}

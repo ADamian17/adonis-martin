@@ -1,0 +1,47 @@
+@use 'main' as *;
+
+.mainNavMenuItem {
+  border-top: 2.5px solid transparent;
+
+  &:hover,
+  &:active {
+    background-color: rgba(#fff, 0.05);
+    border-top: 2.5px solid $color-primary;
+  }
+
+  .mainNavMenuLink {
+    &:link,
+    &:visited {
+      align-items: center;
+      color: $color-grey-light-2;
+      display: flex;
+      font-family: $font-display;
+      font-size: 1.4rem;
+      justify-content: center;
+      padding: 1.5rem;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.2s;
+
+      svg {
+        fill: currentColor;
+        height: 1.5rem;
+        margin-right: 1rem;
+        width: 1.5rem;
+      }
+    }
+  }
+
+  @include media-query('md', 'up') {
+    border-bottom: 2.5px solid transparent;
+    border-top: none;
+
+    &:hover,
+    &:active {
+      background-color: rgba(#fff, 0.05);
+      border-bottom: 2.5px solid $color-primary;
+      border-top: none;
+    }
+  }
+}

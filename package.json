@@ -1,5 +1,5 @@
 {
-  "name": "adonis-portfolio-next",
+  "name": "adonis-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,12 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.3",
     "@types/node": "20.6.2",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
+    "graphql": "^16.8.0",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "eslint": "8.49.0",
+    "eslint-config-next": "13.4.19",
+    "sass": "^1.67.0"
   }
 }

@@ -1,0 +1,14 @@
+$xs: 360px;
+$sm: 576px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1208px;
+
+/* Break Points */
+$break-points: (
+  'xs': $xs,
+  'sm': $sm,
+  'md': $md,
+  'lg': $lg,
+  'xl': $xl,
+);

@@ -1,0 +1,19 @@
+@use 'sass:map';
+@use './bp-variables' as *;
+
+@function get-bp($bp) {
+  @return map.get($break-points, $bp);
+}
+
+@function get-value($map, $target) {
+  @return map.get($map, $target);
+}
+
+@function set-outer-columns($side-col: 0) {
+  @return [ full-start] $side-col [ center-start] minmax(min-content, 1fr) [
+    center-end] $side-col [ full-end];
+}
+
+@function set-inner-columns($cols: 4, $cols-size: 1fr) {
+  @return [ center-start] repeat($cols, $cols-size) [ center-end];
+}

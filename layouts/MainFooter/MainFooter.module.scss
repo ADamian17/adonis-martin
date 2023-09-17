@@ -1,0 +1,104 @@
+@use 'abstracts' as *;
+
+.footer {
+  --footer-pad: 6rem 0;
+
+  padding: var(--footer-pad);
+  background-color: $color-black-smoke;
+
+  .copyWrapper {
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 2.6rem;
+    text-align: center;
+    margin-bottom: 5rem;
+
+    .copyHeadline {
+      font-size: 4rem;
+      font-weight: 700;
+      letter-spacing: -1.13636px;
+      line-height: 4rem;
+      margin-bottom: 2rem;
+    }
+
+    .subcopy {
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+  }
+
+  .copyright {
+    color: $color-white-smoke;
+    font-size: 1.4rem;
+    margin: 2.5rem auto 0;
+    text-align: center;
+    width: fit-content;
+  }
+
+  .rings {
+    translate: -32.3rem 7.2rem;
+    align-self: center;
+    grid-row: 1 / span 2;
+    height: 12.9rem;
+    width: 53rem;
+  }
+
+  @include media-query('md', 'up') {
+    --footer-pad: 4rem 0;
+    grid-row: 1;
+
+    div.copyWrapper,
+    form[class*='form'] {
+      width: 44.5rem;
+      justify-self: center;
+    }
+
+    .copyWrapper {
+      margin-bottom: 0;
+
+      .copyHeadline {
+        font-size: 7.2rem;
+        letter-spacing: -2.04545px;
+        line-height: 7.2rem;
+      }
+
+      .subcopy {
+        font-size: 1.8rem;
+      }
+    }
+
+    .rings {
+      grid-row: 1;
+      translate: -36.8rem 18rem;
+    }
+
+    .copyright {
+      width: 100%;
+      text-align: end;
+    }
+  }
+
+  @include media-query('lg', 'up') {
+    grid-row: 1;
+    div.copyWrapper {
+      grid-column: 1 / span 6;
+      justify-self: start;
+      text-align: start;
+    }
+
+    form[class*='form'] {
+      grid-column: 8 / -1;
+    }
+
+    div.copyWrapper,
+    form[class*='form'] {
+      grid-row: 1;
+    }
+
+    .rings {
+      grid-row: 1;
+      translate: -20.8rem 1rem;
+      grid-column: 1;
+    }
+  }
+}
