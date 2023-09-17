@@ -61,6 +61,25 @@ const createApolloClient = () => {
             }
           }
         }
+
+        fragment ProjectsSection on PageTemplate {
+          projectsSectionCollection {
+            items {
+              name
+              demoLink
+              codebaseLink
+              techUsedCollection {
+                items {
+                  name
+                }
+              }
+              projectImage {
+                title
+                url
+              }
+            }
+          }
+        }
       `),
     }),
   });

@@ -23,7 +23,7 @@ const MainFooter: React.FC<MainFooterType> = ({ footerData }) => {
           <div className={styles.copyWrapper}>
             <Heading copy={headline!} className={styles.copyHeadline} />
 
-            <p className={styles.subcopy}>{subcopy?.subcopy}</p>
+            <p className={styles.subcopy}>{subcopy}</p>
           </div>
 
           <FooterFormProvider>

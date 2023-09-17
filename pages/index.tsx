@@ -7,13 +7,14 @@ import HomePageLayout from "@/layouts/HomePageLayout";
 import MainNav from "@/layouts/MainNav";
 import createApolloClient from "@/libs/apollo-client";
 import { PageQuery } from '@/libs/HomePageFragments';
+import ProjectsContainer from '@/containers/ProjectsContainer';
 
 export default function Home({ pageData }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { pageTemplate: { heroSection, footerSection } } = pageData
+  const { pageTemplate: { heroSection, footerSection, projectsSectionCollection } } = pageData
 
   return (
     <HomePageLayout footerData={footerSection} heroData={heroSection}>
-
+      <ProjectsContainer projectsData={projectsSectionCollection} />
     </HomePageLayout>
   )
 }

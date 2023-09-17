@@ -1,0 +1,69 @@
+@use 'abstracts' as *;
+
+.projectContainer {
+  margin: 1.5rem 0 8rem;
+
+  .headlineWrapper,
+  .projectList {
+    grid-column: 1 / -1;
+  }
+
+  .headlineWrapper {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+
+  .projectList {
+    display: grid;
+    gap: 4rem 0; /* gap: row col */
+  }
+
+  @include media-query('md', 'up') {
+    margin: 3.6rem 0 10rem;
+
+    .headlineWrapper {
+      margin-bottom: 6rem;
+    }
+
+    .projectList {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6rem 2.2rem;
+    }
+  }
+
+  @include media-query('lg', 'up') {
+    margin: 8.5rem 0 13.9rem;
+
+    .headlineWrapper {
+      margin-bottom: 8rem;
+    }
+
+    .projectList {
+      gap: 6.9rem 3rem;
+    }
+  }
+}
+
+.skillsContainer {
+  grid-column: full-start / full-end;
+  margin-bottom: 6rem;
+
+  .projectList {
+    margin-top: 5rem;
+    padding: 0 3.5rem;
+    display: grid;
+    row-gap: 2.5rem;
+  }
+
+  @include media-query('md', 'up') {
+    margin-bottom: 8rem;
+  }
+
+  @include media-query('lg', 'up') {
+    .projectList {
+      justify-items: center;
+    }
+  }
+}

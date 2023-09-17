@@ -1,0 +1,87 @@
+@use 'main' as *;
+
+.skillContainer {
+  overflow: hidden;
+  position: relative;
+
+  .figure {
+    bottom: 1.4rem;
+    right: -30rem;
+    position: absolute;
+  }
+
+  .skillsList {
+    --skill-section-border: 1px solid #{$color-white};
+
+    border-bottom: var(--skill-section-border);
+    border-top: var(--skill-section-border);
+    display: flex;
+    flex-wrap: wrap;
+    grid-column: center-start / center-end;
+    grid-row: 1;
+    margin: 8rem 0;
+    padding: 4rem 0;
+    row-gap: 2.4rem;
+
+    .skillsItem {
+      --skill-item-h: 6.7rem;
+      --skill-item-w: 100%;
+
+      font-size: 16px;
+      line-height: 26px;
+      text-align: center;
+      width: var(--skill-item-w);
+
+      .skillSubcopy {
+        margin-top: 1px;
+        color: $color-white-smoke;
+      }
+    }
+  }
+
+  @include media-query('md', 'up') {
+    .figure {
+      right: -30rem;
+      bottom: 5px;
+    }
+
+    .skillsList {
+      border-bottom: none;
+      gap: 5.2rem 7px;
+      margin: 6rem 0 6.4rem;
+
+      .skillsItem {
+        --skill-item-h: 9.8rem;
+        --skill-item-w: 49.5%;
+        text-align: start;
+
+        .skillHeadline {
+          font-size: 4.8rem;
+          letter-spacing: -1.5px;
+          line-height: 5.6rem;
+        }
+
+        .skillSubcopy {
+          margin-top: 1.4rem;
+        }
+      }
+    }
+  }
+
+  @include media-query('xl', 'up') {
+    .figure {
+      right: -22rem;
+    }
+
+    .skillsList {
+      margin: 10.4rem 0 5.5rem;
+      gap: 5.8rem 3.5rem;
+      min-width: 111rem;
+
+      .skillsItem {
+        max-width: 34.5rem;
+        width: 100%;
+      }
+    }
+  }
+}
