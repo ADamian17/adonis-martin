@@ -28,22 +28,20 @@ export default function Home({ pageData }: InferGetStaticPropsType<typeof getSta
 }
 
 export async function getStaticProps() {
-  const client = createApolloClient();
-  const { data: pageData } = await client.query({
-    query: PageQuery
-  });
+  try {
+    const client = createApolloClient();
+    const { data: pageData } = await client.query({
+      query: PageQuery
+    });
 
-  return {
-    props: {
-      pageData
-    },
-  };
-  // try {
-  // } catch (error) {
-  //   console.log({ error });
-
-  //   return {
-  //     notFound: true,
-  //   }
-  // }
+    return {
+      props: {
+        pageData
+      },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    }
+  }
 }
