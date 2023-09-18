@@ -13,7 +13,7 @@ export type ProjectsContainerType = {
 };
 
 const ProjectsContainer: React.FC<ProjectsContainerType> = ({ projectsData }) => {
-  const list = projectsData?.items && projectsData?.items.map((item: any) => (
+  const list = projectsData && projectsData.map((item: any) => (
     <Project key={item?.name} projectData={item!} />
   ))
 

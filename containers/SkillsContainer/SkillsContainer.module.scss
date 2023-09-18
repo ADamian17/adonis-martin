@@ -1,4 +1,4 @@
-@use 'main' as *;
+@use 'abstracts' as *;
 
 .skillContainer {
   overflow: hidden;
@@ -75,7 +75,7 @@
 
     .skillsList {
       margin: 10.4rem 0 5.5rem;
-      gap: 5.8rem 3.5rem;
+      gap: 3.5rem;
       min-width: 111rem;
 
       .skillsItem {

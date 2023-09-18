@@ -6,6 +6,7 @@ export const PageQuery = gql`
       ...FooterSection
       ...HeroSection
       ...ProjectsSection
+      ...SkillsSection
     }
   }
 `;

@@ -4,13 +4,25 @@ import { PageQuery } from '@/lib/HomePageQuery';
 import createApolloClient from "@/lib/apollo-client";
 import HomePageLayout from "@/layouts/HomePageLayout";
 import ProjectsContainer from '@/containers/ProjectsContainer';
+import SkillsContainer from '@/containers/SkillsContainer';
 
 export default function Home({ pageData }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { pageTemplate: { heroSection, footerSection, projectsSectionCollection } } = pageData
+  const {
+    pageTemplate: {
+      footerSection,
+      heroSection,
+      projectsSectionCollection,
+      skillsSectionCollection,
+    }
+  } = pageData
 
   return (
-    <HomePageLayout footerData={footerSection} heroData={heroSection}>
-      <ProjectsContainer projectsData={projectsSectionCollection} />
+    <HomePageLayout
+      footerData={footerSection}
+      heroData={heroSection}
+    >
+      <SkillsContainer skillData={skillsSectionCollection.items} />
+      <ProjectsContainer projectsData={projectsSectionCollection.items} />
     </HomePageLayout>
   )
 }

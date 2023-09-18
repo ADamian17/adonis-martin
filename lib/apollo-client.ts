@@ -26,21 +26,6 @@ const createApolloClient = () => {
     link: authLink.concat(httpLink),
     cache: new InMemoryCache({
       fragments: createFragmentRegistry(gql`
-        fragment FooterSection on PageTemplate {
-          footerSection {
-            headline
-            subcopy
-            footerNavCollection {
-              items {
-                menuLabel
-                menuLink
-                menuTarget
-                menuIcon
-              }
-            }
-          }
-        }
-
         fragment HeroSection on PageTemplate {
           heroSection {
             heroCtaLabel
@@ -64,6 +49,15 @@ const createApolloClient = () => {
           }
         }
 
+        fragment SkillsSection on PageTemplate {
+          skillsSectionCollection {
+            items {
+              name
+              skillYear
+            }
+          }
+        }
+
         fragment ProjectsSection on PageTemplate {
           projectsSectionCollection {
             items {
@@ -80,6 +74,21 @@ const createApolloClient = () => {
                 url
                 width
                 height
+              }
+            }
+          }
+        }
+
+        fragment FooterSection on PageTemplate {
+          footerSection {
+            headline
+            subcopy
+            footerNavCollection {
+              items {
+                menuLabel
+                menuLink
+                menuTarget
+                menuIcon
               }
             }
           }
