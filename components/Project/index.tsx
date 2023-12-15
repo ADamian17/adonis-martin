@@ -9,7 +9,7 @@ import styles from "./Project.module.scss"
 
 
 export type ProjectType = {
-  projectData: any
+  projectData: ContentfulProject
 };
 
 const Project: React.FC<ProjectType> = ({ projectData }) => {
@@ -22,7 +22,7 @@ const Project: React.FC<ProjectType> = ({ projectData }) => {
   } = projectData;
 
   const techList = techUsedCollection?.items && techUsedCollection?.items.map((tech: any) => (
-    <li key={tech?.name}>{tech?.name}</li>
+    <li key={tech?.internalName}>{tech?.internalName}</li>
   ))
 
   return (

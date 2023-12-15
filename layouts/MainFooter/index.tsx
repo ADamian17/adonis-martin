@@ -9,11 +9,11 @@ import Heading from '@/components/Heading'
 import styles from "./MainFooter.module.scss"
 
 type MainFooterType = {
-  footerData: any
+  footerData: ContentfulFooter
 }
 
 const MainFooter: React.FC<MainFooterType> = ({ footerData }) => {
-  const { headline, subcopy, footerNavCollection } = footerData!
+  const { headline, subcopy, footerNavCollection } = footerData
   const year = useRef(new Date().getFullYear())
 
   return (
@@ -30,7 +30,10 @@ const MainFooter: React.FC<MainFooterType> = ({ footerData }) => {
             <FooterFrom />
           </FooterFormProvider>
 
-          <FooterNav footerNavItems={footerNavCollection.items} headline='Adonis D. Martin' />
+          {
+            footerNavCollection?.items &&
+            <FooterNav footerNavItems={footerNavCollection?.items} headline='Adonis D. Martin' />
+          }
 
           <p className={styles.copyright}>
             &copy; Copyright {year.current}

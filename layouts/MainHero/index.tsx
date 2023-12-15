@@ -10,12 +10,20 @@ import RingsFigure from '@/components/RingsFigure';
 import styles from "./MainHero.module.scss";
 
 type MainHeroType = {
-  heroData: any
+  heroData: ContentfulHeroBanner
 }
 
 const MainHero: React.FC<MainHeroType> = ({ heroData }) => {
-  const { heroCtaLabel, heroCtaLink, heroHeadline, heroImage, heroNav, heroSubcopy } = heroData!
-  const navItems = heroNav?.menuItemsCollection.items && heroNav?.menuItemsCollection.items.map((item: any) => (
+  const {
+    headline,
+    heroCtaLabel,
+    heroCtaLink,
+    heroImage,
+    heroNavCollection,
+    subcopy,
+  } = heroData
+
+  const navItems = heroNavCollection?.items && heroNavCollection.items.map((item: any) => (
     <li key={item?.menuLabel}>
       <Link
         className={styles.navLink}
@@ -49,19 +57,19 @@ const MainHero: React.FC<MainHeroType> = ({ heroData }) => {
 
           <div className={styles.heroImg}>
             <Image
-              width={heroImage?.width}
-              height={heroImage?.height}
+              width={heroImage?.width!}
+              height={heroImage?.height!}
               className={styles.gImg}
               alt='hero img'
-              src={heroImage?.url}
+              src={heroImage?.url!}
               loading='eager'
             />
           </div>
 
           <div className={styles.headlineWrapper}>
-            <h1 className={styles.headline} dangerouslySetInnerHTML={{ __html: heroHeadline! }} />
+            <h1 className={styles.headline} dangerouslySetInnerHTML={{ __html: headline! }} />
 
-            <p className={styles.subcopy}>{heroSubcopy}</p>
+            <p className={styles.subcopy}>{subcopy}</p>
 
             <Button path={heroCtaLink!} label={heroCtaLabel!} />
           </div>

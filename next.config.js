@@ -3,10 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
   sassOptions: {
-    includePaths: ['styles'],
+    includePaths: ["styles"],
   },
   images: {
-    domains: ['images.ctfassets.net'],
+    domains: ["images.ctfassets.net"],
     minimumCacheTTL: 1500000,
   },
 };

@@ -12,13 +12,13 @@ type HomePageLayoutType = {
 const HomePageLayout: React.FC<HomePageLayoutType> = ({ children, footerData, heroData }) => {
   return (
     <>
-      {/* <MainHero heroData={heroData} /> */}
+      <MainHero heroData={heroData} />
 
       <main>
         {children}
       </main>
 
-      {/* <MainFooter footerData={footerData} /> */}
+      <MainFooter footerData={footerData} />
     </>
   )
 }

@@ -9,23 +9,20 @@ import SkillsContainer from '@/containers/SkillsContainer';
 export default function Home({ pageData }: InferGetStaticPropsType<typeof getStaticProps>) {
   const {
     pageTemplate: {
-      //     footerSection,
-      //     heroSection,
-      //     projectsSectionCollection,
+      footerSection,
+      heroSection,
+      projectsSectionCollection,
       skillsSectionCollection,
     }
   } = pageData
 
   return (
     <HomePageLayout
-      footerData={null}
-      heroData={null}
-    // footerData={footerSection}
-    // heroData={heroSection}
+      footerData={footerSection}
+      heroData={heroSection}
     >
       <SkillsContainer skillData={skillsSectionCollection.items} />
-      {/* 
-      <ProjectsContainer projectsData={projectsSectionCollection.items} /> */}
+      <ProjectsContainer projectsData={projectsSectionCollection.items} />
     </HomePageLayout>
   )
 }
@@ -36,8 +33,6 @@ export async function getStaticProps() {
     const { data: pageData } = await client.query({
       query: PageQuery
     });
-
-    console.log(pageData);
 
     return {
       props: {
