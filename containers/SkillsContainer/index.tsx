@@ -14,8 +14,8 @@ const SkillsContainer: React.FC<SkillsContainerType> = ({
   skillData
 }) => {
   const skillsLits = skillData && skillData.map((skill: any) => (
-    <div key={skill.name} className={styles.skillsItem}>
-      <Heading copy={skill?.name!} className={styles.skillHeadline} />
+    <div key={skill?.internalName!} className={styles.skillsItem}>
+      <Heading copy={skill?.internalName!} className={styles.skillHeadline} />
     </div>
   ));
 

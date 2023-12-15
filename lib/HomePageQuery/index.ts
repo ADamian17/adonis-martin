@@ -2,11 +2,17 @@ import { gql } from '@apollo/client';
 
 export const PageQuery = gql`
   query PageQuery {
-    pageTemplate(id: "4EbpvnShzFsIqzTc7S7bwI") {
-      ...FooterSection
-      ...HeroSection
-      ...ProjectsSection
-      ...SkillsSection
+    pageTemplate(id: "5QEfILw3ijx9ZfcVoTfDYw") {
+      internalName
+      seo {
+        title
+        description
+      }
+      skillsSectionCollection {
+        items {
+          internalName
+        }
+      }
     }
   }
-`;
+`
