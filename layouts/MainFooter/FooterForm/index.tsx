@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { FooterFormProvider, useFooterFormCtx } from './FooterFormProvider';
+import { useFooterFormCtx } from './FooterFormProvider';
+import Form from '@/components/UI/Form';
 
 import styles from "./FooterForm.module.scss";
-import Form from '@/components/UI/Form';
 
 const FooterFrom: React.FC = (props) => {
   const {
@@ -13,13 +13,14 @@ const FooterFrom: React.FC = (props) => {
     handleEmailBlur,
     handleEmailChange,
     handleEmailFocus,
+    handleMessageChange,
     handleSubmit,
+    message,
     name,
   } = useFooterFormCtx();
 
   return (
     <Form
-      acceptCharset="UTF-8"
       onSubmit={handleSubmit}
       className={styles.footerForm}
     >
@@ -40,9 +41,10 @@ const FooterFrom: React.FC = (props) => {
       />
 
       <Form.Textarea
+        onChange={handleMessageChange}
+        value={message}
         cols={30}
-        id=""
-        name=""
+        name="message"
         placeholder='Message'
         rows={4}
       />

@@ -7,7 +7,9 @@ type FooterFormContextType = {
   handleEmailBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   handleEmailChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleEmailFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
+  handleMessageChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+  message: string;
   name: string;
 }
 
@@ -21,6 +23,7 @@ export const useFooterFormCtx = () => useContext(FooterFormCtx)
 export const FooterFormProvider: React.FC<FooterFormProviderType> = ({ children }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
   const [emailError, setEmailError] = useState(false)
   const defaultEmailMsg = "Email is not valid"
   const emptyMsg = "This field is required"
@@ -33,16 +36,19 @@ export const FooterFormProvider: React.FC<FooterFormProviderType> = ({ children 
       await fetch("https://formkeep.com/f/8e6292454fc8", {
         method: "POST",
         headers: {
-          'Content-Type': "multipart/form-data"
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
           name,
-          email
+          email,
+          message,
         })
       })
 
       setEmail("")
       setName("")
+      setMessage("")
     } catch (error) {
       console.log({ error });
     }
@@ -54,6 +60,10 @@ export const FooterFormProvider: React.FC<FooterFormProviderType> = ({ children 
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
+  }
+
+  const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(e.target.value)
   }
 
   const validateEmail = (email: string): boolean => {
@@ -83,8 +93,10 @@ export const FooterFormProvider: React.FC<FooterFormProviderType> = ({ children 
     handleEmailBlur,
     handleEmailChange,
     handleEmailFocus,
+    handleMessageChange,
     handleSubmit,
-    name
+    message,
+    name,
   }
 
   return (
