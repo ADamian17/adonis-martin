@@ -1,12 +1,11 @@
 /// <reference types="node" />
 
-import type { CodegenConfig } from "@graphql-codegen/cli";
-import {config as dotenvConfig} from "dotenv";
+import type { CodegenConfig } from '@graphql-codegen/cli'
+import { config as dotenvConfig } from 'dotenv'
 
-dotenvConfig();
+dotenvConfig()
 
 /* https://the-guild.dev/graphql/codegen/docs/getting-started */
-
 
 const config: CodegenConfig = {
   schema: process.env.PUBLIC_VITE_GQL_API_ENDPOINT,
@@ -19,9 +18,9 @@ const config: CodegenConfig = {
         avoidOptionals: true,
         fragmentMasking: false,
         useTypeImports: true,
-      }
-    }
-  }
+      },
+    },
+  },
 }
 
 export default config

@@ -9,7 +9,7 @@ export const testimonials: Testimonial[] = [
     name: 'Sarah Thompson',
     role: 'Product Manager',
     quote:
-      'Working with Adonis was a pleasure from start to finish. He delivered a polished, accessible UI ahead of schedule and flagged performance issues we didn\'t even know we had. Would hire again without hesitation.',
+      "Working with Adonis was a pleasure from start to finish. He delivered a polished, accessible UI ahead of schedule and flagged performance issues we didn't even know we had. Would hire again without hesitation.",
   },
   {
     name: 'Emily Roberts',
@@ -21,6 +21,6 @@ export const testimonials: Testimonial[] = [
     name: 'Laura Adams',
     role: 'Engineering Lead',
     quote:
-      'Adonis integrated seamlessly into our team. His TypeScript discipline and test coverage meant we could ship his components with confidence. He\'s the kind of engineer who makes everyone around him faster.',
+      "Adonis integrated seamlessly into our team. His TypeScript discipline and test coverage meant we could ship his components with confidence. He's the kind of engineer who makes everyone around him faster.",
   },
 ]

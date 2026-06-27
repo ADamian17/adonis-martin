@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
+import { useState } from 'react'
 
 const navLinks = [
   { label: 'About Me', href: '#about' },
@@ -19,10 +19,7 @@ export const Navbar = () => {
         backdropFilter: 'blur(12px)',
       }}
     >
-      <a
-        href="#home"
-        className="text-accent font-semibold text-2xl whitespace-nowrap"
-      >
+      <a href="#home" className="text-accent font-semibold text-2xl whitespace-nowrap">
         Adonis D. Martin.
       </a>
 
@@ -40,6 +37,7 @@ export const Navbar = () => {
       </ul>
 
       <button
+        type="button"
         className="md:hidden p-2 text-heading"
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? 'Close menu' : 'Open menu'}

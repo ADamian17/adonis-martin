@@ -21,11 +21,17 @@ export const Testimonials = () => (
     <div className="flex items-center justify-between mb-[30px]">
       <p className="font-medium text-[16px] text-body">37 Total Reviews</p>
       <div className="flex gap-3">
-        {[ChevronLeft, ChevronRight].map((Icon, i) => (
+        {(
+          [
+            { Icon: ChevronLeft, label: 'Previous' },
+            { Icon: ChevronRight, label: 'Next' },
+          ] as const
+        ).map(({ Icon, label }) => (
           <button
-            key={i}
+            key={label}
+            type="button"
             className="w-11 h-11 flex items-center justify-center rounded-full border border-border-pale hover:bg-card-warm transition-colors"
-            aria-label={i === 0 ? 'Previous' : 'Next'}
+            aria-label={label}
           >
             <Icon size={18} className="text-[#333]" />
           </button>

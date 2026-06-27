@@ -1,11 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 
 export const Hero = () => (
-  <section
-    id="home"
-    className="flex flex-wrap"
-    style={{ minHeight: '880px' }}
-  >
+  <section id="home" className="flex flex-wrap" style={{ minHeight: '880px' }}>
     {/* Left column */}
     <div
       className="flex flex-col justify-center gap-[50px]"
@@ -29,13 +25,10 @@ export const Hero = () => (
         >
           Adonis D. Martin Welcomes You!
         </h1>
-        <p
-          className="text-body text-[18px] leading-[1.55]"
-          style={{ maxWidth: '46ch' }}
-        >
-          I'm a frontend-focused software engineer who builds fast, accessible,
-          and maintainable web interfaces. Explore my work to see how I turn
-          complex problems into clean, reliable user experiences.
+        <p className="text-body text-[18px] leading-[1.55]" style={{ maxWidth: '46ch' }}>
+          I'm a frontend-focused software engineer who builds fast, accessible, and maintainable web
+          interfaces. Explore my work to see how I turn complex problems into clean, reliable user
+          experiences.
         </p>
       </div>
 

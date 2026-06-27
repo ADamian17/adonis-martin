@@ -63,21 +63,21 @@ export const Footer = () => (
 
     {/* Contact row */}
     <div className="flex flex-wrap justify-center gap-[30px] my-10">
-      {contactItems.map(({ icon: Icon, label, href }) => {
-        const content = (
-          <span className="flex items-center gap-2 text-body text-[15px]">
+      {contactItems.map(({ icon: Icon, label, href }) =>
+        href ? (
+          <a key={label} href={href} className="hover:text-heading transition-colors">
+            <span className="flex items-center gap-2 text-body text-[15px]">
+              <Icon size={16} className="text-accent shrink-0" />
+              {label}
+            </span>
+          </a>
+        ) : (
+          <span key={label} className="flex items-center gap-2 text-body text-[15px]">
             <Icon size={16} className="text-accent shrink-0" />
             {label}
           </span>
-        )
-        return href ? (
-          <a key={label} href={href} className="hover:text-heading transition-colors">
-            {content}
-          </a>
-        ) : (
-          <span key={label}>{content}</span>
-        )
-      })}
+        ),
+      )}
     </div>
 
     {/* Copyright */}

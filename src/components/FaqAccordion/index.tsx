@@ -20,12 +20,10 @@ const CtaCard = () => (
     >
       <Star size={28} strokeWidth={1.6} className="text-white" />
     </div>
-    <h3 className="font-semibold text-[24px] text-heading">
-      Still have any Questions?
-    </h3>
+    <h3 className="font-semibold text-[24px] text-heading">Still have any Questions?</h3>
     <p className="text-body text-[16px] leading-[1.6]">
-      Let's collaborate to build something exceptional. Contact me today to discuss
-      your project and bring your digital vision to life.
+      Let's collaborate to build something exceptional. Contact me today to discuss your project and
+      bring your digital vision to life.
     </p>
     <a
       href="#contact"
@@ -71,9 +69,7 @@ export const FaqAccordion = () => (
                       slot="trigger"
                       className="flex w-full items-center justify-between gap-4 px-6 py-[22px] text-left bg-transparent cursor-pointer"
                     >
-                      <span className="font-medium text-[17px] text-heading">
-                        {item.question}
-                      </span>
+                      <span className="font-medium text-[17px] text-heading">{item.question}</span>
                       {isExpanded ? (
                         <X size={20} className="shrink-0 text-accent" />
                       ) : (

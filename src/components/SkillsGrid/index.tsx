@@ -3,11 +3,11 @@ import { skills } from '@/data/skills'
 import { SkillCard } from './SkillCard'
 
 export const SkillsGrid = () => (
-  <section
-    id="about"
-    style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}
-  >
-    <div className="flex flex-col items-center text-center mb-[60px]" style={{ maxWidth: 640, margin: '0 auto 60px' }}>
+  <section id="about" style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
+    <div
+      className="flex flex-col items-center text-center mb-[60px]"
+      style={{ maxWidth: 640, margin: '0 auto 60px' }}
+    >
       <h2
         className="font-semibold text-heading mb-4"
         style={{ fontSize: 'clamp(34px, 3.4vw, 48px)' }}

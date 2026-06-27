@@ -11,9 +11,7 @@ export const BenefitsGrid = () => (
       >
         Benefits
       </h2>
-      <p className="text-body text-[18px] leading-[1.55]">
-        What working with me looks like.
-      </p>
+      <p className="text-body text-[18px] leading-[1.55]">What working with me looks like.</p>
     </div>
 
     <div className="flex flex-col gap-[30px]">

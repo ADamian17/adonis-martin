@@ -1,11 +1,4 @@
-import {
-  Activity,
-  CheckSquare,
-  Code2,
-  LayoutGrid,
-  MonitorSmartphone,
-  Terminal,
-} from 'lucide-react'
+import { Activity, CheckSquare, Code2, LayoutGrid, MonitorSmartphone, Terminal } from 'lucide-react'
 
 import type { Skill } from '@/data/skills'
 

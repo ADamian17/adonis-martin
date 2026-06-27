@@ -17,7 +17,7 @@ export const faqItems: FaqItem[] = [
   {
     question: 'What does your frontend tech stack look like?',
     answer:
-      'My core stack is React, TypeScript, and modern tooling (Vite, Next.js, Tailwind, Vitest/Playwright). I adapt to your existing stack and bring best practices for testing, accessibility, and performance to whatever you\'re already using.',
+      "My core stack is React, TypeScript, and modern tooling (Vite, Next.js, Tailwind, Vitest/Playwright). I adapt to your existing stack and bring best practices for testing, accessibility, and performance to whatever you're already using.",
   },
   {
     question: "Can you improve my site's performance and accessibility?",

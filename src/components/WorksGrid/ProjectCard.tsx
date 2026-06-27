@@ -9,13 +9,12 @@ export const ProjectCard = ({ project }: Props) => (
     <h3 className="font-semibold text-[20px] text-[#333]">{project.title}</h3>
 
     {/* Main image */}
-    <div className="relative rounded-xl overflow-hidden bg-neutral" style={{ aspectRatio: '16/10' }}>
+    <div
+      className="relative rounded-xl overflow-hidden bg-neutral"
+      style={{ aspectRatio: '16/10' }}
+    >
       {project.image && (
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover"
-        />
+        <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
       )}
       <a
         href={project.url}
@@ -32,11 +31,8 @@ export const ProjectCard = ({ project }: Props) => (
     {/* Thumbnails */}
     <div className="grid grid-cols-4 gap-4">
       {project.thumbnails.map((thumb, i) => (
-        <div
-          key={i}
-          className="rounded-lg bg-neutral overflow-hidden"
-          style={{ aspectRatio: '1' }}
-        >
+        // biome-ignore lint/suspicious/noArrayIndexKey: thumbnails are positional slots with no stable id
+        <div key={i} className="rounded-lg bg-neutral overflow-hidden" style={{ aspectRatio: '1' }}>
           {thumb && <img src={thumb} alt="" className="w-full h-full object-cover" />}
         </div>
       ))}

@@ -5,10 +5,7 @@ import { projects } from '@/data/projects'
 import { ProjectCard } from './ProjectCard'
 
 export const WorksGrid = () => (
-  <section
-    id="portfolio"
-    style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}
-  >
+  <section id="portfolio" style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
     <div className="mb-[60px]">
       <h2
         className="font-semibold text-heading mb-4"
