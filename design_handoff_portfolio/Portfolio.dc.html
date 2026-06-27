@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
+    body{ background:#eeebe5; font-family:'Manrope',sans-serif; -webkit-font-smoothing:antialiased; }
+    ::selection{ background:#681aff; color:#fff; }
+  </style>
+</helmet>
+<div style="background:#eeebe5; color:#28292c; min-height:100vh; overflow-x:hidden;">
+
+  <!-- NAVBAR -->
+  <nav style="position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:20px clamp(20px,8.4vw,162px); background:rgba(238,235,229,0.86); backdrop-filter:blur(12px); border-bottom:1px solid #dad9d3;">
+    <a href="Adonis%20Martin%20Portfolio.dc.html" style="text-decoration:none; font-family:'Manrope'; font-weight:600; font-size:24px; color:#681aff; letter-spacing:-0.01em; white-space:nowrap;">Adonis D. Martin.</a>
+    <div style="display:flex; align-items:center; gap:30px; white-space:nowrap;">
+      <div style="display:flex; align-items:center; gap:6px;">
+        <a href="About%20Me.dc.html" style="text-decoration:none; padding:14px 20px; border-radius:8px; font-weight:500; font-size:18px; color:#333;">About Me</a>
+        <a href="Portfolio.dc.html" style="text-decoration:none; padding:14px 24px; border-radius:8px; background:#faf7f1; font-weight:500; font-size:18px; color:#000;">Portfolio</a>
+        <a href="Contact%20Me.dc.html" style="text-decoration:none; padding:14px 20px; border-radius:8px; font-weight:500; font-size:18px; color:#333;">Contact Me</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <section data-screen-label="Portfolio Header" style="padding:80px clamp(20px,8.4vw,162px) 30px; max-width:1920px; margin-inline:auto; text-align:center;">
+    <div style="display:inline-block; padding:10px 18px; border-radius:13px; background:#fff; box-shadow:0 8px 30px rgba(0,0,0,0.04); margin-bottom:24px;">
+      <span style="font-weight:500; font-size:18px; color:#681aff;">Portfolio</span>
+    </div>
+    <h1 style="margin:0 auto 16px; font-family:'Manrope'; font-weight:600; font-size:clamp(38px,3.8vw,54px); line-height:1.16; color:#28292c; max-width:18ch;">Selected work I've designed, built &amp; shipped</h1>
+    <p style="margin:0 auto; font-weight:400; font-size:18px; line-height:1.6; color:#4a4a4a; max-width:60ch;">A cross-section of dashboards, design systems, storefronts, and marketing sites — each built fast, accessible, and made to last. Filter by category below.</p>
+  </section>
+
+  <!-- FILTERS -->
+  <section style="padding:20px clamp(20px,8.4vw,162px) 10px; max-width:1920px; margin-inline:auto;">
+    <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+        <sc-if value="{{ f.active }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ f.onClick }}" style="cursor:pointer; padding:11px 20px; border-radius:8px; font-family:'Manrope'; font-weight:500; font-size:15px; background:#681aff; color:#fcfbf8; border:1px solid #681aff;">{{ f.label }}</button>
+        </sc-if>
+        <sc-if value="{{ f.inactive }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ f.onClick }}" style="cursor:pointer; padding:11px 20px; border-radius:8px; font-family:'Manrope'; font-weight:500; font-size:15px; background:#fff; color:#333; border:1px solid #e4e0d8;">{{ f.label }}</button>
+        </sc-if>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- PROJECT GRID -->
+  <section data-screen-label="Project Grid" style="padding:40px clamp(20px,8.4vw,162px) 70px; max-width:1920px; margin-inline:auto;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:30px;">
+      <sc-for list="{{ projects }}" as="item" hint-placeholder-count="6">
+        <div style="display:flex; flex-direction:column; gap:22px; padding:30px; border-radius:12px; background:#f7f6f3;">
+          <div style="position:relative;">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ item.slotId }}" shape="rounded" radius="12" placeholder="Drop project image" style="display:block; width:100%; aspect-ratio:16/10;" hint-size="100%,210px"></x-import>
+            <div style="position:absolute; left:14px; top:14px; padding:8px 14px; border-radius:8px; background:rgba(238,235,229,0.92); backdrop-filter:blur(6px); font-weight:500; font-size:14px; color:#681aff;">{{ item.category }}</div>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <sc-for list="{{ item.tags }}" as="t" hint-placeholder-count="3">
+              <span style="padding:7px 12px; border-radius:6px; background:#fff; font-weight:500; font-size:13px; color:#4a4a4a;">{{ t }}</span>
+            </sc-for>
+          </div>
+          <h3 style="margin:0; font-family:'Manrope'; font-weight:600; font-size:21px; color:#28292c;">{{ item.title }}</h3>
+          <p style="margin:0; font-weight:400; font-size:16px; line-height:1.6; color:#4a4a4a;">{{ item.desc }}</p>
+          <a href="#" style="margin-top:auto; text-decoration:none; display:inline-flex; align-items:center; gap:8px; font-weight:500; font-size:16px; color:#681aff;">View Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#681aff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ isEmpty }}">
+      <p style="text-align:center; padding:60px 0; font-weight:400; font-size:18px; color:#888;">No projects in this category yet.</p>
+    </sc-if>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding:30px clamp(20px,8.4vw,162px) 90px; max-width:1920px; margin-inline:auto;">
+    <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:30px; padding:60px; border-radius:12px; background:#f5f0ff; border:1px solid #ddccff;">
+      <div style="display:flex; flex-direction:column; gap:12px; max-width:60ch;">
+        <h3 style="margin:0; font-family:'Manrope'; font-weight:600; font-size:clamp(26px,2.6vw,34px); color:#28292c;">Like what you see?</h3>
+        <p style="margin:0; font-weight:400; font-size:17px; line-height:1.6; color:#4a4a4a;">These are just a few highlights. Tell me about your product and I'll show you how I'd approach it.</p>
+      </div>
+      <a href="Contact%20Me.dc.html" style="text-decoration:none; padding:18px 28px; border-radius:8px; background:#681aff; color:#fcfbf8; font-weight:500; font-size:18px; white-space:nowrap;">Start a Project</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="padding:70px clamp(20px,8.4vw,162px) 50px; border-top:1px solid #dad9d3; max-width:1920px; margin-inline:auto;">
+    <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:30px;">
+      <a href="Adonis%20Martin%20Portfolio.dc.html" style="text-decoration:none; font-family:'Manrope'; font-weight:600; font-size:24px; color:#681aff;">Adonis D. Martin.</a>
+      <div style="display:flex; gap:30px; flex-wrap:wrap;">
+        <a href="Adonis%20Martin%20Portfolio.dc.html" style="text-decoration:none; font-weight:500; font-size:17px; color:#333;">Home</a>
+        <a href="About%20Me.dc.html" style="text-decoration:none; font-weight:500; font-size:17px; color:#333;">About Me</a>
+        <a href="Portfolio.dc.html" style="text-decoration:none; font-weight:500; font-size:17px; color:#333;">Portfolio</a>
+        <a href="Contact%20Me.dc.html" style="text-decoration:none; font-weight:500; font-size:17px; color:#333;">Contact Me</a>
+      </div>
+      <div style="display:flex; gap:14px;">
+        <a href="Contact%20Me.dc.html" style="width:40px; height:40px; border-radius:8px; background:#681aff; color:#fff; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.3 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.32-2.02-3.32-2.02 0-2.33 1.58-2.33 3.21V21H9z"/></svg></a>
+        <a href="Contact%20Me.dc.html" style="width:40px; height:40px; border-radius:8px; background:#681aff; color:#fff; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.9c-.7.32-1.5.54-2.3.64a4 4 0 0 0 1.76-2.2c-.78.46-1.64.8-2.56.98a4 4 0 0 0-6.8 3.64A11.3 11.3 0 0 1 3.7 4.8a4 4 0 0 0 1.24 5.33c-.65-.02-1.26-.2-1.8-.5v.05a4 4 0 0 0 3.2 3.92c-.6.16-1.22.18-1.83.07a4 4 0 0 0 3.73 2.78A8 8 0 0 1 2 18.3a11.3 11.3 0 0 0 6.13 1.8c7.35 0 11.37-6.09 11.37-11.37v-.52A8 8 0 0 0 22 5.9z"/></svg></a>
+        <a href="Contact%20Me.dc.html" style="width:40px; height:40px; border-radius:8px; background:#681aff; color:#fff; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.36 9.36 0 0 1 12 6.85c.85 0 1.71.12 2.51.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
+      </div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:30px; justify-content:center; margin:40px 0; font-weight:400; font-size:16px; color:#4a4a4a;">
+      <span style="display:flex; align-items:center; gap:10px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#681aff" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></svg> adonis.martin@gmail.com</span>
+      <span style="display:flex; align-items:center; gap:10px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#681aff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +1 (555) 012-3456</span>
+      <span style="display:flex; align-items:center; gap:10px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#681aff" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Remote · Available Worldwide</span>
+    </div>
+    <div style="text-align:center; padding-top:24px; border-top:1px solid #dad9d3; font-weight:400; font-size:15px; color:#888;">Copyright © 2026 Adonis D. Martin. All rights reserved.</div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { filter: "All" };
+  renderVals() {
+    const all = [
+      { slotId: "pf-1", category: "Dashboards", title: "Realtime Analytics Dashboard", tags: ["React", "TypeScript", "D3"], desc: "A live analytics suite with sub-second filtering and streaming charts. Cut initial load by 45% with code-splitting and a leaner data layer." },
+      { slotId: "pf-2", category: "Design Systems", title: "Component Library & Design System", tags: ["React", "Storybook", "a11y"], desc: "A themeable, accessible library of 60+ components with full docs and visual-regression tests — adopted across four product teams." },
+      { slotId: "pf-3", category: "E-Commerce", title: "E-Commerce Storefront Rebuild", tags: ["Next.js", "Headless", "Stripe"], desc: "A headless storefront rebuild that lifted conversion 18% and brought every Core Web Vital into the green." },
+      { slotId: "pf-4", category: "Dashboards", title: "SaaS Onboarding Flow", tags: ["React", "Framer Motion"], desc: "A guided, multi-step onboarding with progressive disclosure and inline validation that halved time-to-value." },
+      { slotId: "pf-5", category: "Marketing", title: "Marketing Site & Headless CMS", tags: ["Next.js", "CMS", "SEO"], desc: "A fast, editor-friendly marketing site on a headless CMS, scoring 100/100 on Lighthouse across the board." },
+      { slotId: "pf-6", category: "E-Commerce", title: "Booking & Scheduling Platform", tags: ["Remix", "TypeScript", "GraphQL"], desc: "A real-time booking platform with availability sync, optimistic updates, and an accessible calendar UI." },
+    ];
+    const cats = ["All", "Dashboards", "Design Systems", "E-Commerce", "Marketing"];
+    const active = this.state.filter;
+    const filters = cats.map(c => ({
+      label: c,
+      active: active === c,
+      inactive: active !== c,
+      onClick: () => this.setState({ filter: c }),
+    }));
+    const projects = active === "All" ? all : all.filter(p => p.category === active);
+    return { filters, projects, isEmpty: projects.length === 0 };
+  }
+}
+</script>
+</body>
+</html>

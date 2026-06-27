@@ -1,12 +1,20 @@
-# Handoff: Adonis D. Martin — Portfolio Website (Home Page)
+# Handoff: Adonis D. Martin — Portfolio Website (4 pages)
 
 ## Overview
-A single-page personal portfolio site for **Adonis D. Martin**, a frontend-focused software engineer. Warm "beige" light theme with a purple accent and a dark faceted hero graphic. The page covers: sticky nav, hero with stat strip, Creative Skills grid, Benefits grid, "My Works" project gallery, client testimonials, an FAQ accordion, and a footer.
+A multi-page personal portfolio site for **Adonis D. Martin**, a frontend-focused software engineer. Warm "beige" light theme with a purple accent and a dark faceted hero graphic. Four linked pages share one sticky navbar and footer:
+- **Home** — hero, Creative Skills grid, Benefits grid, "My Works" gallery, testimonials, FAQ accordion.
+- **About Me** — intro + portrait, stats strip, experience timeline, tech-stack groups, "How I Work" values, CTA.
+- **Portfolio** — header, working category filter, 6 project cards, CTA.
+- **Contact Me** — working contact form (validation + success state), contact details, socials, availability badge.
+
+The **Home page** sections are documented in full detail under "Screens / Views" below; the three additional pages are documented under "Additional Pages". The shared **Navbar** and **Footer** specs (under Home) apply to all four pages.
 
 ## About the Design Files
 The files in this bundle are **design references created in HTML** — a prototype showing the intended look and behavior. They are **not production code to copy directly**. The task is to **recreate this design in your target codebase** using its established patterns, component library, and conventions (React, Next.js, Vue, etc.). If no frontend environment exists yet, choose the most appropriate framework (e.g. Next.js + React + TypeScript) and implement there.
 
-The prototype was authored as a single streaming HTML component with inline styles. In a real codebase you should break it into proper components and move styles into your styling solution (CSS Modules, Tailwind, styled-components, etc.).
+The prototypes were authored as streaming HTML components with inline styles (one file per page). In a real codebase you should break them into proper components, lift the shared **Navbar**/**Footer** into a layout, and move styles into your styling solution (CSS Modules, Tailwind, styled-components, etc.).
+
+**Navigation model:** the prototype links pages as separate files (`href="About%20Me.dc.html"` etc.) and highlights the current page's nav item with the active pill. In production, wire these to real routes (`/`, `/about`, `/portfolio`, `/contact`) and drive the active state from the router. The wordmark links to Home.
 
 ## Fidelity
 **High-fidelity (hifi).** Final colors, typography, spacing, and layout. Recreate the UI faithfully using your codebase's libraries and patterns. Exact hex values, font sizes, and spacing are given below in Design Tokens.
@@ -109,9 +117,35 @@ The prototype was authored as a single streaming HTML component with inline styl
 
 ---
 
+## Additional Pages
+All three share the **Navbar** (active pill on the current page) and **Footer** specified above, plus the same Design Tokens. Section padding is `clamp(20px,8.4vw,162px)` horizontal; content capped at `max-width:1920px; margin-inline:auto`. Each page header uses the same white pill badge → H1 (`clamp(38px,3.8vw,54px)`, weight 600) → muted subtitle pattern.
+
+### About Me (`About Me.dc.html`)
+- **Intro** (two-column, flex-wrap, gap 60px): left = badge "About Me" + H1 "I engineer interfaces people love to use." + two body paragraphs (18px, `#4a4a4a`) + button row ("Let's Work Together" primary `#681aff` → Contact; "See My Work →" text link → Portfolio). Right = portrait image (user-fillable slot in prototype; use a real `<img>`, `aspect-ratio:4/5`, radius 16, with a faint purple notch accent behind it).
+- **Stats strip**: card `#fcfbf8`, radius 12, padding `36px 50px`, 3 columns — **55+ Projects Shipped**, **20+ Happy Clients**, **08+ Years of Experience** (number 38px/600, label 16px/`#4a4a4a`). Placeholders.
+- **My Journey** (timeline, max-width 880, centered): 3 cards `#f9f8f6`, radius 12, padding `36px 40px`, each with a 6px purple gradient spine + role title (22/600) · company (16/500 `#681aff`) · dates (15 `#888`) + description. Roles: Senior Frontend Engineer · Northwind Labs · 2022–Present; Frontend Engineer · Vela Commerce · 2019–2022; UI Engineer · Bright Studio · 2017–2019. **Placeholder content.**
+- **Tools I Work With**: 4 cards (`auto-fit minmax(280px,1fr)`, `#f9f8f6`), each a group heading + pill chips (white `#fff`, radius 8): Languages (TypeScript, JavaScript, HTML, CSS/Sass); Frameworks (React, Next.js, Remix, Vue); Styling (Tailwind, CSS Modules, styled-components); Tooling & Testing (Vite, Vitest, Playwright, Storybook, GitHub Actions).
+- **How I Work**: 3 value cards (`auto-fit minmax(300px,1fr)`, `#f9f8f6`, padding 50) with purple gradient icon tiles (64×64): Accessibility First, Performance Obsessed, Clear Communication.
+- **CTA band**: `#f5f0ff` + `1px #ddccff`, radius 12, padding 60 — H3 "Have a project in mind?" + "Contact Me" button → Contact.
+
+### Portfolio (`Portfolio.dc.html`)
+- **Header** (centered): badge "Portfolio" + H1 "Selected work I've designed, built & shipped" + subtitle.
+- **Filter bar** (centered chips, gap 12): **All · Dashboards · Design Systems · E-Commerce · Marketing**. Active chip = `#681aff` bg / `#fcfbf8` text / `#681aff` border; inactive = `#fff` bg / `#333` text / `#e4e0d8` border, radius 8, padding `11px 20px`. Clicking filters the grid by category; "All" shows everything.
+- **Project grid** (`auto-fit minmax(340px,1fr)`, gap 30): 6 cards `#f7f6f3`, radius 12, padding 30. Each = image slot (`aspect-ratio:16/10`, radius 12) with a category label chip overlaid top-left (`rgba(238,235,229,0.92)` blur, `#681aff` text) → tag pill row (white, 13px) → title (21/600) → description (16/`#4a4a4a`) → "View Project ↗" link (`#681aff`). Projects (placeholders): Realtime Analytics Dashboard, Component Library & Design System, E-Commerce Storefront Rebuild, SaaS Onboarding Flow, Marketing Site & Headless CMS, Booking & Scheduling Platform.
+- **State**: one `filter` string (default "All"). **CTA band** identical pattern to About → "Start a Project".
+
+### Contact Me (`Contact Me.dc.html`)
+- **Header** (centered): badge "Contact Me" + H1 "Let's build something great together" + subtitle.
+- **Body** (two-column `auto-fit minmax(340px,1fr)`, gap 30, align-items start):
+  - **Form card** (`#f9f8f6`, radius 12, padding 50): H2 "Send a message" + fields **Name**, **Email**, **Subject** (optional), **Message** (textarea, 5 rows). Inputs: white bg, `1px #e4e0d8`, radius 8, padding `16px 18px`, 16px; focus border `#681aff`. Submit = "Send Message" primary `#681aff` with send icon.
+  - **Info column**: "Get in touch" card (`#f5f0ff` + `1px #ddccff`) with Email / Phone / Location rows (48×48 white icon tiles, purple stroke) + social squares (44×44, `#681aff`); plus an availability card (`#f9f8f6`) with a green status dot — "Currently available for new projects · Booking work starting July 2026". **All contact details are placeholders.**
+- **Form behavior / state**: controlled fields (`name`, `email`, `subject`, `message`) + `submitted` flag. On submit: validate Name non-empty, Email matches a basic regex, Message non-empty; invalid fields show red helper text (`#c0392b`). On success the card swaps to a confirmation ("Thanks, {firstName}!" + the entered email) with a "Send another message" reset button. The prototype does **not** POST anywhere — wire the submit to your backend/email service (e.g. an API route, Formspree, Resend).
+
+---
+
 ## Interactions & Behavior
 - **FAQ accordion**: single-open; clicking a header toggles it (clicking the open one closes it). First item open on load. Icon swaps +/×; open item background changes to `#f3eeff` and answer expands.
-- **Nav / footer links** use anchor jumps (`#about`, `#works`, `#contact`, etc.); the wordmark links to `#home`. In production wire to routes for separate About/Portfolio/Contact pages, or smooth-scroll within one page.
+- **Nav / footer links** navigate between the four page files (`Adonis%20Martin%20Portfolio.dc.html`, `About%20Me.dc.html`, `Portfolio.dc.html`, `Contact%20Me.dc.html`); the wordmark links to Home, and the current page's nav item shows the active pill. In production wire these to routes (`/`, `/about`, `/portfolio`, `/contact`) and drive the active state from the router.
 - **Hover states** (not all in prototype — add per your design system): nav links and buttons should darken/lift slightly; project cards can lift with a shadow; social icons can deepen.
 - **Carousel arrows** in Testimonials are decorative in the prototype — implement paging if desired.
 - **Responsive**: the body sections are fully fluid — flex-wrap (hero) and CSS `grid auto-fit minmax(...)` (all card grids) reflow columns to fewer-per-row then stack on narrow screens without media queries, and horizontal padding scales via `clamp()`. Hero stacks vertically when narrow (panel keeps min-height 480px). These degrade gracefully down through tablet.
@@ -167,8 +201,11 @@ Located in `assets/` in this bundle:
 - **Project screenshots and testimonial avatars are NOT included** — they're user-supplied. Drop in real assets.
 
 ## Files
-- `Adonis Martin Portfolio.dc.html` — the full design prototype (single file, inline styles, small accordion script). This is the source of truth for look & behavior.
-- `image-slot.js` — the drag-and-drop image placeholder web component used for the "My Works" images in the prototype. **Not needed in production** — replace slots with real `<img>`/`next/image`.
+- `Adonis Martin Portfolio.dc.html` — **Home** page prototype (inline styles + small FAQ accordion script). Source of truth for the shared navbar/footer and Home sections.
+- `About Me.dc.html` — **About** page prototype.
+- `Portfolio.dc.html` — **Portfolio** page prototype (includes the working category-filter logic).
+- `Contact Me.dc.html` — **Contact** page prototype (includes the working form validation + success-state logic).
+- `image-slot.js` — the drag-and-drop image placeholder web component used for the project/portrait images in the prototypes. **Not needed in production** — replace slots with real `<img>`/`next/image`.
 - `assets/` — see above.
 
 ## Recommended implementation notes

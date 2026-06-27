@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; }
+    body{ background:#eeebe5; font-family:'Manrope',sans-serif; -webkit-font-smoothing:antialiased; }
+    ::selection{ background:#681aff; color:#fff; }
+    input::placeholder, textarea::placeholder{ color:#a8a39a; }
+  </style>
+</helmet>
+<div style="background:#eeebe5; color:#28292c; min-height:100vh; overflow-x:hidden;">
+
+  <!-- NAVBAR -->
+  <nav style="position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:20px clamp(20px,8.4vw,162px); background:rgba(238,235,229,0.86); backdrop-filter:blur(12px); border-bottom:1px solid #dad9d3;">
+    <a href="Adonis%20Martin%20Portfolio.dc.html" style="text-decoration:none; font-family:'Manrope'; font-weight:600; font-size:24px; color:#681aff; letter-spacing:-0.01em; white-space:nowrap;">Adonis D. Martin.</a>
+    <div style="display:flex; align-items:center; gap:30px; white-space:nowrap;">
+      <div style="display:flex; align-items:center; gap:6px;">
+        <a href="About%20Me.dc.html" style="text-decoration:none; padding:14px 20px; border-radius:8px; font-weight:500; font-size:18px; color:#333;">About Me</a>
+        <a href="Portfolio.dc.html" style="text-decoration:none; padding:14px 20px; border-radius:8px; font-weight:500; font-size:18px; color:#333;">Portfolio</a>
+        <a href="Contact%20Me.dc.html" style="text-decoration:none; padding:14px 24px; border-radius:8px; background:#faf7f1; font-weight:500; font-size:18px; color:#000;">Contact Me</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <section data-screen-label="Contact Header" style="padding:80px clamp(20px,8.4vw,162px) 20px; max-width:1920px; margin-inline:auto; text-align:center;">
+    <div style="display:inline-block; padding:10px 18px; border-radius:13px; background:#fff; box-shadow:0 8px 30px rgba(0,0,0,0.04); margin-bottom:24px;">
+      <span style="font-weight:500; font-size:18px; color:#681aff;">Contact Me</span>
+    </div>
+    <h1 style="margin:0 auto 16px; font-family:'Manrope'; font-weight:600; font-size:clamp(38px,3.8vw,54px); line-height:1.16; color:#28292c; max-width:18ch;">Let's build something great together</h1>
+    <p style="margin:0 auto; font-weight:400; font-size:18px; line-height:1.6; color:#4a4a4a; max-width:58ch;">Have a project, a role, or just a question? Tell me a bit about it and I'll get back to you within one business day.</p>
+  </section>
+
+  <!-- CONTACT BODY -->
+  <section data-screen-label="Contact Form" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:30px; align-items:start; padding:50px clamp(20px,8.4vw,162px) 80px; max-width:1920px; margin-inline:auto;">
+
+    <!-- FORM CARD -->
+    <div style="padding:50px; border-radius:12px; background:#f9f8f6;">
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:20px; padding:40px 10px;">
+          <div style="width:72px; height:72px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:linear-gradient(135deg,#9a5cff,#681aff); box-shadow:inset 0 0 14px 4px rgba(255,255,255,0.45);"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <h3 style="margin:0; font-family:'Manrope'; font-weight:600; font-size:24px; color:#28292c;">Thanks, {{ sentName }}!</h3>
+          <p style="margin:0; font-weight:400; font-size:16px; line-height:1.6; color:#4a4a4a; max-width:42ch;">Your message is on its way. I'll reply to <strong style="color:#28292c;">{{ sentEmail }}</strong> within one business day.</p>
+          <button onClick="{{ reset }}" style="margin-top:6px; cursor:pointer; padding:14px 24px; border-radius:8px; border:1px solid #e4e0d8; background:#fff; font-family:'Manrope'; font-weight:500; font-size:16px; color:#333;">Send another message</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex; flex-direction:column; gap:22px;">
+          <h2 style="margin:0; font-family:'Manrope'; font-weight:600; font-size:26px; color:#28292c;">Send a message</h2>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <label style="font-weight:500; font-size:15px; color:#28292c;">Name</label>
+            <input value="{{ name }}" onInput="{{ onName }}" placeholder="Your full name" style="width:100%; padding:16px 18px; border-radius:8px; border:1px solid #e4e0d8; background:#fff; font-family:'Manrope'; font-size:16px; color:#28292c; outline:none;" style-focus="border-color:#681aff;">
+            <sc-if value="{{ errName }}"><span style="font-size:14px; color:#c0392b;">Please enter your name.</span></sc-if>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <label style="font-weight:500; font-size:15px; color:#28292c;">Email</label>
+            <input value="{{ email }}" onInput="{{ onEmail }}" placeholder="you@company.com" style="width:100%; padding:16px 18px; border-radius:8px; border:1px solid #e4e0d8; background:#fff; font-family:'Manrope'; font-size:16px; color:#28292c; outline:none;" style-focus="border-color:#681aff;">
+            <sc-if value="{{ errEmail }}"><span style="font-size:14px; color:#c0392b;">Please enter a valid email address.</span></sc-if>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <label style="font-weight:500; font-size:15px; color:#28292c;">Subject</label>
+            <input value="{{ subject }}" onInput="{{ onSubject }}" placeholder="What's this about?" style="width:100%; padding:16px 18px; border-radius:8px; border:1px solid #e4e0d8; background:#fff; font-family:'Manrope'; font-size:16px; color:#28292c; outline:none;" style-focus="border-color:#681aff;">
+          </div>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <label style="font-weight:500; font-size:15px; color:#28292c;">Message</label>
+            <textarea value="{{ message }}" onInput="{{ onMessage }}" placeholder="Tell me about your project, timeline, and goals…" rows="5" style="width:100%; padding:16px 18px; border-radius:8px; border:1px solid #e4e0d8; background:#fff; font-family:'Manrope'; font-size:16px; line-height:1.5; color:#28292c; outline:none; resize:vertical;" style-focus="border-color:#681aff;"></textarea>
+            <sc-if value="{{ errMessage }}"><span style="font-size:14px; color:#c0392b;">Please add a short message.</span></sc-if>
+          </div>
+          <button onClick="{{ submit }}" style="cursor:pointer; align-self:flex-start; display:flex; align-items:center; gap:10px; padding:18px 28px; border-radius:8px; border:none; background:#681aff; color:#fcfbf8; font-family:'Manrope'; font-weight:500; font-size:18px;">Send Message <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fcfbf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
+        </div>
+      </sc-if>
+    </div>
+
+    <!-- INFO COLUMN -->
+    <div style="display:flex; flex-direction:column; gap:30px;">
+      <div style="padding:50px; border-radius:12px; background:#f5f0ff; border:1px solid #ddccff; display:flex; flex-direction:column; gap:28px;">
+        <h2 style="margin:0; font-family:'Manrope'; font-weight:600; font-size:24px; color:#28292c;">Get in touch</h2>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="flex:0 0 auto; width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:8px; background:#fff;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#681aff" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></svg></div>
+          <div><div style="font-size:14px; color:#888;">Email</div><div style="font-weight:500; font-size:17px; color:#28292c;">adonis.martin@gmail.com</div></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="flex:0 0 auto; width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:8px; background:#fff;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#681aff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div><div style="font-size:14px; color:#888;">Phone</div><div style="font-weight:500; font-size:17px; color:#28292c;">+1 (555) 012-3456</div></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:16px;">
+          <div style="flex:0 0 auto; width:48px; height:48px; display:flex; align-items:center; justify-content:center; border-radius:8px; background:#fff;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#681aff" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div style="font-size:14px; color:#888;">Location</div><div style="font-weight:500; font-size:17px; color:#28292c;">Remote · Available Worldwide</div></div>
+        </div>
+        <div style="display:flex; align-items:center; gap:14px; padding-top:6px;">
+          <a href="#" style="width:44px; height:44px; border-radius:8px; background:#681aff; color:#fff; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.3 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.32-2.02-3.32-2.02 0-2.33 1.58-2.33 3.21V21H9z"/></svg></a>
+          <a href="#" style="width:44px; height:44px; border-radius:8px; background:#681aff; color:#fff; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.9c-.7.32-1.5.54-2.3.64a4 4 0 0 0 1.76-2.2c-.78.46-1.64.8-2.56.98a4 4 0 0 0-6.8 3.64A11.3 11.3 0 0 1 3.7 4.8a4 4 0 0 0 1.24 5.33c-.65-.02-1.26-.2-1.8-.5v.05a4 4 0 0 0 3.2 3.92c-.6.16-1.22.18-1.83.07a4 4 0 0 0 3.73 2.78A8 8 0 0 1 2 18.3a11.3 11.3 0 0 0 6.13 1.8c7.35 0 11.37-6.09 11.37-11.37v-.52A8 8 0 0 0 22 5.9z"/></svg></a>
+          <a href="#" style="width:44px; height:44px; border-radius:8px; background:#681aff; color:#fff; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.36 9.36 0 0 1 12 6.85c.85 0 1.71.12 2.51.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px; padding:24px 30px; border-radius:12px; background:#f9f8f6;">
+        <span style="flex:0 0 auto; width:12px; height:12px; border-radius:50%; background:#1f8a5b; box-shadow:0 0 0 4px rgba(31,138,91,0.15);"></span>
+        <div><div style="font-weight:600; font-size:16px; color:#28292c;">Currently available for new projects</div><div style="font-weight:400; font-size:15px; color:#4a4a4a;">Booking work starting July 2026</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="padding:70px clamp(20px,8.4vw,162px) 50px; border-top:1px solid #dad9d3; max-width:1920px; margin-inline:auto;">
+    <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:30px;">
+      <a href="Adonis%20Martin%20Portfolio.dc.html" style="text-decoration:none; font-family:'Manrope'; font-weight:600; font-size:24px; color:#681aff;">Adonis D. Martin.</a>
+      <div style="display:flex; gap:30px; flex-wrap:wrap;">
+        <a href="Adonis%20Martin%20Portfolio.dc.html" style="text-decoration:none; font-weight:500; font-size:17px; color:#333;">Home</a>
+        <a href="About%20Me.dc.html" style="text-decoration:none; font-weight:500; font-size:17px; color:#333;">About Me</a>
+        <a href="Portfolio.dc.html" style="text-decoration:none; font-weight:500; font-size:17px; color:#333;">Portfolio</a>
+        <a href="Contact%20Me.dc.html" style="text-decoration:none; font-weight:500; font-size:17px; color:#333;">Contact Me</a>
+      </div>
+      <div style="display:flex; gap:14px;">
+        <a href="#" style="width:40px; height:40px; border-radius:8px; background:#681aff; color:#fff; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.3 8.65 21 11 21 14.1V21h-4v-6.1c0-1.45-.03-3.32-2.02-3.32-2.02 0-2.33 1.58-2.33 3.21V21H9z"/></svg></a>
+        <a href="#" style="width:40px; height:40px; border-radius:8px; background:#681aff; color:#fff; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.9c-.7.32-1.5.54-2.3.64a4 4 0 0 0 1.76-2.2c-.78.46-1.64.8-2.56.98a4 4 0 0 0-6.8 3.64A11.3 11.3 0 0 1 3.7 4.8a4 4 0 0 0 1.24 5.33c-.65-.02-1.26-.2-1.8-.5v.05a4 4 0 0 0 3.2 3.92c-.6.16-1.22.18-1.83.07a4 4 0 0 0 3.73 2.78A8 8 0 0 1 2 18.3a11.3 11.3 0 0 0 6.13 1.8c7.35 0 11.37-6.09 11.37-11.37v-.52A8 8 0 0 0 22 5.9z"/></svg></a>
+        <a href="#" style="width:40px; height:40px; border-radius:8px; background:#681aff; color:#fff; display:flex; align-items:center; justify-content:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.36 9.36 0 0 1 12 6.85c.85 0 1.71.12 2.51.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
+      </div>
+    </div>
+    <div style="text-align:center; padding-top:40px; margin-top:40px; border-top:1px solid #dad9d3; font-weight:400; font-size:15px; color:#888;">Copyright © 2026 Adonis D. Martin. All rights reserved.</div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { name: "", email: "", subject: "", message: "", submitted: false, sentName: "", sentEmail: "", touched: false };
+  renderVals() {
+    const s = this.state;
+    const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(s.email.trim());
+    const errName = s.touched && !s.name.trim();
+    const errEmail = s.touched && !emailOk;
+    const errMessage = s.touched && !s.message.trim();
+    const submit = () => {
+      const ok = this.state.name.trim() && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(this.state.email.trim()) && this.state.message.trim();
+      if (!ok) { this.setState({ touched: true }); return; }
+      this.setState({ submitted: true, sentName: this.state.name.trim().split(" ")[0], sentEmail: this.state.email.trim() });
+    };
+    const reset = () => this.setState({ name: "", email: "", subject: "", message: "", submitted: false, touched: false });
+    return {
+      name: s.name, email: s.email, subject: s.subject, message: s.message,
+      onName: e => this.setState({ name: e.target.value }),
+      onEmail: e => this.setState({ email: e.target.value }),
+      onSubject: e => this.setState({ subject: e.target.value }),
+      onMessage: e => this.setState({ message: e.target.value }),
+      errName, errEmail, errMessage,
+      submit, reset,
+      submitted: s.submitted, notSubmitted: !s.submitted,
+      sentName: s.sentName, sentEmail: s.sentEmail,
+    };
+  }
+}
+</script>
+</body>
+</html>
