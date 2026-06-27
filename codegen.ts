@@ -1,39 +1,27 @@
+/// <reference types="node" />
+
 import type { CodegenConfig } from "@graphql-codegen/cli";
-import { loadEnvConfig } from "@next/env";
+import {config as dotenvConfig} from "dotenv";
+
+dotenvConfig();
 
 /* https://the-guild.dev/graphql/codegen/docs/getting-started */
 
-const projectDir = process.cwd();
-loadEnvConfig(projectDir);
 
 const config: CodegenConfig = {
-  overwrite: true,
+  schema: process.env.PUBLIC_VITE_GQL_API_ENDPOINT,
+  documents: ['src/**/*.{ts,tsx}'],
   ignoreNoDocuments: true,
-  schema: [
-    {
-      [`${process.env.NEXT_PUBLIC_BUILDER_GQL_ENDPOINT}`]: {
-        headers: {
-          authorization: `Bearer ${process.env.NEXT_PUBLIC_CF_ACCESS_TOKEN}`,
-        },
-      },
-    },
-  ],
   generates: {
-    "types/contentful.d.ts": {
-      plugins: ["typescript", "typescript-operations"],
+    './src/.gql/': {
+      preset: 'client',
       config: {
-        dedupeOperationSuffix: true,
-        noExport: true,
-        skipTypename: true,
-        omitOperationSuffix: true,
-        typesPrefix: "Contentful",
         avoidOptionals: true,
-      },
-    },
-  },
-  hooks: {
-    afterOneFileWrite: ["prettier --write"],
-  },
-};
+        fragmentMasking: false,
+        useTypeImports: true,
+      }
+    }
+  }
+}
 
-export default config;
+export default config
