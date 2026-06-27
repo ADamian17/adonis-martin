@@ -3,32 +3,34 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "yarn cf:gen && next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
     "cf:gen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.8.3",
     "@parcel/watcher": "^2.5.6",
     "@types/node": "20.6.2",
-    "@types/react": "18.2.21",
-    "@types/react-dom": "18.2.7",
     "graphql": "^16.8.0",
     "next": "13.4.19",
     "plaiceholder": "^3.0.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "typescript": "5.2.2"
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/client-preset": "^4.1.0",
     "@graphql-typed-document-node/core": "^3.2.0",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "prettier": "^3.1.1",
-    "sass": "^1.67.0"
+    "sass": "^1.67.0",
+    "typescript": "6.0.3",
+    "vite": "^8.1.0"
   }
 }
