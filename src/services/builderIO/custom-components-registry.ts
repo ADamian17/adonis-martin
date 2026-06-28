@@ -1,21 +1,20 @@
 import { Builder } from '@builder.io/react'
 
-import { registerExperience } from '@/components/AboutPage/Experience'
-import { registerIntro } from '@/components/AboutPage/Intro'
-import { registerStats } from '@/components/AboutPage/Stats'
-import { registerTechStack } from '@/components/AboutPage/TechStack'
-import { registerValues } from '@/components/AboutPage/Values'
 import { registerBenefitsGrid } from '@/components/BenefitsGrid'
-import { registerContactForm } from '@/components/ContactPage/ContactForm'
-import { registerContactInfo } from '@/components/ContactPage/ContactInfo'
+import { registerContactGrid } from '@/components/ContactGrid'
 import { registerCtaBanner } from '@/components/CtaBanner'
+import { registerExperience } from '@/components/Experience'
 import { registerFaqAccordion } from '@/components/FaqAccordion'
+import { registerFilterBar } from '@/components/FilterBar'
 import { registerHomeHero } from '@/components/Hero'
+import { registerIntro } from '@/components/Intro'
 import { registerPageHeader } from '@/components/PageHeader'
-import { registerFilterBar } from '@/components/PortfolioPage/FilterBar'
-import { registerPortfolioCard } from '@/components/PortfolioPage/PortfolioCard'
+import { registerPortfolioCard } from '@/components/PortfolioCard'
 import { registerSkillsGrid } from '@/components/SkillsGrid'
+import { registerStats } from '@/components/Stats'
+import { registerTechStack } from '@/components/TechStack'
 import { registerTestimonials } from '@/components/Testimonials'
+import { registerValues } from '@/components/Values'
 import { registerWorksGrid } from '@/components/WorksGrid'
 
 /* Custom components */
@@ -34,8 +33,7 @@ registerTechStack()
 registerValues()
 
 /* Contact page */
-registerContactForm()
-registerContactInfo()
+registerContactGrid()
 
 /* Portfolio page */
 registerFilterBar()
@@ -64,10 +62,7 @@ Builder.register('insertMenu', {
 
 Builder.register('insertMenu', {
   name: 'Contact Page components',
-  items: [
-    { name: 'ContactForm', item: { component: { name: 'ContactForm' } } },
-    { name: 'ContactInfo', item: { component: { name: 'ContactInfo' } } },
-  ],
+  items: [{ name: 'ContactGrid', item: { component: { name: 'ContactGrid' } } }],
 })
 
 Builder.register('insertMenu', {

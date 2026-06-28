@@ -1,10 +1,10 @@
 import { Link } from '@tanstack/react-router'
 
-import { Experience } from '@/components/AboutPage/Experience'
-import { Intro } from '@/components/AboutPage/Intro'
-import { Stats } from '@/components/AboutPage/Stats'
-import { TechStack } from '@/components/AboutPage/TechStack'
-import { Values } from '@/components/AboutPage/Values'
+import { Experience } from '@/components/Experience'
+import { Intro } from '@/components/Intro'
+import { Stats } from '@/components/Stats'
+import { TechStack } from '@/components/TechStack'
+import { Values } from '@/components/Values'
 import { CtaBanner } from '@/components/CtaBanner'
 
 export const AboutPage = () => (

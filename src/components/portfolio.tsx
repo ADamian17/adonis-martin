@@ -2,8 +2,8 @@ import { Link } from '@tanstack/react-router'
 import { useState } from 'react'
 
 import { CtaBanner } from '@/components/CtaBanner'
-import { FilterBar } from '@/components/PortfolioPage/FilterBar'
-import { PortfolioCard } from '@/components/PortfolioPage/PortfolioCard'
+import { FilterBar } from '@/components/FilterBar'
+import { PortfolioCard } from '@/components/PortfolioCard'
 import { projects } from '@/data/projects'
 
 export const PortfolioPage = () => {
