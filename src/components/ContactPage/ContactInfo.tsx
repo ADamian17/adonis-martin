@@ -1,7 +1,9 @@
+import { Builder } from '@builder.io/react'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import type { ComponentType } from 'react'
 
 import { GithubIcon, LinkedinIcon, TwitterIcon } from '@/components/SocialIcons'
+import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 
 type ContactDetail = {
   Icon: ComponentType<{ size: number; stroke?: string; strokeWidth?: number }>
@@ -106,3 +108,10 @@ export const ContactInfo = () => (
     </div>
   </div>
 )
+
+export const registerContactInfo = () => {
+  Builder.registerComponent(ContactInfo, {
+    name: 'ContactInfo',
+    models: [BUILDER_IO_MODELS.PAGE],
+  })
+}

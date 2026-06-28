@@ -1,8 +1,12 @@
+import { Builder } from '@builder.io/react'
+
+import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+
 const categories = ['All', 'Dashboards', 'Design Systems', 'E-Commerce', 'Marketing']
 
 type Props = {
   activeFilter: string
-  onFilterChange: (category: string) => void
+  onFilterChange?: (category: string) => void
 }
 
 export const FilterBar = ({ activeFilter, onFilterChange }: Props) => (
@@ -11,7 +15,7 @@ export const FilterBar = ({ activeFilter, onFilterChange }: Props) => (
       <button
         key={cat}
         type="button"
-        onClick={() => onFilterChange(cat)}
+        onClick={() => onFilterChange?.(cat)}
         className={
           cat === activeFilter
             ? 'cursor-pointer px-5 py-[11px] rounded-lg font-medium text-[15px] bg-accent text-card-cream border border-accent transition-colors'
@@ -23,3 +27,11 @@ export const FilterBar = ({ activeFilter, onFilterChange }: Props) => (
     ))}
   </div>
 )
+
+export const registerFilterBar = () => {
+  Builder.registerComponent(FilterBar, {
+    name: 'FilterBar',
+    models: [BUILDER_IO_MODELS.PAGE],
+    inputs: [{ name: 'activeFilter', type: 'text', defaultValue: 'All' }],
+  })
+}

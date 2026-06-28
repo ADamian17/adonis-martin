@@ -1,4 +1,7 @@
+import { Builder } from '@builder.io/react'
 import type { ReactNode } from 'react'
+
+import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 
 type Props = {
   title: string
@@ -25,3 +28,14 @@ export const CtaBanner = ({ title, description, children }: Props) => (
     </div>
   </section>
 )
+
+export const registerCtaBanner = () => {
+  Builder.registerComponent(CtaBanner, {
+    name: 'CtaBanner',
+    models: [BUILDER_IO_MODELS.PAGE],
+    inputs: [
+      { name: 'title', type: 'text', defaultValue: '' },
+      { name: 'description', type: 'text', defaultValue: '' },
+    ],
+  })
+}

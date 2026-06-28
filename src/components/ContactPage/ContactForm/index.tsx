@@ -1,4 +1,7 @@
+import { Builder } from '@builder.io/react'
 import { useState } from 'react'
+
+import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { FieldError, Input, Label, TextArea, TextField } from 'react-aria-components'
 
 import { SuccessState } from './SuccessState'
@@ -116,4 +119,11 @@ export const ContactForm = () => {
       </button>
     </form>
   )
+}
+
+export const registerContactForm = () => {
+  Builder.registerComponent(ContactForm, {
+    name: 'ContactForm',
+    models: [BUILDER_IO_MODELS.PAGE],
+  })
 }

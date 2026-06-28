@@ -1,4 +1,7 @@
+import { Builder } from '@builder.io/react'
+
 import { experience } from '@/data/experience'
+import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 
 export const Experience = () => (
   <section
@@ -45,3 +48,10 @@ export const Experience = () => (
     </div>
   </section>
 )
+
+export const registerExperience = () => {
+  Builder.registerComponent(Experience, {
+    name: 'Experience',
+    models: [BUILDER_IO_MODELS.PAGE],
+  })
+}

@@ -1,4 +1,7 @@
+import { Builder } from '@builder.io/react'
+
 import type { Project } from '@/data/projects'
+import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 
 type Props = { project: Project }
 
@@ -58,3 +61,33 @@ export const PortfolioCard = ({ project }: Props) => (
     </a>
   </article>
 )
+
+export const registerPortfolioCard = () => {
+  Builder.registerComponent(PortfolioCard, {
+    name: 'PortfolioCard',
+    models: [BUILDER_IO_MODELS.PAGE],
+    inputs: [
+      {
+        name: 'project',
+        type: 'object',
+        defaultValue: {
+          id: '',
+          title: '',
+          description: '',
+          category: '',
+          tags: [],
+          image: '',
+          url: '#',
+          thumbnails: [],
+        },
+        subFields: [
+          { name: 'title', type: 'text', defaultValue: '' },
+          { name: 'description', type: 'longText', defaultValue: '' },
+          { name: 'category', type: 'text', defaultValue: '' },
+          { name: 'image', type: 'file', allowedFileTypes: ['jpeg', 'jpg', 'png', 'svg', 'gif', 'webp'], defaultValue: '' },
+          { name: 'url', type: 'text', defaultValue: '#' },
+        ],
+      },
+    ],
+  })
+}

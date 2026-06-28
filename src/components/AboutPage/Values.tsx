@@ -1,4 +1,7 @@
+import { Builder } from '@builder.io/react'
 import type { ReactElement } from 'react'
+
+import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 
 import type { ValueIcon } from '@/data/values'
 import { values } from '@/data/values'
@@ -97,3 +100,10 @@ export const Values = () => (
     </div>
   </section>
 )
+
+export const registerValues = () => {
+  Builder.registerComponent(Values, {
+    name: 'Values',
+    models: [BUILDER_IO_MODELS.PAGE],
+  })
+}

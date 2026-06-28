@@ -1,4 +1,7 @@
+import { Builder } from '@builder.io/react'
+
 import { stack } from '@/data/stack'
+import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 
 export const TechStack = () => (
   <section
@@ -42,3 +45,10 @@ export const TechStack = () => (
     </div>
   </section>
 )
+
+export const registerTechStack = () => {
+  Builder.registerComponent(TechStack, {
+    name: 'TechStack',
+    models: [BUILDER_IO_MODELS.PAGE],
+  })
+}

@@ -1,3 +1,7 @@
+import { Builder } from '@builder.io/react'
+
+import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+
 const stats = [
   { value: '55+', label: 'Projects Shipped' },
   { value: '20+', label: 'Happy Clients' },
@@ -25,3 +29,10 @@ export const Stats = () => (
     </div>
   </section>
 )
+
+export const registerStats = () => {
+  Builder.registerComponent(Stats, {
+    name: 'Stats',
+    models: [BUILDER_IO_MODELS.PAGE],
+  })
+}

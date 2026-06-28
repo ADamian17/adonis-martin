@@ -1,4 +1,7 @@
+import { Builder } from '@builder.io/react'
 import { Link } from '@tanstack/react-router'
+
+import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 
 export const Intro = () => (
   <section
@@ -85,3 +88,10 @@ export const Intro = () => (
     </div>
   </section>
 )
+
+export const registerIntro = () => {
+  Builder.registerComponent(Intro, {
+    name: 'Intro',
+    models: [BUILDER_IO_MODELS.PAGE],
+  })
+}
