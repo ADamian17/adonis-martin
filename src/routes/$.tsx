@@ -1,12 +1,13 @@
+/** biome-ignore-all lint/complexity/useLiteralKeys: <explanation> */
 import { builder } from '@builder.io/react'
 import { createFileRoute } from '@tanstack/react-router'
 import { RenderBuilderContent } from '@/components/BuilderComponent'
 
-export const Route = createFileRoute('/')({
-  loader: async () => {
+export const Route = createFileRoute('/$')({
+  loader: async ({ params }) => {
     const pageContent = await builder
       .get('page', {
-        userAttributes: { urlPath: `/` },
+        userAttributes: { urlPath: `/${params['_splat']}` },
       })
       .promise()
 

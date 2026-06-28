@@ -39,7 +39,7 @@ export const Navbar = () => {
         backdropFilter: 'blur(12px)',
       }}
     >
-      <Link to="/" className="text-accent font-semibold text-2xl whitespace-nowrap">
+      <Link to={"/$".replace('$', '')} className="text-accent font-semibold text-2xl whitespace-nowrap">
         Adonis D. Martin.
       </Link>
 
