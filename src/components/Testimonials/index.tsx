@@ -1,6 +1,7 @@
 import { Builder } from '@builder.io/react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { testimonials } from '@/data/testimonials'
+import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { TestimonialCard } from './TestimonialCard'
 
 export const Testimonials = () => (
@@ -52,5 +53,6 @@ export const Testimonials = () => (
 export const registerTestimonials = () => {
   Builder.registerComponent(Testimonials, {
     name: 'Testimonials',
+    models: [BUILDER_IO_MODELS.PAGE],
   })
 }

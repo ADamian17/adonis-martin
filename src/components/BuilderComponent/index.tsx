@@ -15,5 +15,5 @@ export function RenderBuilderContent({ content, model }: BuilderPageProps) {
     return <BuilderComponent content={content} model={model} />
   }
 
-  return null
+  return <div>Not Found</div>
 }

@@ -1,6 +1,8 @@
+import { Builder } from '@builder.io/react'
 import { ArrowRight } from 'lucide-react'
+import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 
-export const Hero = () => (
+export const HomeHero = () => (
   <section id="home" className="flex flex-wrap" style={{ minHeight: '880px' }}>
     {/* Left column */}
     <div
@@ -76,3 +78,11 @@ export const Hero = () => (
     </div>
   </section>
 )
+
+export const registerHomeHero = () => {
+  Builder.registerComponent(HomeHero, {
+    name: 'HomeHero',
+    noWrap: true,
+    models: [BUILDER_IO_MODELS.HERO],
+  })
+}

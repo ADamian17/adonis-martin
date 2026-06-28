@@ -1,26 +1,29 @@
-import { builder } from '@builder.io/react'
-import { createFileRoute, notFound } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import { RenderBuilderContent } from '@/components/BuilderComponent'
+import { fetchContent } from '@/services/builderIO/fetchContent'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 
 export const Route = createFileRoute('/$')({
   loader: async ({ params }) => {
-    const pageContent = await builder
-      .get(BUILDER_IO_MODELS.PAGE, {
-        userAttributes: { urlPath: `/${params['_splat']}` },
-      })
-      .promise()
-    
-    if (!pageContent) throw notFound()
+    const urlPath = `/${params['_splat']}`
+    const pageContent = await fetchContent('page', urlPath)
+    const heroContent = await fetchContent('hero', urlPath)
 
-    return { pageContent }
+    return {
+      pageContent,
+      heroContent,
+    }
   },
   component: RouteComponent,
-  notFoundComponent: () => <div>Not Found</div>,
 })
 
 function RouteComponent() {
-  const { pageContent } = Route.useLoaderData()
+  const { pageContent, heroContent } = Route.useLoaderData()
 
-  return <RenderBuilderContent content={pageContent} model={BUILDER_IO_MODELS.PAGE} />
+  return (
+    <>
+      <RenderBuilderContent content={heroContent} model={BUILDER_IO_MODELS.HERO} />
+      <RenderBuilderContent content={pageContent} model={BUILDER_IO_MODELS.PAGE} />
+    </>
+  )
 }

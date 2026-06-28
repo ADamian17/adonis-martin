@@ -8,6 +8,7 @@ import {
   Heading,
 } from 'react-aria-components'
 import { faqItems } from '@/data/faq'
+import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 
 const CtaCard = () => (
   <div
@@ -95,5 +96,6 @@ export const FaqAccordion = () => (
 export const registerFaqAccordion = () => {
   Builder.registerComponent(FaqAccordion, {
     name: 'FaqAccordion',
+    models: [BUILDER_IO_MODELS.PAGE],
   })
 }

@@ -1,6 +1,7 @@
 import { Builder } from '@builder.io/react'
 
 import { skills } from '@/data/skills'
+import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { SkillCard } from './SkillCard'
 
 export const SkillsGrid = () => (
@@ -34,5 +35,6 @@ export const SkillsGrid = () => (
 export const registerSkillsGrid = () => {
   Builder.registerComponent(SkillsGrid, {
     name: 'SkillsGrid',
+    models: [BUILDER_IO_MODELS.PAGE],
   })
 }
