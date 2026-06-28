@@ -28,8 +28,8 @@ export const ContactPage = () => (
         className="m-0 mx-auto font-normal text-[18px] leading-[1.6] text-body"
         style={{ maxWidth: '58ch' }}
       >
-        Have a project, a role, or just a question? Tell me a bit about it and I&apos;ll get back
-        to you within one business day.
+        Have a project, a role, or just a question? Tell me a bit about it and I&apos;ll get back to
+        you within one business day.
       </p>
     </section>
 

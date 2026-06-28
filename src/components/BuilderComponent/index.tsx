@@ -1,7 +1,7 @@
 import { BuilderComponent, useIsPreviewing } from '@builder.io/react'
 import type { ComponentProps } from 'react'
 
-import "@/services/builderIO/custom-components-registry";
+import '@/services/builderIO/custom-components-registry'
 
 export type BuilderPageProps = ComponentProps<typeof BuilderComponent>
 

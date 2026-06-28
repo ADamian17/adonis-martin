@@ -12,9 +12,27 @@ type ContactDetail = {
 }
 
 const contactDetails: ContactDetail[] = [
-  { Icon: Mail, sublabel: 'Email', label: 'Email', value: 'adonisdesuvikdo@gmail.com', href: 'mailto:adonisdesuvikdo@gmail.com' },
-  { Icon: Phone, sublabel: 'Phone', label: 'Phone', value: '+1 (555) 012-3456', href: 'tel:+15550123456' },
-  { Icon: MapPin, sublabel: 'Location', label: 'Location', value: 'Remote · Available Worldwide', href: null },
+  {
+    Icon: Mail,
+    sublabel: 'Email',
+    label: 'Email',
+    value: 'adonisdesuvikdo@gmail.com',
+    href: 'mailto:adonisdesuvikdo@gmail.com',
+  },
+  {
+    Icon: Phone,
+    sublabel: 'Phone',
+    label: 'Phone',
+    value: '+1 (555) 012-3456',
+    href: 'tel:+15550123456',
+  },
+  {
+    Icon: MapPin,
+    sublabel: 'Location',
+    label: 'Location',
+    value: 'Remote · Available Worldwide',
+    href: null,
+  },
 ]
 
 const socialLinks = [
@@ -40,7 +58,10 @@ export const ContactInfo = () => (
           <div>
             <div className="text-[14px] text-faint">{sublabel}</div>
             {href ? (
-              <a href={href} className="font-medium text-[17px] text-heading no-underline hover:text-accent transition-colors">
+              <a
+                href={href}
+                className="font-medium text-[17px] text-heading no-underline hover:text-accent transition-colors"
+              >
                 {value}
               </a>
             ) : (

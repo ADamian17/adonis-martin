@@ -5,25 +5,18 @@ import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 
 export const Route = createFileRoute('/$')({
   loader: async ({ params }) => {
-    const urlPath = `/${params['_splat']}`
+    const urlPath = `/${params._splat}`.trim()
     const pageContent = await fetchContent('page', urlPath)
-    const heroContent = await fetchContent('hero', urlPath)
 
     return {
-      pageContent,
-      heroContent,
+      pageContent
     }
   },
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  const { pageContent, heroContent } = Route.useLoaderData()
+  const { pageContent } = Route.useLoaderData()
 
-  return (
-    <>
-      <RenderBuilderContent content={heroContent} model={BUILDER_IO_MODELS.HERO} />
-      <RenderBuilderContent content={pageContent} model={BUILDER_IO_MODELS.PAGE} />
-    </>
-  )
+  return <RenderBuilderContent content={pageContent} model={BUILDER_IO_MODELS.PAGE} />
 }

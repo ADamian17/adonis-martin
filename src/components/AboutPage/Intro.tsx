@@ -10,10 +10,7 @@ export const Intro = () => (
     }}
   >
     {/* Text column */}
-    <div
-      className="flex flex-col gap-7"
-      style={{ flex: '1 1 520px', minWidth: '320px' }}
-    >
+    <div className="flex flex-col gap-7" style={{ flex: '1 1 520px', minWidth: '320px' }}>
       <div
         className="self-start px-[18px] py-[10px] rounded-[13px] bg-white font-medium text-[18px] text-accent"
         style={{ boxShadow: '0 8px 30px rgba(0,0,0,0.04)' }}
@@ -28,13 +25,19 @@ export const Intro = () => (
         I engineer interfaces people love to use.
       </h1>
 
-      <p className="m-0 font-normal text-[18px] leading-[1.6] text-body" style={{ maxWidth: '54ch' }}>
+      <p
+        className="m-0 font-normal text-[18px] leading-[1.6] text-body"
+        style={{ maxWidth: '54ch' }}
+      >
         I&apos;m Adonis — a frontend-focused software engineer with 8+ years turning complex
         problems into fast, accessible, maintainable web interfaces. I care deeply about the craft:
         clean architecture, real performance budgets, and details that make a product feel
         effortless.
       </p>
-      <p className="m-0 font-normal text-[18px] leading-[1.6] text-body" style={{ maxWidth: '54ch' }}>
+      <p
+        className="m-0 font-normal text-[18px] leading-[1.6] text-body"
+        style={{ maxWidth: '54ch' }}
+      >
         I work best embedded with product and design teams, shipping iteratively and leaving
         codebases healthier than I found them. When I&apos;m not building, I&apos;m writing about
         the frontend craft and mentoring engineers leveling up.
@@ -57,10 +60,7 @@ export const Intro = () => (
     </div>
 
     {/* Photo column */}
-    <div
-      className="flex justify-center"
-      style={{ flex: '1 1 380px', minWidth: '300px' }}
-    >
+    <div className="flex justify-center" style={{ flex: '1 1 380px', minWidth: '300px' }}>
       <div className="relative w-full" style={{ maxWidth: '440px' }}>
         {/* Decorative gradient */}
         <div

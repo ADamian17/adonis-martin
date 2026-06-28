@@ -3,13 +3,13 @@ import type { Project } from '@/data/projects'
 type Props = { project: Project }
 
 export const PortfolioCard = ({ project }: Props) => (
-  <article
-    className="flex flex-col gap-[22px] rounded-xl bg-card-alt"
-    style={{ padding: '30px' }}
-  >
+  <article className="flex flex-col gap-[22px] rounded-xl bg-card-alt" style={{ padding: '30px' }}>
     {/* Image with overlaid category badge */}
     <div className="relative">
-      <div className="block w-full rounded-xl overflow-hidden bg-neutral" style={{ aspectRatio: '16/10' }}>
+      <div
+        className="block w-full rounded-xl overflow-hidden bg-neutral"
+        style={{ aspectRatio: '16/10' }}
+      >
         {project.image && (
           <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
         )}
@@ -43,6 +43,7 @@ export const PortfolioCard = ({ project }: Props) => (
     >
       View Project
       <svg
+        aria-hidden="true"
         width="16"
         height="16"
         viewBox="0 0 24 24"

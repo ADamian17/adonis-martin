@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!src/.gql", "!public", "!design_handoff_portfolio"]
+    "includes": ["**", "!src/.gql", "!src/routeTree.gen.ts", "!public", "!design_handoff_portfolio"]
   },
   "formatter": {
     "enabled": true,

@@ -6,6 +6,7 @@ import { values } from '@/data/values'
 const iconMap: Record<ValueIcon, ReactElement> = {
   target: (
     <svg
+      aria-hidden="true"
       width="34"
       height="34"
       viewBox="0 0 24 24"
@@ -22,6 +23,7 @@ const iconMap: Record<ValueIcon, ReactElement> = {
   ),
   zap: (
     <svg
+      aria-hidden="true"
       width="34"
       height="34"
       viewBox="0 0 24 24"
@@ -36,6 +38,7 @@ const iconMap: Record<ValueIcon, ReactElement> = {
   ),
   message: (
     <svg
+      aria-hidden="true"
       width="34"
       height="34"
       viewBox="0 0 24 24"
@@ -56,7 +59,9 @@ const iconBoxStyle = {
 }
 
 export const Values = () => (
-  <section style={{ padding: '70px clamp(20px, 8.4vw, 162px)', maxWidth: '1920px', marginInline: 'auto' }}>
+  <section
+    style={{ padding: '70px clamp(20px, 8.4vw, 162px)', maxWidth: '1920px', marginInline: 'auto' }}
+  >
     <div className="text-center mx-auto mb-[60px]" style={{ maxWidth: '640px' }}>
       <h2
         className="m-0 mb-1.5 font-semibold text-heading"

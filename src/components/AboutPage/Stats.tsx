@@ -5,7 +5,13 @@ const stats = [
 ]
 
 export const Stats = () => (
-  <section style={{ padding: '30px clamp(20px, 8.4vw, 162px) 70px', maxWidth: '1920px', marginInline: 'auto' }}>
+  <section
+    style={{
+      padding: '30px clamp(20px, 8.4vw, 162px) 70px',
+      maxWidth: '1920px',
+      marginInline: 'auto',
+    }}
+  >
     <div
       className="flex flex-wrap gap-[30px] bg-card-cream rounded-xl"
       style={{ padding: '36px 50px', boxShadow: '0 10px 40px rgba(0,0,0,0.03)' }}

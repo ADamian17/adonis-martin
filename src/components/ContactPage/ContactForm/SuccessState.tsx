@@ -11,8 +11,12 @@ const circleStyle = {
 
 export const SuccessState = ({ sentName, sentEmail, onReset }: Props) => (
   <div className="flex flex-col items-center text-center gap-5 py-10 px-2.5">
-    <div className="w-[72px] h-[72px] flex items-center justify-center rounded-full" style={circleStyle}>
+    <div
+      className="w-[72px] h-[72px] flex items-center justify-center rounded-full"
+      style={circleStyle}
+    >
       <svg
+        aria-hidden="true"
         width="38"
         height="38"
         viewBox="0 0 24 24"

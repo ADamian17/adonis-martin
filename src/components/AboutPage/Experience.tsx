@@ -1,7 +1,9 @@
 import { experience } from '@/data/experience'
 
 export const Experience = () => (
-  <section style={{ padding: '70px clamp(20px, 8.4vw, 162px)', maxWidth: '1920px', marginInline: 'auto' }}>
+  <section
+    style={{ padding: '70px clamp(20px, 8.4vw, 162px)', maxWidth: '1920px', marginInline: 'auto' }}
+  >
     <div className="text-center mx-auto mb-[60px]" style={{ maxWidth: '640px' }}>
       <h2
         className="m-0 mb-1.5 font-semibold text-heading"
