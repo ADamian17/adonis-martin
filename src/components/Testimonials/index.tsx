@@ -1,7 +1,6 @@
+import { Builder } from '@builder.io/react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-
 import { testimonials } from '@/data/testimonials'
-
 import { TestimonialCard } from './TestimonialCard'
 
 export const Testimonials = () => (
@@ -49,3 +48,9 @@ export const Testimonials = () => (
     </div>
   </section>
 )
+
+export const registerTestimonials = () => {
+  Builder.registerComponent(Testimonials, {
+    name: 'Testimonials',
+  })
+}

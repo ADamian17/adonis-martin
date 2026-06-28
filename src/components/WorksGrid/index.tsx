@@ -1,8 +1,7 @@
+import { Builder } from '@builder.io/react'
 import { Link } from '@tanstack/react-router'
 import { ArrowRight } from 'lucide-react'
-
 import { projects } from '@/data/projects'
-
 import { ProjectCard } from './ProjectCard'
 
 export const WorksGrid = () => (
@@ -39,3 +38,9 @@ export const WorksGrid = () => (
     </div>
   </section>
 )
+
+export const registerWorksGrid = () => {
+  Builder.registerComponent(WorksGrid, {
+    name: 'WorksGrid',
+  })
+}

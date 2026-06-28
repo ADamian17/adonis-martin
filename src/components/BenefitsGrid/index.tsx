@@ -1,5 +1,5 @@
+import { Builder } from '@builder.io/react'
 import { benefits } from '@/data/benefits'
-
 import { BenefitCard } from './BenefitCard'
 
 export const BenefitsGrid = () => (
@@ -37,3 +37,9 @@ export const BenefitsGrid = () => (
     </div>
   </section>
 )
+
+export const registerBenefitsGrid = () => {
+  Builder.registerComponent(BenefitsGrid, {
+    name: 'BenefitsGrid',
+  })
+}

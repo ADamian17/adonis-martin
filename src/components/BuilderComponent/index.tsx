@@ -1,6 +1,8 @@
 import { BuilderComponent, useIsPreviewing } from '@builder.io/react'
 import type { ComponentProps } from 'react'
 
+import "@/services/builderIO/custom-components-registry";
+
 export type BuilderPageProps = ComponentProps<typeof BuilderComponent>
 
 export function RenderBuilderContent({ content, model }: BuilderPageProps) {
@@ -12,8 +14,6 @@ export function RenderBuilderContent({ content, model }: BuilderPageProps) {
   if (content || isPreviewing) {
     return <BuilderComponent content={content} model={model} />
   }
-  // If the "content" is falsy and the page is
-  // not being previewed in Builder, render the
-  // DefaultErrorPage with a 404.
-  // return notFound();
+
+  return null
 }

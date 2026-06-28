@@ -1,3 +1,4 @@
+import { Builder } from '@builder.io/react'
 import { Plus, Star, X } from 'lucide-react'
 import {
   Button,
@@ -6,7 +7,6 @@ import {
   DisclosurePanel,
   Heading,
 } from 'react-aria-components'
-
 import { faqItems } from '@/data/faq'
 
 const CtaCard = () => (
@@ -91,3 +91,9 @@ export const FaqAccordion = () => (
     </div>
   </section>
 )
+
+export const registerFaqAccordion = () => {
+  Builder.registerComponent(FaqAccordion, {
+    name: 'FaqAccordion',
+  })
+}

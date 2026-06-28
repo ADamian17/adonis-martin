@@ -7,9 +7,11 @@ import { Navbar } from '@/components/Navbar'
 export const RootLayout = () => (
   <>
     <Navbar />
-    <main>
+
+    <main className="max-w-[1580px] mx-auto">
       <Outlet />
     </main>
+    
     <Footer />
   </>
 )
@@ -27,6 +29,5 @@ export const Route = createRootRouteWithContext()({
     ],
   }),
   errorComponent: () => <div>Root Error</div>,
-  notFoundComponent: () => <div>Root Not Found</div>,
   component: RootLayout,
 })
