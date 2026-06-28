@@ -2,11 +2,11 @@ import { builder } from '@builder.io/react'
 import { createFileRoute } from '@tanstack/react-router'
 import { RenderBuilderContent } from '@/components/BuilderComponent'
 
-export const Route = createFileRoute('/')({
-  loader: async () => {
+export const Route = createFileRoute('/$page')({
+  loader: async ({ params }) => {
     const pageContent = await builder
       .get('page', {
-        userAttributes: { urlPath: `/` },
+        userAttributes: { urlPath: `/${params.page}` },
       })
       .promise()
 

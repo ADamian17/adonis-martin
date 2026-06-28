@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router'
 import { ArrowRight } from 'lucide-react'
 
 import { projects } from '@/data/projects'
@@ -22,19 +23,19 @@ export const WorksGrid = () => (
       className="grid gap-[30px]"
       style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}
     >
-      {projects.map((p) => (
-        <ProjectCard key={p.title} project={p} />
+      {projects.slice(0, 3).map((p) => (
+        <ProjectCard key={p.id} project={p} />
       ))}
     </div>
 
     <div className="flex justify-center mt-[50px]">
-      <a
-        href="#portfolio"
+      <Link
+        to="/portfolio"
         className="inline-flex items-center gap-2 bg-accent text-card-cream font-medium rounded-lg px-6 py-[18px] hover:bg-accent/90 transition-colors"
       >
         View All Projects
         <ArrowRight size={18} />
-      </a>
+      </Link>
     </div>
   </section>
 )

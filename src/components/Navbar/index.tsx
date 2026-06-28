@@ -1,14 +1,34 @@
+import { Link, useRouterState } from '@tanstack/react-router'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
 
-const navLinks = [
-  { label: 'About Me', href: '#about' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Contact Me', href: '#contact' },
+type NavLinkItem = { label: string; to: string }
+
+const navLinks: NavLinkItem[] = [
+  { label: 'About Me', to: '/about-me' },
+  { label: 'Contact Me', to: '/contact-me' },
+  { label: 'Portfolio', to: '/portfolio' },
 ]
+
+type NavLinkProps = NavLinkItem & { mobile?: boolean; onClick?: () => void }
+
+const NavLink = ({ label, to, mobile = false, onClick }: NavLinkProps) => {
+  const pathname = useRouterState({ select: (s) => s.location.pathname })
+  const isActive = pathname === to
+  const base = `font-medium text-[18px] rounded-lg whitespace-nowrap ${mobile ? 'px-6 py-3 block' : 'px-6 py-3.5'}`
+  const cls = isActive
+    ? `${base} bg-card-ivory text-heading`
+    : `${base} text-[#333] hover:bg-card-ivory hover:text-heading transition-colors`
+  return (
+    <Link to={to} onClick={onClick} className={cls}>
+      {label}
+    </Link>
+  )
+}
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false)
+  const close = () => setOpen(false)
 
   return (
     <nav
@@ -19,19 +39,14 @@ export const Navbar = () => {
         backdropFilter: 'blur(12px)',
       }}
     >
-      <a href="#home" className="text-accent font-semibold text-2xl whitespace-nowrap">
+      <Link to="/" className="text-accent font-semibold text-2xl whitespace-nowrap">
         Adonis D. Martin.
-      </a>
+      </Link>
 
       <ul className="hidden md:flex items-center gap-1">
-        {navLinks.map(({ label, href }) => (
-          <li key={href}>
-            <a
-              href={href}
-              className="font-medium text-[18px] text-[#333] px-5 py-3.5 rounded-lg hover:bg-card-ivory hover:text-heading transition-colors whitespace-nowrap"
-            >
-              {label}
-            </a>
+        {navLinks.map((link) => (
+          <li key={link.to}>
+            <NavLink {...link} />
           </li>
         ))}
       </ul>
@@ -48,15 +63,8 @@ export const Navbar = () => {
 
       {open && (
         <div className="absolute top-full left-0 right-0 bg-beige border-b border-border flex flex-col py-2 md:hidden">
-          {navLinks.map(({ label, href }) => (
-            <a
-              key={href}
-              href={href}
-              className="font-medium text-[18px] text-[#333] px-6 py-3 hover:bg-card-ivory"
-              onClick={() => setOpen(false)}
-            >
-              {label}
-            </a>
+          {navLinks.map((link) => (
+            <NavLink key={link.to} {...link} mobile onClick={close} />
           ))}
         </div>
       )}

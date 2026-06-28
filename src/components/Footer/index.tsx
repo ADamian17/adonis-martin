@@ -1,12 +1,13 @@
+import { Link } from '@tanstack/react-router'
 import { Mail, MapPin, Phone } from 'lucide-react'
 
 import { GithubIcon, LinkedinIcon, TwitterIcon } from '@/components/SocialIcons'
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About Me', href: '#about' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Contact Me', href: '#contact' },
+  { label: 'Home', to: '/' as const },
+  { label: 'About Me', to: '/about' as const },
+  { label: 'Portfolio', to: '/portfolio' as const },
+  { label: 'Contact Me', to: '/contact' as const },
 ]
 
 const contactItems = [
@@ -29,19 +30,19 @@ export const Footer = () => (
   >
     {/* Top row */}
     <div className="flex flex-wrap items-center justify-between gap-6 mb-10">
-      <a href="#home" className="text-accent font-semibold text-2xl whitespace-nowrap">
+      <Link to="/" className="text-accent font-semibold text-2xl whitespace-nowrap">
         Adonis D. Martin.
-      </a>
+      </Link>
 
       <nav className="flex flex-wrap gap-6">
-        {navLinks.map(({ label, href }) => (
-          <a
-            key={href}
-            href={href}
+        {navLinks.map(({ label, to }) => (
+          <Link
+            key={to}
+            to={to}
             className="font-medium text-[17px] text-[#333] hover:text-heading transition-colors"
           >
             {label}
-          </a>
+          </Link>
         ))}
       </nav>
 
