@@ -83,6 +83,6 @@ export const registerHomeHero = () => {
   Builder.registerComponent(HomeHero, {
     name: 'HomeHero',
     noWrap: true,
-    models: [BUILDER_IO_MODELS.HERO],
+    models: [BUILDER_IO_MODELS.PAGE],
   })
 }
