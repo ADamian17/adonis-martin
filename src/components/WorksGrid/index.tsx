@@ -30,7 +30,7 @@ export const WorksGrid = () => (
 
     <div className="flex justify-center mt-[50px]">
       <Link
-        to="/portfolio"
+        to={"/portfolio" as string}
         className="inline-flex items-center gap-2 bg-accent text-card-cream font-medium rounded-lg px-6 py-[18px] hover:bg-accent/90 transition-colors"
       >
         View All Projects

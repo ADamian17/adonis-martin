@@ -5,10 +5,9 @@ import { Logo } from '@/components/Logo'
 import { GithubIcon, LinkedinIcon, TwitterIcon } from '@/components/SocialIcons'
 
 const navLinks = [
-  { label: 'Home', to: '/' as const },
-  { label: 'About Me', to: '/about' as const },
-  { label: 'Portfolio', to: '/portfolio' as const },
-  { label: 'Contact Me', to: '/contact' as const },
+  { label: 'About Me', to: '/about-me' },
+  { label: 'Portfolio', to: '/portfolio' },
+  { label: 'Contact Me', to: '/contact-me' },
 ]
 
 const contactItems = [
@@ -31,7 +30,7 @@ export const Footer = () => (
   >
     {/* Top row */}
     <div className="flex flex-wrap items-center justify-between gap-6 mb-10">
-      <Link to="/" className="no-underline whitespace-nowrap">
+      <Link to={"/$".replace('$', '')} className="no-underline whitespace-nowrap">
         <Logo />
       </Link>
 

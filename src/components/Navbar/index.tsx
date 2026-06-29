@@ -41,7 +41,7 @@ export const Navbar = () => {
         backdropFilter: 'blur(12px)',
       }}
     >
-      <Link to="/" className="no-underline whitespace-nowrap">
+      <Link to={"/$".replace('$', '')} className="no-underline whitespace-nowrap">
         <Logo />
       </Link>
 
