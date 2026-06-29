@@ -76,18 +76,6 @@ export const PortfolioPage = () => {
           </p>
         )}
       </section>
-
-      <CtaBanner
-        title="Like what you see?"
-        description="These are just a few highlights. Tell me about your product and I'll show you how I'd approach it."
-      >
-        <Link
-          to="/contact"
-          className="no-underline px-7 py-[18px] rounded-lg bg-accent text-card-cream font-medium text-[18px] whitespace-nowrap hover:bg-accent/90 transition-colors"
-        >
-          Start a Project
-        </Link>
-      </CtaBanner>
     </>
   )
 }
