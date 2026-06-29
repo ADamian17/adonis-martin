@@ -1,33 +1,25 @@
-import { Builder } from '@builder.io/react'
-import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+import { format } from 'date-fns'
+import type { ExperienceItemsType } from './experience-types'
 
 interface ExperienceProps {
   headline: string
   copy: string
-  experienceItems: {
-    experienceItem: {
-      id: string
-      value: {
-        data: {
-          title: string
-          company: string
-          description: string
-          startDate: string
-          endDate?: string
-          isCurrentCompany: boolean
-          employmentType: 'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Freelance' | 'Other'
-        }
-      }
-    }
-  }[]
+  experienceItems: ExperienceItemsType
 }
 
 export const Experience = ({ headline, copy, experienceItems }: ExperienceProps) => {
-  const experience = experienceItems.map((item) => ({ id: item.experienceItem?.id, ...item.experienceItem?.value?.data }));
+  const experience = experienceItems.map((item) => ({
+    id: item.experienceItem?.id,
+    ...item.experienceItem?.value?.data,
+  }))
 
   return (
     <section
-      style={{ padding: '70px clamp(20px, 8.4vw, 162px)', maxWidth: '1920px', marginInline: 'auto' }}
+      style={{
+        padding: '70px clamp(20px, 8.4vw, 162px)',
+        maxWidth: '1920px',
+        marginInline: 'auto',
+      }}
     >
       <div className="text-center mx-auto mb-15" style={{ maxWidth: '640px' }}>
         <h2
@@ -36,9 +28,7 @@ export const Experience = ({ headline, copy, experienceItems }: ExperienceProps)
         >
           {headline}
         </h2>
-        <p className="m-0 font-normal text-[18px] text-body">
-          {copy}
-        </p>
+        <p className="m-0 font-normal text-[18px] text-body">{copy}</p>
       </div>
 
       <div className="flex flex-col gap-5 mx-auto" style={{ maxWidth: '880px' }}>
@@ -62,7 +52,9 @@ export const Experience = ({ headline, copy, experienceItems }: ExperienceProps)
                   <span className="font-medium text-[16px] text-accent">{item.company}</span>
                   <span className="font-normal text-[15px] text-faint">{item.employmentType}</span>
                 </div>
-                <span className="font-normal text-[15px] text-faint">{item.startDate} - {item?.endDate ?? 'Present'}</span>
+                <span className="font-normal text-[15px] text-faint">
+                  {format(new Date(item.startDate), 'MMM yyyy')} - {item?.endDate ? format(new Date(item.endDate), 'MMM yyyy') : 'Present'}
+                </span>
               </div>
               <p className="m-0 font-normal text-[16px] leading-[1.6] text-body">
                 {item.description}
@@ -73,30 +65,4 @@ export const Experience = ({ headline, copy, experienceItems }: ExperienceProps)
       </div>
     </section>
   )
-}
-
-export const registerExperience = () => {
-  Builder.registerComponent(Experience, {
-    name: 'Experience',
-    inputs: [
-      {
-        name: 'headline',
-        type: 'text',
-        defaultValue: '',
-      },
-      {
-        name: 'copy',
-        type: 'text',
-        defaultValue: '',
-      },
-      {
-        name: 'experienceItems',
-        type: 'list',
-        subFields: [
-          { name: 'experienceItem', type: 'reference', model: BUILDER_IO_MODELS.EXPERIENCE_ITEM },
-        ],
-      }
-    ],
-    models: [BUILDER_IO_MODELS.PAGE],
-  })
 }
