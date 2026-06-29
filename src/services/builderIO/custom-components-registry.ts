@@ -10,7 +10,7 @@ import { registerIntro } from '@/components/Intro'
 import { registerPageHeader } from '@/components/PageHeader'
 import { registerProjectGrid } from '@/components/ProjectGrid'
 import { registerSkillsGrid } from '@/components/SkillsGrid'
-import { registerStats } from '@/components/Stats'
+
 import { registerTechStack } from '@/components/TechStack'
 import { registerTestimonials } from '@/components/Testimonials'
 import { registerValues } from '@/components/Values'
@@ -26,7 +26,6 @@ registerHomeHero()
 
 /* About page */
 registerIntro()
-registerStats()
 registerExperience()
 registerTechStack()
 registerValues()
@@ -51,7 +50,6 @@ Builder.register('insertMenu', {
   name: 'About Page components',
   items: [
     { name: 'Intro', item: { component: { name: 'Intro' } } },
-    { name: 'Stats', item: { component: { name: 'Stats' } } },
     { name: 'Experience', item: { component: { name: 'Experience' } } },
     { name: 'TechStack', item: { component: { name: 'TechStack' } } },
     { name: 'Values', item: { component: { name: 'Values' } } },
