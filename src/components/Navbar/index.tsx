@@ -2,6 +2,8 @@ import { Link, useRouterState } from '@tanstack/react-router'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
 
+import { Logo } from '@/components/Logo'
+
 type NavLinkItem = { label: string; to: string }
 
 const navLinks: NavLinkItem[] = [
@@ -39,11 +41,8 @@ export const Navbar = () => {
         backdropFilter: 'blur(12px)',
       }}
     >
-      <Link
-        to={'/$'.replace('$', '')}
-        className="text-accent font-semibold text-2xl whitespace-nowrap"
-      >
-        Adonis D. Martin.
+      <Link to="/" className="no-underline whitespace-nowrap">
+        <Logo />
       </Link>
 
       <ul className="hidden md:flex items-center gap-1">

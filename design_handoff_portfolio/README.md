@@ -3,7 +3,7 @@
 ## Overview
 A multi-page personal portfolio site for **Adonis D. Martin**, a frontend-focused software engineer. Warm "beige" light theme with a purple accent and a dark faceted hero graphic. Four linked pages share one sticky navbar and footer:
 - **Home** — hero, Creative Skills grid, Benefits grid, "My Works" gallery, testimonials, FAQ accordion.
-- **About Me** — intro + portrait, stats strip, experience timeline, tech-stack groups, "How I Work" values, CTA.
+- **About Me** — intro (faceted graphic + bordered stats), My Journey timeline, tech-stack groups, "How I Work" values, CTA.
 - **Portfolio** — header, working category filter, 6 project cards, CTA.
 - **Contact Me** — working contact form (validation + success state), contact details, socials, availability badge.
 
@@ -27,7 +27,7 @@ The prototypes were authored as streaming HTML components with inline styles (on
 
 #### 1. Navbar (sticky)
 - **Layout**: Sticky top bar, `space-between`. Horizontal padding `clamp(20px, 8.4vw, 162px)`, vertical `20px`. Translucent background `rgba(238,235,229,0.86)` with `backdrop-filter: blur(12px)`, `1px` bottom border `#dad9d3`. `z-index` above content.
-- **Left**: Wordmark "Adonis D. Martin." — Manrope 600, 24px, color `#681aff`, `white-space: nowrap`. **It is a link to `#home`** — the wordmark is how users navigate home (there is no separate "Home" nav item).
+- **Left**: **Logo** — bracketed monogram lockup, link to Home. A purple `[` and `]` (Manrope 700, 30px, `#681aff`) bracketing "AM" (Manrope 700, 24px, `#28292c`), followed by the wordmark "Adonis D. Martin." (Manrope 600, 22px, `#28292c`, with the trailing period in `#681aff`), gap 10px, baseline-aligned, `white-space: nowrap`. The standalone `[AM]` mark (no wordmark) is the brand symbol — use it for the favicon / compact contexts. *(See `Logo Exploration.dc.html` in the project for the full set of explored directions.)*
 - **Center**: Nav links — "About Me", "Portfolio", "Contact Me". Each Manrope 500, 18px, inactive style: text `#333`, padding `14px 20px`. *(The active-pill style — background `#faf7f1`, radius 8px, padding `14px 24px`, text `#000` — is still defined; apply it to whichever link matches the current route/section.)*
 - **Right**: *(spec/optional)* a "Book a Call" button — dark navy `#000d2f`, text `#fcfbf8`, radius 8px, padding `16px 18px`, phone icon (stroke `#fcfbf8`) + label, gap 8px. **Note:** the current prototype's navbar ships with only the wordmark + center links (no right-side button). Add the button if desired.
 - **⚠ Mobile:** the navbar does **not** collapse. The links use `white-space: nowrap`, so below ~768px the row overflows horizontally (≈778px of content at a 390px viewport). **You must add a mobile treatment** — collapse the center links into a hamburger/drawer menu at small widths. This is the one section that is not phone-ready in the prototype.
@@ -111,7 +111,7 @@ The prototypes were authored as streaming HTML components with inline styles (on
 
 #### 8. Footer
 - **Section**: padding `70px clamp(20px,8.4vw,162px) 50px`, top border `1px #dad9d3`.
-- **Top row** (space-between, wrap): wordmark "Adonis D. Martin." (Manrope 600, 24px `#681aff`); nav links (Home, About Me, Portfolio, Contact Me — Manrope 500, 17px `#333`); social icons (LinkedIn, Twitter/X, GitHub) — 40×40 squares, radius 8px, background `#681aff`, white glyphs.
+- **Top row** (space-between, wrap): the **bracketed `[AM]` logo lockup** (same as the navbar, links to Home); nav links (Home, About Me, Portfolio, Contact Me — Manrope 500, 17px `#333`); social icons (LinkedIn, Twitter/X, GitHub) — 40×40 squares, radius 8px, background `#681aff`, white glyphs.
 - **Contact row** (centered, gaps 30px, margin `40px 0`): email "adonis.martin@gmail.com", phone "+1 (555) 012-3456", location "Remote · Available Worldwide" — each with a small purple-stroke icon. **All placeholders — replace with real details.**
 - **Copyright** (centered, top border): "Copyright © 2026 Adonis D. Martin. All rights reserved." Manrope 400, 15px `#888`.
 
@@ -121,12 +121,14 @@ The prototypes were authored as streaming HTML components with inline styles (on
 All three share the **Navbar** (active pill on the current page) and **Footer** specified above, plus the same Design Tokens. Section padding is `clamp(20px,8.4vw,162px)` horizontal; content capped at `max-width:1920px; margin-inline:auto`. Each page header uses the same white pill badge → H1 (`clamp(38px,3.8vw,54px)`, weight 600) → muted subtitle pattern.
 
 ### About Me (`About Me.dc.html`)
-- **Intro** (two-column, flex-wrap, gap 60px): left = badge "About Me" + H1 "I engineer interfaces people love to use." + two body paragraphs (18px, `#4a4a4a`) + button row ("Let's Work Together" primary `#681aff` → Contact; "See My Work →" text link → Portfolio). Right = portrait image (user-fillable slot in prototype; use a real `<img>`, `aspect-ratio:4/5`, radius 16, with a faint purple notch accent behind it).
-- **Stats strip**: card `#fcfbf8`, radius 12, padding `36px 50px`, 3 columns — **55+ Projects Shipped**, **20+ Happy Clients**, **08+ Years of Experience** (number 38px/600, label 16px/`#4a4a4a`). Placeholders.
+Recreated to match the Figma "About Page" frame.
+- **Intro** (two-column, flex-wrap, gap 80): left = the faceted dark graphic (same layered background as the Home hero — `hero-grid.png` tile + purple gradient wash + `hero-bg.jpg`, radius 20, ~596px tall, with the two beige notch SVGs at opposite corners). Right = a column (gap 60) of: a beige badge pill (`#faf7f1`, radius 8, padding `14px 18px`, 18px/500 `#681aff`) "About Me"; H1 "I'm Adonis D. Martin" (Manrope 600, up to 58px); and a body paragraph (18px, `#4a4a4a`). *(The bordered stats box \u2014 55+ Completed Projects / 20+ Happy Customers / 08+ Years of Experience \u2014 was removed from the hero.)*
+- **Milestones of My Career** *(the Figma frame's alternating timeline)*: NOT used in the current prototype — the page keeps the intro hero (faceted graphic + bordered stats) but uses the sections below instead. The Figma timeline spec is preserved at the end of this section for reference.
 - **My Journey** (timeline, max-width 880, centered): 3 cards `#f9f8f6`, radius 12, padding `36px 40px`, each with a 6px purple gradient spine + role title (22/600) · company (16/500 `#681aff`) · dates (15 `#888`) + description. Roles: Senior Frontend Engineer · Northwind Labs · 2022–Present; Frontend Engineer · Vela Commerce · 2019–2022; UI Engineer · Bright Studio · 2017–2019. **Placeholder content.**
 - **Tools I Work With**: 4 cards (`auto-fit minmax(280px,1fr)`, `#f9f8f6`), each a group heading + pill chips (white `#fff`, radius 8): Languages (TypeScript, JavaScript, HTML, CSS/Sass); Frameworks (React, Next.js, Remix, Vue); Styling (Tailwind, CSS Modules, styled-components); Tooling & Testing (Vite, Vitest, Playwright, Storybook, GitHub Actions).
 - **How I Work**: 3 value cards (`auto-fit minmax(300px,1fr)`, `#f9f8f6`, padding 50) with purple gradient icon tiles (64×64): Accessibility First, Performance Obsessed, Clear Communication.
 - **CTA band**: `#f5f0ff` + `1px #ddccff`, radius 12, padding 60 — H3 "Have a project in mind?" + "Contact Me" button → Contact.
+- *(Reference — Figma timeline, not in the prototype)*: a vertical timeline with a central 2px spine (`#d0b7ff` track + `#681aff` progress) and alternating `1fr 34px 1fr` rows — year pill + navigator dot + content card (with pointer tip) + title pill — each row with a 112×112 colored icon tile (Now/Expanding Horizons `#9e00ff`; 2022/A Collaborative Partnership `#5edc11`; 2021/Entrepreneurial Pursuits `#ffce22`; 2020/A Corporate Adventure `#ff7222`; 2019/Learning and Growing `#ff22e9`; 2018/A World of Possibilities `#2260ff`).
 
 ### Portfolio (`Portfolio.dc.html`)
 - **Header** (centered): badge "Portfolio" + H1 "Selected work I've designed, built & shipped" + subtitle.
@@ -180,7 +182,7 @@ All three share the **Navbar** (active pill on the current page) and **Footer** 
 - Section H2: 600, `clamp(34px,3.4vw,48px)`
 - Card H3: 600, 20–24px
 - Body: 400, 16–18px, line-height 1.55–1.6
-- Wordmark: 600, 24px
+- Wordmark: 600, 22px (in the `[AM]` logo lockup; brackets are 700/30px `#681aff`, "AM" 700/24px `#28292c`)
 
 **Spacing**
 - Section vertical padding: 90px (70px footer top)

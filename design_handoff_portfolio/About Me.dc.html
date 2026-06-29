@@ -22,7 +22,7 @@
 
   <!-- NAVBAR -->
   <nav style="position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between; gap:24px; padding:20px clamp(20px,8.4vw,162px); background:rgba(238,235,229,0.86); backdrop-filter:blur(12px); border-bottom:1px solid #dad9d3;">
-    <a href="Adonis%20Martin%20Portfolio.dc.html" style="text-decoration:none; font-family:'Manrope'; font-weight:600; font-size:24px; color:#681aff; letter-spacing:-0.01em; white-space:nowrap;">Adonis D. Martin.</a>
+    <a href="Adonis%20Martin%20Portfolio.dc.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:10px; white-space:nowrap;"><span style="display:inline-flex; align-items:baseline; font-family:'Manrope'; font-weight:700; letter-spacing:-0.03em; line-height:1;"><span style="font-size:30px; color:#681aff;">[</span><span style="font-size:24px; color:#28292c;">AM</span><span style="font-size:30px; color:#681aff;">]</span></span><span style="font-family:'Manrope'; font-weight:600; font-size:22px; color:#28292c; letter-spacing:-0.01em;">Adonis D. Martin<span style="color:#681aff;">.</span></span></a>
     <div style="display:flex; align-items:center; gap:30px; white-space:nowrap;">
       <div style="display:flex; align-items:center; gap:6px;">
         <a href="About%20Me.dc.html" style="text-decoration:none; padding:14px 24px; border-radius:8px; background:#faf7f1; font-weight:500; font-size:18px; color:#000;">About Me</a>
@@ -32,34 +32,20 @@
     </div>
   </nav>
 
-  <!-- INTRO -->
-  <section data-screen-label="About Intro" style="display:flex; flex-wrap:wrap; align-items:center; gap:60px; padding:80px clamp(20px,8.4vw,162px) 40px; max-width:1920px; margin-inline:auto;">
-    <div style="flex:1 1 520px; min-width:320px; display:flex; flex-direction:column; gap:28px;">
-      <div style="align-self:flex-start; padding:10px 18px; border-radius:13px; background:#fff; box-shadow:0 8px 30px rgba(0,0,0,0.04);">
-        <span style="font-weight:500; font-size:18px; color:#681aff;">About Me</span>
-      </div>
-      <h1 style="margin:0; font-family:'Manrope'; font-weight:600; font-size:clamp(38px,3.8vw,54px); line-height:1.16; color:#28292c; max-width:16ch;">I engineer interfaces people love to use.</h1>
-      <p style="margin:0; font-weight:400; font-size:18px; line-height:1.6; color:#4a4a4a; max-width:54ch;">I'm Adonis — a frontend-focused software engineer with 8+ years turning complex problems into fast, accessible, maintainable web interfaces. I care deeply about the craft: clean architecture, real performance budgets, and details that make a product feel effortless.</p>
-      <p style="margin:0; font-weight:400; font-size:18px; line-height:1.6; color:#4a4a4a; max-width:54ch;">I work best embedded with product and design teams, shipping iteratively and leaving codebases healthier than I found them. When I'm not building, I'm writing about the frontend craft and mentoring engineers leveling up.</p>
-      <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-top:8px;">
-        <a href="Contact%20Me.dc.html" style="text-decoration:none; padding:18px 28px; border-radius:8px; background:#681aff; color:#fcfbf8; font-weight:500; font-size:18px;">Let's Work Together</a>
-        <a href="Portfolio.dc.html" style="text-decoration:none; display:flex; align-items:center; gap:8px; font-weight:500; font-size:18px; color:#333;">See My Work <span style="font-size:20px;">→</span></a>
-      </div>
+  <!-- ABOUT INTRO -->
+  <section data-screen-label="About Intro" style="display:flex; flex-wrap:wrap; align-items:center; gap:clamp(40px,4vw,80px); padding:80px clamp(20px,8.4vw,162px) 60px; max-width:1920px; margin-inline:auto;">
+    <div style="flex:1 1 460px; min-width:300px; position:relative; height:clamp(420px,40vw,596px); border-radius:20px; overflow:hidden; background:url(./assets/hero-grid.png) top left/64px 128px repeat, linear-gradient(220deg, rgba(104,26,255,0.85) -32%, rgba(104,26,255,0) 52%), url(./assets/hero-bg.jpg) center/cover no-repeat, #131519;">
+      <img src="./assets/abstract-1.svg" alt="" style="position:absolute; left:-50px; top:-18px; width:260px; height:auto;">
+      <img src="./assets/abstract-2.svg" alt="" style="position:absolute; right:-50px; bottom:-18px; width:260px; height:auto; transform:rotate(180deg);">
     </div>
-    <div style="flex:1 1 380px; min-width:300px; display:flex; justify-content:center;">
-      <div style="position:relative; width:100%; max-width:440px;">
-        <div style="position:absolute; inset:-18px -18px auto auto; width:160px; height:160px; border-radius:0 0 0 30px; background:linear-gradient(220deg,#681aff,#9a5cff); opacity:0.16; z-index:0;"></div>
-        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="about-photo" shape="rounded" radius="16" placeholder="Drop a portrait photo" style="position:relative; z-index:1; display:block; width:100%; aspect-ratio:4/5;" hint-size="100%,520px"></x-import>
+    <div style="flex:1 1 520px; min-width:320px; display:flex; flex-direction:column; gap:60px;">
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <div style="align-self:flex-start; background:#faf7f1; border-radius:8px; padding:14px 18px;">
+          <span style="font-weight:500; font-size:18px; color:#681aff;">About Me</span>
+        </div>
+        <h1 style="margin:0; font-family:'Manrope'; font-weight:600; font-size:clamp(40px,3.4vw,58px); line-height:1.16; color:#28292c;">I'm Adonis D. Martin</h1>
+        <p style="margin:0; font-weight:400; font-size:18px; line-height:1.5; color:#4a4a4a;">A skilled frontend engineer with a passion for creating visually stunning and user-friendly websites. With a keen eye for detail and a commitment to excellence, I specialize in crafting online experiences that leave a lasting impression. From concept to launch, I collaborate closely with clients to bring their visions to life and ensure their digital presence stands out from the crowd. With my expertise and dedication, I am here to help you elevate your online presence and make a powerful impact in the digital landscape.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section style="padding:30px clamp(20px,8.4vw,162px) 70px; max-width:1920px; margin-inline:auto;">
-    <div style="display:flex; flex-wrap:wrap; gap:30px; background:#fcfbf8; border-radius:12px; padding:36px 50px; box-shadow:0 10px 40px rgba(0,0,0,0.03);">
-      <div style="flex:1 1 200px;"><div style="font-family:'Manrope'; font-weight:600; font-size:38px; color:#28292c;">55+</div><div style="font-weight:400; font-size:16px; color:#4a4a4a; margin-top:4px;">Projects Shipped</div></div>
-      <div style="flex:1 1 200px;"><div style="font-family:'Manrope'; font-weight:600; font-size:38px; color:#28292c;">20+</div><div style="font-weight:400; font-size:16px; color:#4a4a4a; margin-top:4px;">Happy Clients</div></div>
-      <div style="flex:1 1 200px;"><div style="font-family:'Manrope'; font-weight:600; font-size:38px; color:#28292c;">08+</div><div style="font-weight:400; font-size:16px; color:#4a4a4a; margin-top:4px;">Years of Experience</div></div>
     </div>
   </section>
 
@@ -159,7 +145,7 @@
   <!-- FOOTER -->
   <footer style="padding:70px clamp(20px,8.4vw,162px) 50px; border-top:1px solid #dad9d3; max-width:1920px; margin-inline:auto;">
     <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:30px;">
-      <a href="Adonis%20Martin%20Portfolio.dc.html" style="text-decoration:none; font-family:'Manrope'; font-weight:600; font-size:24px; color:#681aff;">Adonis D. Martin.</a>
+      <a href="Adonis%20Martin%20Portfolio.dc.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:10px;"><span style="display:inline-flex; align-items:baseline; font-family:'Manrope'; font-weight:700; letter-spacing:-0.03em; line-height:1;"><span style="font-size:30px; color:#681aff;">[</span><span style="font-size:24px; color:#28292c;">AM</span><span style="font-size:30px; color:#681aff;">]</span></span><span style="font-family:'Manrope'; font-weight:600; font-size:22px; color:#28292c; letter-spacing:-0.01em;">Adonis D. Martin<span style="color:#681aff;">.</span></span></a>
       <div style="display:flex; gap:30px; flex-wrap:wrap;">
         <a href="Adonis%20Martin%20Portfolio.dc.html" style="text-decoration:none; font-weight:500; font-size:17px; color:#333;">Home</a>
         <a href="About%20Me.dc.html" style="text-decoration:none; font-weight:500; font-size:17px; color:#333;">About Me</a>

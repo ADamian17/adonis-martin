@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { Mail, MapPin, Phone } from 'lucide-react'
 
+import { Logo } from '@/components/Logo'
 import { GithubIcon, LinkedinIcon, TwitterIcon } from '@/components/SocialIcons'
 
 const navLinks = [
@@ -30,8 +31,8 @@ export const Footer = () => (
   >
     {/* Top row */}
     <div className="flex flex-wrap items-center justify-between gap-6 mb-10">
-      <Link to="/" className="text-accent font-semibold text-2xl whitespace-nowrap">
-        Adonis D. Martin.
+      <Link to="/" className="no-underline whitespace-nowrap">
+        <Logo />
       </Link>
 
       <nav className="flex flex-wrap gap-6">
