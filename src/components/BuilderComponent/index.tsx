@@ -12,7 +12,7 @@ export function RenderBuilderContent({ content, model }: BuilderPageProps) {
   // If "content" has a value or the page is being previewed in Builder,
   // render the BuilderComponent with the specified content and model props.
   if (content || isPreviewing) {
-    return <BuilderComponent content={content} model={model} />
+    return <BuilderComponent content={content} model={model} options={{ enrich: true }} />
   }
 
   return <div>Not Found</div>

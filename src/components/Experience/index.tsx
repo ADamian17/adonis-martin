@@ -1,57 +1,102 @@
 import { Builder } from '@builder.io/react'
-
-import { experience } from '@/data/experience'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 
-export const Experience = () => (
-  <section
-    style={{ padding: '70px clamp(20px, 8.4vw, 162px)', maxWidth: '1920px', marginInline: 'auto' }}
-  >
-    <div className="text-center mx-auto mb-[60px]" style={{ maxWidth: '640px' }}>
-      <h2
-        className="m-0 mb-1.5 font-semibold text-heading"
-        style={{ fontSize: 'clamp(34px, 3.4vw, 48px)' }}
-      >
-        My Journey
-      </h2>
-      <p className="m-0 font-normal text-[18px] text-body">
-        A few of the teams and products I&apos;ve helped build along the way
-      </p>
-    </div>
+interface ExperienceProps {
+  headline: string
+  copy: string
+  experienceItems: {
+    experienceItem: {
+      id: string
+      value: {
+        data: {
+          title: string
+          company: string
+          description: string
+          startDate: string
+          endDate?: string
+          isCurrentCompany: boolean
+          employmentType: 'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Freelance' | 'Other'
+        }
+      }
+    }
+  }[]
+}
 
-    <div className="flex flex-col gap-5 mx-auto" style={{ maxWidth: '880px' }}>
-      {experience.map((item) => (
-        <div
-          key={item.id}
-          className="flex gap-7 rounded-xl bg-card-warm"
-          style={{ padding: '36px 40px' }}
+export const Experience = ({ headline, copy, experienceItems }: ExperienceProps) => {
+  const experience = experienceItems.map((item) => ({ id: item.experienceItem?.id, ...item.experienceItem?.value?.data }));
+
+  return (
+    <section
+      style={{ padding: '70px clamp(20px, 8.4vw, 162px)', maxWidth: '1920px', marginInline: 'auto' }}
+    >
+      <div className="text-center mx-auto mb-15" style={{ maxWidth: '640px' }}>
+        <h2
+          className="m-0 mb-1.5 font-semibold text-heading"
+          style={{ fontSize: 'clamp(34px, 3.4vw, 48px)' }}
         >
-          {/* Gradient accent bar */}
-          <div
-            className="flex-none w-[6px] rounded-full"
-            style={{ background: 'linear-gradient(180deg,#9a5cff,#681aff)' }}
-          />
+          {headline}
+        </h2>
+        <p className="m-0 font-normal text-[18px] text-body">
+          {copy}
+        </p>
+      </div>
 
-          {/* Content */}
-          <div className="flex flex-col gap-2">
-            <div className="flex flex-wrap items-baseline gap-3">
-              <h3 className="m-0 font-semibold text-[22px] text-heading">{item.title}</h3>
-              <span className="font-medium text-[16px] text-accent">{item.company}</span>
-              <span className="font-normal text-[15px] text-faint">{item.period}</span>
+      <div className="flex flex-col gap-5 mx-auto" style={{ maxWidth: '880px' }}>
+        {experience.map((item) => (
+          <div
+            key={item.id}
+            className="flex gap-7 rounded-xl bg-card-warm"
+            style={{ padding: '36px 40px' }}
+          >
+            {/* Gradient accent bar */}
+            <div
+              className="flex-none w-1.5 rounded-full"
+              style={{ background: 'linear-gradient(180deg,#9a5cff,#681aff)' }}
+            />
+
+            {/* Content */}
+            <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-1">
+                <h3 className="m-0 font-semibold text-[22px] text-heading">{item.title}</h3>
+                <div className="flex flex-wrap items-baseline gap-2.5">
+                  <span className="font-medium text-[16px] text-accent">{item.company}</span>
+                  <span className="font-normal text-[15px] text-faint">{item.employmentType}</span>
+                </div>
+                <span className="font-normal text-[15px] text-faint">{item.startDate} - {item?.endDate ?? 'Present'}</span>
+              </div>
+              <p className="m-0 font-normal text-[16px] leading-[1.6] text-body">
+                {item.description}
+              </p>
             </div>
-            <p className="m-0 font-normal text-[16px] leading-[1.6] text-body">
-              {item.description}
-            </p>
           </div>
-        </div>
-      ))}
-    </div>
-  </section>
-)
+        ))}
+      </div>
+    </section>
+  )
+}
 
 export const registerExperience = () => {
   Builder.registerComponent(Experience, {
     name: 'Experience',
+    inputs: [
+      {
+        name: 'headline',
+        type: 'text',
+        defaultValue: '',
+      },
+      {
+        name: 'copy',
+        type: 'text',
+        defaultValue: '',
+      },
+      {
+        name: 'experienceItems',
+        type: 'list',
+        subFields: [
+          { name: 'experienceItem', type: 'reference', model: BUILDER_IO_MODELS.EXPERIENCE_ITEM },
+        ],
+      }
+    ],
     models: [BUILDER_IO_MODELS.PAGE],
   })
 }
