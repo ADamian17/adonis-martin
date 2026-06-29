@@ -18,4 +18,12 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    rollupOptions: {
+      onwarn(warning, warn) {
+        if (warning.code === 'EVAL' && warning.id?.includes('node_modules')) return
+        warn(warning)
+      },
+    },
+  },
 })
