@@ -5,11 +5,10 @@ import { registerContactGrid } from '@/components/ContactGrid'
 import { registerCtaBanner } from '@/components/CtaBanner'
 import { registerExperience } from '@/components/Experience'
 import { registerFaqAccordion } from '@/components/FaqAccordion'
-import { registerFilterBar } from '@/components/FilterBar'
 import { registerHomeHero } from '@/components/Hero'
 import { registerIntro } from '@/components/Intro'
 import { registerPageHeader } from '@/components/PageHeader'
-import { registerPortfolioCard } from '@/components/PortfolioCard'
+import { registerProjectGrid } from '@/components/ProjectGrid'
 import { registerSkillsGrid } from '@/components/SkillsGrid'
 import { registerStats } from '@/components/Stats'
 import { registerTechStack } from '@/components/TechStack'
@@ -36,8 +35,7 @@ registerValues()
 registerContactGrid()
 
 /* Portfolio page */
-registerFilterBar()
-registerPortfolioCard()
+registerProjectGrid()
 
 /* Shared sections */
 registerCtaBanner()
@@ -68,8 +66,7 @@ Builder.register('insertMenu', {
 Builder.register('insertMenu', {
   name: 'Portfolio Page components',
   items: [
-    { name: 'FilterBar', item: { component: { name: 'FilterBar' } } },
-    { name: 'PortfolioCard', item: { component: { name: 'PortfolioCard' } } },
+    { name: 'ProjectGrid', item: { component: { name: 'ProjectGrid' } } },
   ],
 })
 
