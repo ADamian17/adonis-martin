@@ -9,7 +9,7 @@ export const Route = createFileRoute('/$')({
     const pageContent = await fetchContent('page', urlPath)
 
     return {
-      pageContent
+      pageContent,
     }
   },
   component: RouteComponent,

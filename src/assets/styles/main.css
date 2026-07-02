@@ -26,8 +26,14 @@
   --color-border-soft: #ddd8cf;
   --color-border-alt: #ebe7e0;
   --color-border-pale: #d9d6cf;
+  --color-border-warm: #e4e0d8;
 
   --color-neutral: #dededb;
+
+  --color-muted: #333333;
+  --color-placeholder: #a8a39a;
+  --color-danger: #c0392b;
+  --color-success: #1f8a5b;
 }
 
 body {

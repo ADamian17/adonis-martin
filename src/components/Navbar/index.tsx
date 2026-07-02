@@ -1,6 +1,8 @@
 import { Link, useRouterState } from '@tanstack/react-router'
+import clsx from 'clsx'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
+import { Button as AriaButton } from 'react-aria-components'
 
 import { Logo } from '@/components/Logo'
 
@@ -17,12 +19,18 @@ type NavLinkProps = NavLinkItem & { mobile?: boolean; onClick?: () => void }
 const NavLink = ({ label, to, mobile = false, onClick }: NavLinkProps) => {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
   const isActive = pathname === to
-  const base = `font-medium text-[18px] rounded-lg whitespace-nowrap ${mobile ? 'px-6 py-3 block' : 'px-6 py-3.5'}`
-  const cls = isActive
-    ? `${base} bg-card-ivory text-heading`
-    : `${base} text-[#333] hover:bg-card-ivory hover:text-heading transition-colors`
   return (
-    <Link to={to} onClick={onClick} className={cls}>
+    <Link
+      to={to}
+      onClick={onClick}
+      className={clsx(
+        'font-medium text-[18px] rounded-lg whitespace-nowrap',
+        mobile ? 'px-6 py-3 block' : 'px-6 py-3.5',
+        isActive
+          ? 'bg-card-ivory text-heading'
+          : 'text-muted hover:bg-card-ivory hover:text-heading transition-colors',
+      )}
+    >
       {label}
     </Link>
   )
@@ -41,7 +49,7 @@ export const Navbar = () => {
         backdropFilter: 'blur(12px)',
       }}
     >
-      <Link to={"/$".replace('$', '')} className="no-underline whitespace-nowrap">
+      <Link to={'/$'.replace('$', '')} className="no-underline whitespace-nowrap">
         <Logo />
       </Link>
 
@@ -53,15 +61,14 @@ export const Navbar = () => {
         ))}
       </ul>
 
-      <button
-        type="button"
+      <AriaButton
         className="md:hidden p-2 text-heading"
-        onClick={() => setOpen((o) => !o)}
+        onPress={() => setOpen((o) => !o)}
         aria-label={open ? 'Close menu' : 'Open menu'}
         aria-expanded={open}
       >
         {open ? <X size={24} /> : <Menu size={24} />}
-      </button>
+      </AriaButton>
 
       {open && (
         <div className="absolute top-full left-0 right-0 bg-beige border-b border-border flex flex-col py-2 md:hidden">

@@ -1,6 +1,7 @@
 import { Builder } from '@builder.io/react'
 
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+import { SectionBadge } from '@/ui/SectionBadge'
 
 type Props = {
   badge: string
@@ -17,11 +18,8 @@ export const PageHeader = ({ badge, title, description }: Props) => (
       marginInline: 'auto',
     }}
   >
-    <div
-      className="inline-block px-[18px] py-[10px] rounded-[13px] bg-white font-medium text-[18px] text-accent mb-6"
-      style={{ boxShadow: '0 8px 30px rgba(0,0,0,0.04)' }}
-    >
-      {badge}
+    <div className="mb-6">
+      <SectionBadge>{badge}</SectionBadge>
     </div>
     <h1
       className="m-0 mx-auto mb-4 font-semibold text-heading leading-[1.16]"

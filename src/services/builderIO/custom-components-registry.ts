@@ -1,20 +1,23 @@
 import { Builder } from '@builder.io/react'
 
-import { registerBenefitsGrid } from '@/components/BenefitsGrid'
-import { registerContactGrid } from '@/components/ContactGrid'
 import { registerCtaBanner } from '@/components/CtaBanner'
-import { registerExperience } from '@/components/Experience'
-import { registerFaqAccordion } from '@/components/FaqAccordion'
-import { registerHomeHero } from '@/components/Hero'
-import { registerIntro } from '@/components/Intro'
 import { registerPageHeader } from '@/components/PageHeader'
-import { registerProjectGrid } from '@/components/ProjectGrid'
-import { registerSkillsGrid } from '@/components/SkillsGrid'
 
-import { registerTechStack } from '@/components/TechStack'
-import { registerTestimonials } from '@/components/Testimonials'
-import { registerValues } from '@/components/Values'
-import { registerWorksGrid } from '@/components/WorksGrid'
+import { registerExperience } from '@/features/about/components/Experience'
+import { registerIntro } from '@/features/about/components/Intro'
+import { registerTechStack } from '@/features/about/components/TechStack'
+import { registerValues } from '@/features/about/components/Values'
+
+import { registerContactGrid } from '@/features/contact/components/ContactGrid'
+
+import { registerBenefitsGrid } from '@/features/home/components/BenefitsGrid'
+import { registerFaqAccordion } from '@/features/home/components/FaqAccordion'
+import { registerHomeHero } from '@/features/home/components/Hero'
+import { registerSkillsGrid } from '@/features/home/components/SkillsGrid'
+import { registerTestimonials } from '@/features/home/components/Testimonials'
+import { registerWorksGrid } from '@/features/home/components/WorksGrid'
+
+import { registerProjectGrid } from '@/features/portfolio/components/ProjectGrid'
 
 /* Custom components */
 registerSkillsGrid()
@@ -63,9 +66,7 @@ Builder.register('insertMenu', {
 
 Builder.register('insertMenu', {
   name: 'Portfolio Page components',
-  items: [
-    { name: 'ProjectGrid', item: { component: { name: 'ProjectGrid' } } },
-  ],
+  items: [{ name: 'ProjectGrid', item: { component: { name: 'ProjectGrid' } } }],
 })
 
 Builder.register('insertMenu', {

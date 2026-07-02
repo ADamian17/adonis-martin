@@ -3,6 +3,7 @@ import { Mail, MapPin, Phone } from 'lucide-react'
 
 import { Logo } from '@/components/Logo'
 import { GithubIcon, LinkedinIcon, TwitterIcon } from '@/components/SocialIcons'
+import { IconLink } from '@/ui/IconLink'
 
 const navLinks = [
   { label: 'About Me', to: '/about-me' },
@@ -30,7 +31,7 @@ export const Footer = () => (
   >
     {/* Top row */}
     <div className="flex flex-wrap items-center justify-between gap-6 mb-10">
-      <Link to={"/$".replace('$', '')} className="no-underline whitespace-nowrap">
+      <Link to={'/$'.replace('$', '')} className="no-underline whitespace-nowrap">
         <Logo />
       </Link>
 
@@ -39,7 +40,7 @@ export const Footer = () => (
           <Link
             key={to}
             to={to}
-            className="font-medium text-[17px] text-[#333] hover:text-heading transition-colors"
+            className="font-medium text-[17px] text-muted hover:text-heading transition-colors"
           >
             {label}
           </Link>
@@ -48,16 +49,16 @@ export const Footer = () => (
 
       <div className="flex gap-3">
         {socialLinks.map(({ Icon, href, label }) => (
-          <a
+          <IconLink
             key={label}
+            size={40}
             href={href}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={label}
-            className="flex items-center justify-center w-10 h-10 rounded-lg bg-accent text-white hover:bg-accent/90 transition-colors"
           >
             <Icon size={18} />
-          </a>
+          </IconLink>
         ))}
       </div>
     </div>
