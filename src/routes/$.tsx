@@ -12,6 +12,25 @@ export const Route = createFileRoute('/$')({
       pageContent,
     }
   },
+  head: ({ loaderData }) => {
+    const defaultTitle = 'Adonis D. Martin | Frontend Engineer'
+    const defaultDescription =
+      'Adonis D. Martin is a frontend engineer and web developer specializing in building performant, accessible, and user-friendly web applications.'
+
+    if (!loaderData?.pageContent)
+      return {
+        meta: [{ name: 'description', content: defaultDescription }, { title: defaultTitle }],
+      }
+
+    const { data } = loaderData.pageContent
+
+    return {
+      meta: [
+        { name: 'description', content: data?.description ?? defaultDescription },
+        { title: data?.title ?? defaultTitle },
+      ],
+    }
+  },
   component: RouteComponent,
 })
 
