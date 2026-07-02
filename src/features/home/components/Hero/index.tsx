@@ -4,7 +4,21 @@ import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { Link } from '@/ui/Link'
 import { SectionBadge } from '@/ui/SectionBadge'
 
-export const HomeHero = () => (
+type CtaButton = {
+  label?: string
+  url?: string
+  target?: '_self' | '_blank'
+  ariaLabel?: string
+}
+
+type Props = {
+  greeting: string
+  headline: string
+  subheading: string
+  ctaButton?: CtaButton
+}
+
+export const HomeHero = ({ greeting, headline, subheading, ctaButton }: Props) => (
   <section id="home" className="flex flex-wrap" style={{ minHeight: '880px' }}>
     {/* Left column */}
     <div
@@ -16,7 +30,7 @@ export const HomeHero = () => (
       }}
     >
       <SectionBadge align="start" size="lg">
-        Hello There 🤗
+        {greeting}
       </SectionBadge>
 
       <div className="flex flex-col gap-5">
@@ -24,24 +38,26 @@ export const HomeHero = () => (
           className="font-semibold text-heading leading-[1.18]"
           style={{ fontSize: 'clamp(40px, 4vw, 58px)', maxWidth: '12ch' }}
         >
-          Adonis D. Martin Welcomes You!
+          {headline}
         </h1>
         <p className="text-body text-[18px] leading-[1.55]" style={{ maxWidth: '46ch' }}>
-          I'm a frontend-focused software engineer who builds fast, accessible, and maintainable web
-          interfaces. Explore my work to see how I turn complex problems into clean, reliable user
-          experiences.
+          {subheading}
         </p>
       </div>
 
-      <div>
-        <Link
-          href="#portfolio"
-          icon={<ArrowRight size={18} />}
-          className="px-7 py-[18px] text-[16px]"
-        >
-          View Portfolio
-        </Link>
-      </div>
+      {ctaButton?.url && (
+        <div>
+          <Link
+            href={ctaButton.url}
+            target={ctaButton.target}
+            aria-label={ctaButton.ariaLabel}
+            icon={<ArrowRight size={18} />}
+            className="px-7 py-[18px] text-[16px]"
+          >
+            {ctaButton.label}
+          </Link>
+        </div>
+      )}
     </div>
 
     {/* Right column — dark decorative panel */}
@@ -83,5 +99,26 @@ export const registerHomeHero = () => {
     name: 'HomeHero',
     noWrap: true,
     models: [BUILDER_IO_MODELS.PAGE],
+    inputs: [
+      { name: 'greeting', type: 'text', defaultValue: 'Hello There 🤗' },
+      { name: 'headline', type: 'text', defaultValue: 'Adonis D. Martin Welcomes You!' },
+      {
+        name: 'subheading',
+        type: 'longText',
+        defaultValue:
+          "I'm a frontend-focused software engineer who builds fast, accessible, and maintainable web interfaces. Explore my work to see how I turn complex problems into clean, reliable user experiences.",
+      },
+      {
+        name: 'ctaButton',
+        type: 'object',
+        defaultValue: { label: 'View Portfolio', url: '#portfolio', target: '_self' },
+        subFields: [
+          { name: 'label', type: 'text', defaultValue: 'View Portfolio' },
+          { name: 'url', type: 'url', defaultValue: '#portfolio' },
+          { name: 'target', type: 'text', enum: ['_self', '_blank'], defaultValue: '_self' },
+          { name: 'ariaLabel', type: 'text', defaultValue: '' },
+        ],
+      },
+    ],
   })
 }
