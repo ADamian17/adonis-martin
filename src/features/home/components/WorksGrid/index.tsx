@@ -39,7 +39,7 @@ export const WorksGrid = ({ cta, headline, subheadline, projectItems = [] }: Wor
 
   return (
     <section id="portfolio" style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
-      <SectionHeading title={headline} description={subheadline} />
+      <SectionHeading align="center" title={headline} description={subheadline} />
 
       <div className="grid gap-7.5 grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
         {projects.map((project) => (

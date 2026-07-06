@@ -22,12 +22,12 @@ export const BenefitsGrid = ({ headline, subheadline, benefitItems = [] }: Benef
 
   return (
     <section style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
-      <SectionHeading title={headline} description={subheadline} />
+      <SectionHeading align="center" title={headline} description={subheadline} />
 
-      <div className="flex flex-col gap-[30px]">
+      <div className="flex flex-col gap-7.5">
         {/* Row 1 — 2 cards */}
         <div
-          className="grid gap-[30px]"
+          className="grid gap-7.5"
           style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}
         >
           {benefits.slice(0, 2).map((benefit) => (
@@ -37,7 +37,7 @@ export const BenefitsGrid = ({ headline, subheadline, benefitItems = [] }: Benef
 
         {/* Row 2 — remaining cards */}
         <div
-          className="grid gap-[30px]"
+          className="grid gap-7.5"
           style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}
         >
           {benefits.slice(2).map((benefit) => (

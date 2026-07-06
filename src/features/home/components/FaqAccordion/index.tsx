@@ -18,7 +18,7 @@ const CtaCard = () => (
       Let's collaborate to build something exceptional. Contact me today to discuss your project and
       bring your digital vision to life.
     </p>
-    <Link href="#contact" className="self-start px-6 py-[18px]">
+    <Link href="#contact" className="self-start px-6 py-4.5">
       Contact Me
     </Link>
   </Card>
@@ -42,10 +42,10 @@ export const FaqAccordion = ({ headline, subheadline, faqItems = [] }: FaqAccord
 
   return (
     <section style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
-      <SectionHeading title={headline} description={subheadline} />
+      <SectionHeading align='center' title={headline} description={subheadline} />
 
       <div
-        className="grid gap-[30px] items-start"
+        className="grid gap-7.5 items-start"
         style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}
       >
         <Accordion items={items} />

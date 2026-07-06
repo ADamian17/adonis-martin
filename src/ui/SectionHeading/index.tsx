@@ -16,8 +16,8 @@ const alignClasses: Record<Align, string> = {
 /** Centered or left-aligned heading + subtext block used atop grid sections. */
 export const SectionHeading = ({ title, description, align = 'left' }: Props) => (
   <div
-    className={clsx('mb-[60px]', alignClasses[align])}
-    style={align === 'center' ? { maxWidth: 640 } : undefined}
+    className={clsx('mb-15', alignClasses[align])}
+    style={align === 'center' ? { maxWidth: 650 } : undefined}
   >
     <h2
       className="font-semibold text-heading mb-4"
