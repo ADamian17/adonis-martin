@@ -1,11 +1,10 @@
 import { Builder } from '@builder.io/react'
 import type { ReactElement } from 'react'
-import type { ValueIcon } from '@/data/values'
-import { values } from '@/data/values'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { Card } from '@/ui/Card'
 import { GradientIconBox } from '@/ui/GradientIconBox'
 import { SectionHeading } from '@/ui/SectionHeading'
+import type { ValueIcon, ValueItem, ValueItemsType } from './value-types'
 
 const iconMap: Record<ValueIcon, ReactElement> = {
   target: (
@@ -57,34 +56,71 @@ const iconMap: Record<ValueIcon, ReactElement> = {
   ),
 }
 
-export const Values = () => (
-  <section
-    style={{ padding: '70px clamp(20px, 8.4vw, 162px)', maxWidth: '1920px', marginInline: 'auto' }}
-  >
-    <SectionHeading
-      align="center"
-      title="How I Work"
-      description="The principles behind everything I ship"
-    />
+interface ValuesProps {
+  headline: string
+  subheadline: string
+  valueItems: ValueItemsType
+}
 
-    <div
-      className="grid gap-[30px]"
-      style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}
+export const Values = ({ headline, subheadline, valueItems = [] }: ValuesProps) => {
+  const values: ValueItem[] = valueItems.map((item) => {
+    const data = item.valueItem?.value?.data
+
+    return {
+      title: data?.title ?? '',
+      description: data?.description ?? '',
+      icon: data?.icon ?? 'target',
+    }
+  })
+
+  return (
+    <section
+      style={{
+        padding: '70px clamp(20px, 8.4vw, 162px)',
+        maxWidth: '1920px',
+        marginInline: 'auto',
+      }}
     >
-      {values.map((item) => (
-        <Card key={item.id} className="flex flex-col gap-5">
-          <GradientIconBox>{iconMap[item.icon]}</GradientIconBox>
-          <h3 className="m-0 font-semibold text-[22px] text-heading">{item.title}</h3>
-          <p className="m-0 font-normal text-[16px] leading-[1.6] text-body">{item.description}</p>
-        </Card>
-      ))}
-    </div>
-  </section>
-)
+      <SectionHeading align="center" title={headline} description={subheadline} />
+
+      <div
+        className="grid gap-[30px]"
+        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}
+      >
+        {values.map((item) => (
+          <Card key={item.title} className="flex flex-col gap-5">
+            <GradientIconBox>{iconMap[item.icon]}</GradientIconBox>
+            <h3 className="m-0 font-semibold text-[22px] text-heading">{item.title}</h3>
+            <p className="m-0 font-normal text-[16px] leading-[1.6] text-body">
+              {item.description}
+            </p>
+          </Card>
+        ))}
+      </div>
+    </section>
+  )
+}
 
 export const registerValues = () => {
   Builder.registerComponent(Values, {
     name: 'Values',
+    inputs: [
+      {
+        name: 'headline',
+        type: 'text',
+        defaultValue: 'How I Work',
+      },
+      {
+        name: 'subheadline',
+        type: 'text',
+        defaultValue: 'The principles behind everything I ship',
+      },
+      {
+        name: 'valueItems',
+        type: 'list',
+        subFields: [{ name: 'valueItem', type: 'reference', model: BUILDER_IO_MODELS.VALUE_ITEM }],
+      },
+    ],
     models: [BUILDER_IO_MODELS.PAGE],
   })
 }

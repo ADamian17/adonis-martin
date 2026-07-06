@@ -7,6 +7,8 @@ export const BUILDER_IO_MODELS = {
   BENEFIT_ITEM: 'benefit-item',
   TESTIMONIAL_ITEM: 'testimonial-item',
   FAQ_ITEM: 'faq-item',
+  TECH_ITEM: 'tech-item',
+  VALUE_ITEM: 'value-item',
   SITE_SETTINGS: 'site-settings',
 } as const
 
