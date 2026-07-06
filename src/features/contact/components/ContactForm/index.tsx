@@ -3,17 +3,11 @@ import { useForm } from '@tanstack/react-form'
 import { useMutation } from '@tanstack/react-query'
 import { useState } from 'react'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+import { type FormKeepData, submitToFormKeep } from '@/services/FormKeep'
 import { Button } from '@/ui/Button'
 import { TextField } from '@/ui/TextField'
 import { required, validateEmail } from '@/utils/form-validation'
 import { SuccessState } from './SuccessState'
-
-type FormState = {
-  email: string
-  message: string
-  name: string
-  subject: string
-}
 
 export const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false)
@@ -21,22 +15,8 @@ export const ContactForm = () => {
   const [submitError, setSubmitError] = useState('')
 
   const { mutateAsync } = useMutation({
-    mutationFn: async (variables: FormState) => {
-      const response = await fetch(import.meta.env.VITE_FORMKEEP_URL, {
-        method: 'POST',
-        headers: { 
-          Accept: 'application/json', 
-          'Content-Type': 'application/json' 
-        },
-        body: JSON.stringify({
-          email: variables.email.trim(),
-          message: variables.message.trim(),
-          name: variables.name.trim(),
-          subject: variables.subject.trim(),
-        }),
-      })
-
-      return response.json()
+    mutationFn: async (variables: FormKeepData) => {
+      await submitToFormKeep(variables)
     },
     onError: () => {
       setSubmitError(
