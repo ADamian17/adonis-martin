@@ -22,7 +22,7 @@ export const HomeHero = ({ greeting, headline, subheading, ctaButton }: Props) =
   <section id="home" className="flex flex-wrap" style={{ minHeight: '880px' }}>
     {/* Left column */}
     <div
-      className="flex flex-col justify-center gap-[50px]"
+      className="flex flex-col justify-center gap-12.5"
       style={{
         flex: '1 1 560px',
         minWidth: '340px',
@@ -52,7 +52,7 @@ export const HomeHero = ({ greeting, headline, subheading, ctaButton }: Props) =
             target={ctaButton.target}
             aria-label={ctaButton.ariaLabel}
             icon={<ArrowRight size={18} />}
-            className="px-7 py-[18px] text-[16px]"
+            className="px-7 py-4.5 text-[16px]"
           >
             {ctaButton.label}
           </Link>
@@ -80,14 +80,14 @@ export const HomeHero = ({ greeting, headline, subheading, ctaButton }: Props) =
         src="/abstract-1.svg"
         alt=""
         aria-hidden="true"
-        className="absolute w-[300px]"
+        className="absolute w-75"
         style={{ top: '-20px', left: '-60px' }}
       />
       <img
         src="/abstract-2.svg"
         alt=""
         aria-hidden="true"
-        className="absolute w-[300px] rotate-180"
+        className="absolute w-75 rotate-180"
         style={{ bottom: '0', right: '-60px' }}
       />
     </div>

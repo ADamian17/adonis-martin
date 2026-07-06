@@ -44,8 +44,18 @@ const socialLinks = [
   { Icon: GithubIcon, href: 'https://github.com', label: 'GitHub' },
 ]
 
-export const ContactInfo = () => (
-  <div className="flex flex-col gap-[30px]">
+type Props = {
+  availabilityStatus: string
+  availabilitySubtext: string
+  withAvailabilityStatus: boolean
+}
+
+export const ContactInfo = ({
+  availabilityStatus,
+  availabilitySubtext,
+  withAvailabilityStatus,
+}: Props) => (
+  <div className="flex flex-col gap-7.5">
     {/* Get in touch card — purple fill */}
     <div
       className="rounded-xl bg-purple-fill border border-purple-border flex flex-col gap-7"
@@ -75,7 +85,7 @@ export const ContactInfo = () => (
       ))}
 
       {/* Social icons */}
-      <div className="flex items-center gap-[14px] pt-1.5">
+      <div className="flex items-center gap-3.5 pt-1.5">
         {socialLinks.map(({ Icon, href, label }) => (
           <IconLink
             key={label}
@@ -91,21 +101,24 @@ export const ContactInfo = () => (
     </div>
 
     {/* Availability card */}
-    <div
-      className="flex items-center gap-[14px] rounded-xl bg-card-warm"
-      style={{ padding: '24px 30px' }}
-    >
-      <span
-        className="flex-none w-3 h-3 rounded-full"
-        style={{ background: 'var(--color-success)', boxShadow: '0 0 0 4px rgba(31,138,91,0.15)' }}
-      />
-      <div>
-        <div className="font-semibold text-[16px] text-heading">
-          Currently available for new projects
+    {withAvailabilityStatus && (
+      <div
+        className="flex items-center gap-3.5 rounded-xl bg-card-warm"
+        style={{ padding: '24px 30px' }}
+      >
+        <span
+          className="flex-none w-3 h-3 rounded-full"
+          style={{
+            background: 'var(--color-success)',
+            boxShadow: '0 0 0 4px rgba(31,138,91,0.15)',
+          }}
+        />
+        <div>
+          <div className="font-semibold text-[16px] text-heading">{availabilityStatus}</div>
+          <div className="font-normal text-[15px] text-body">{availabilitySubtext}</div>
         </div>
-        <div className="font-normal text-[15px] text-body">Booking work starting July 2026</div>
       </div>
-    </div>
+    )}
   </div>
 )
 

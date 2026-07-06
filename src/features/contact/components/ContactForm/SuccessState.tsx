@@ -31,7 +31,7 @@ export const SuccessState = ({ sentName, sentEmail, onReset }: Props) => (
     <button
       type="button"
       onClick={onReset}
-      className="mt-1.5 cursor-pointer px-6 py-[14px] rounded-lg border border-border-warm bg-white font-medium text-[16px] text-muted hover:bg-card-alt transition-colors"
+      className="mt-1.5 cursor-pointer px-6 py-3.5 rounded-lg border border-border-warm bg-white font-medium text-[16px] text-muted hover:bg-card-alt transition-colors"
     >
       Send another message
     </button>
