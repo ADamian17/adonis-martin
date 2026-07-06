@@ -1,4 +1,4 @@
-import type { MenuItem } from '.'
+import type { MenuItem, MenuLogo } from '.'
 
 /** Raw nav item as stored on a Builder `menu` entry — either inline or a resolved reference. */
 type RawMenuItem = {
@@ -11,10 +11,15 @@ type RawMenuItem = {
 
 type RawMenuWrapper = { menuItem?: RawMenuItem }
 
+type RawLogo = { image?: string; alt?: string; url?: string }
+
 /** Raw shape of a Builder `menu` content entry. */
 export type RawMenuEntry = {
   name?: string
-  data?: { menuItems?: RawMenuWrapper[] }
+  data?: {
+    logo?: RawLogo
+    menuItems?: RawMenuWrapper[]
+  }
 }
 
 /**
@@ -39,4 +44,18 @@ export const toMenuItems = (entry?: RawMenuEntry): MenuItem[] => {
       }
     })
     .filter((item) => item.label !== '' && item.url !== '')
+}
+
+/**
+ * Reads a Builder `menu` entry's `logo` object, falling back to `fallback` for any
+ * unset field so the brand mark always has a link target and alt text.
+ */
+export const toLogo = (entry: RawMenuEntry | undefined, fallback: MenuLogo): MenuLogo => {
+  const raw = entry?.data?.logo
+
+  return {
+    image: raw?.image ?? fallback.image,
+    alt: raw?.alt || fallback.alt,
+    url: raw?.url || fallback.url,
+  }
 }

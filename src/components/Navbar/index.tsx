@@ -1,10 +1,10 @@
-import { Link, useRouterState } from '@tanstack/react-router'
+import { useRouterState } from '@tanstack/react-router'
 import clsx from 'clsx'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import { Button as AriaButton } from 'react-aria-components'
 
-import { Logo } from '@/components/Logo'
+import { BrandLogo } from '@/components/BrandLogo'
 import { type MenuItem, useMenus } from '@/store/menus'
 import { MenuLink } from '@/ui/MenuLink'
 
@@ -46,12 +46,10 @@ export const Navbar = () => {
         backdropFilter: 'blur(12px)',
       }}
     >
-      <Link to={'/$'.replace('$', '')} className="no-underline whitespace-nowrap">
-        <Logo />
-      </Link>
+      <BrandLogo logo={mainNav.logo} />
 
       <ul className="hidden md:flex items-center gap-1">
-        {mainNav.map((link) => (
+        {mainNav.items.map((link) => (
           <li key={link.url}>
             <NavLink {...link} />
           </li>
@@ -69,7 +67,7 @@ export const Navbar = () => {
 
       {open && (
         <div className="absolute top-full left-0 right-0 bg-beige border-b border-border flex flex-col py-2 md:hidden">
-          {mainNav.map((link) => (
+          {mainNav.items.map((link) => (
             <NavLink key={link.url} {...link} mobile onClick={close} />
           ))}
         </div>

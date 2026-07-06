@@ -1,7 +1,6 @@
-import { Link } from '@tanstack/react-router'
 import { Mail, MapPin, Phone } from 'lucide-react'
 
-import { Logo } from '@/components/Logo'
+import { BrandLogo } from '@/components/BrandLogo'
 import { GithubIcon, LinkedinIcon } from '@/components/SocialIcons'
 import { useMenus } from '@/store/menus'
 import { useSiteSettings } from '@/store/siteSettings'
@@ -31,12 +30,10 @@ export const Footer = () => {
     >
       {/* Top row */}
       <div className="flex flex-wrap items-center justify-between gap-6 mb-10">
-        <Link to={'/$'.replace('$', '')} className="no-underline whitespace-nowrap">
-          <Logo />
-        </Link>
+        <BrandLogo logo={footerNav.logo} />
 
         <nav className="flex flex-wrap gap-6">
-          {footerNav.map((item) => (
+          {footerNav.items.map((item) => (
             <MenuLink
               key={item.url}
               url={item.url}
