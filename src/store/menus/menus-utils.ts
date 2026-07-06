@@ -11,7 +11,7 @@ type RawMenuItem = {
 
 type RawMenuWrapper = { menuItem?: RawMenuItem }
 
-type RawLogo = { image?: string; alt?: string; url?: string }
+type RawLogo = { image?: string; mobileImage?: string; alt?: string; url?: string }
 
 /** Raw shape of a Builder `menu` content entry. */
 export type RawMenuEntry = {
@@ -55,6 +55,7 @@ export const toLogo = (entry: RawMenuEntry | undefined, fallback: MenuLogo): Men
 
   return {
     image: raw?.image ?? fallback.image,
+    mobileImage: raw?.mobileImage ?? fallback.mobileImage,
     alt: raw?.alt || fallback.alt,
     url: raw?.url || fallback.url,
   }

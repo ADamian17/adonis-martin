@@ -14,6 +14,8 @@ export type MenuItem = {
 /** Brand logo config for a menu placement. `image` is a Builder asset URL; empty means text fallback. */
 export type MenuLogo = {
   image: string
+  /** Optional alternate mark shown on small screens (e.g. initials only). */
+  mobileImage?: string
   alt: string
   url: string
 }
@@ -42,14 +44,18 @@ const DEFAULT_ITEMS: MenuItem[] = [
   { label: 'Contact Me', url: '/contact-me', target: '_self' },
 ]
 
-const DEFAULT_LOGO: MenuLogo = { image: '', alt: 'Adonis D. Martin', url: '/' }
+const DEFAULT_LOGO: MenuLogo = { image: '/logo.svg', alt: 'Adonis D. Martin', url: '/' }
 
 /**
  * Fallback menus rendered until the Builder `menu` entries are fetched (or if the fetch
- * fails / an entry is missing). Acts as the single source of fallback navigation.
+ * fails / an entry is missing). Acts as the single source of fallback navigation. The main
+ * nav collapses its logo to an initials-only mark on small screens; the footer keeps the full logo.
  */
 export const MENUS_DEFAULTS: Menus = {
-  mainNav: { logo: DEFAULT_LOGO, items: DEFAULT_ITEMS },
+  mainNav: {
+    logo: { ...DEFAULT_LOGO, mobileImage: '/initials-only-logo.svg' },
+    items: DEFAULT_ITEMS,
+  },
   footerNav: { logo: DEFAULT_LOGO, items: DEFAULT_ITEMS },
 }
 
@@ -66,13 +72,13 @@ export const menusStore = proxy<Menus>(structuredClone(MENUS_DEFAULTS))
  */
 export const useMenus = () => useSnapshot(menusStore)
 
-/** Builds a {@link Menu} from a raw entry, keeping default items when the entry has none. */
-const buildMenu = (entry: RawMenuEntry): Menu => {
+/** Builds a {@link Menu} from a raw entry, falling back to `defaults` for the logo and empty items. */
+const buildMenu = (entry: RawMenuEntry, defaults: Menu): Menu => {
   const items = toMenuItems(entry)
 
   return {
-    logo: toLogo(entry, DEFAULT_LOGO),
-    items: items.length ? items : DEFAULT_ITEMS,
+    logo: toLogo(entry, defaults.logo),
+    items: items.length ? items : defaults.items,
   }
 }
 
@@ -91,8 +97,8 @@ export const loadMenus = async () => {
     const mainNav = entries.find((entry) => entry.name === MENU_NAMES.mainNav)
     const footerNav = entries.find((entry) => entry.name === MENU_NAMES.footerNav)
 
-    if (mainNav) menusStore.mainNav = buildMenu(mainNav)
-    if (footerNav) menusStore.footerNav = buildMenu(footerNav)
+    if (mainNav) menusStore.mainNav = buildMenu(mainNav, MENUS_DEFAULTS.mainNav)
+    if (footerNav) menusStore.footerNav = buildMenu(footerNav, MENUS_DEFAULTS.footerNav)
   } catch (error) {
     console.error('Error fetching menu content', error)
   }
