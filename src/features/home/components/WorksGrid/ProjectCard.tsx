@@ -1,6 +1,6 @@
 import { ExternalLink } from 'lucide-react'
 
-import type { Project } from '@/data/projects'
+import type { Project } from '@/features/portfolio/components/ProjectGrid/project-types'
 
 type Props = { project: Project }
 

@@ -1,9 +1,9 @@
 import { Builder } from '@builder.io/react'
 import { useState } from 'react'
-import type { Project, ProjectItemsType } from '@/data/projects'
 import { FilterBar, type FilterCategory } from '@/features/portfolio/components/FilterBar'
 import { PortfolioCard } from '@/features/portfolio/components/PortfolioCard'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+import type { Project, ProjectItemsType } from './project-types'
 
 interface ProjectGridProps {
   projectItems: ProjectItemsType

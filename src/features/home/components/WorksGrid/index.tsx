@@ -2,7 +2,10 @@ import { Builder } from '@builder.io/react'
 import { Link } from '@tanstack/react-router'
 import clsx from 'clsx'
 import { ArrowRight } from 'lucide-react'
-import type { Project, ProjectItemsType } from '@/data/projects'
+import type {
+  Project,
+  ProjectItemsType,
+} from '@/features/portfolio/components/ProjectGrid/project-types'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { ctaClassName } from '@/ui/ctaClassName'
 import { SectionHeading } from '@/ui/SectionHeading'

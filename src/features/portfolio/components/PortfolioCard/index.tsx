@@ -1,6 +1,6 @@
 import { Builder } from '@builder.io/react'
 
-import type { Project } from '@/data/projects'
+import type { Project } from '@/features/portfolio/components/ProjectGrid/project-types'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 
 type Props = { project: Project }
