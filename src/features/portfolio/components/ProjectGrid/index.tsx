@@ -1,12 +1,36 @@
 import { Builder } from '@builder.io/react'
 import { useState } from 'react'
-import { projects } from '@/data/projects'
-import { FilterBar } from '@/features/portfolio/components/FilterBar'
+import type { Project, ProjectItemsType } from '@/data/projects'
+import { FilterBar, type FilterCategory } from '@/features/portfolio/components/FilterBar'
 import { PortfolioCard } from '@/features/portfolio/components/PortfolioCard'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 
-export const ProjectGrid = () => {
+interface ProjectGridProps {
+  projectItems: ProjectItemsType
+}
+
+export const ProjectGrid = ({ projectItems = [] }: ProjectGridProps) => {
   const [activeFilter, setActiveFilter] = useState('All')
+
+  const projects: Project[] = projectItems.map((item) => {
+    const data = item.project?.value?.data
+
+    return {
+      id: item.project?.id ?? '',
+      title: data?.title ?? '',
+      description: data?.description ?? '',
+      category: data?.category ?? '',
+      url: data?.url ?? '#',
+      image: data?.image ?? '',
+      tags: data?.tags?.map((tag) => tag.tag) ?? [],
+      thumbnails: data?.thumbnails?.map((thumbnail) => thumbnail.thumbnail) ?? [],
+    }
+  })
+
+  const categories: FilterCategory[] = ['All', ...new Set(projects.map((p) => p.category))]
+    .filter(Boolean)
+    .map((category) => ({ category }))
+
   const filtered =
     activeFilter === 'All' ? projects : projects.filter((p) => p.category === activeFilter)
 
@@ -19,7 +43,11 @@ export const ProjectGrid = () => {
           marginInline: 'auto',
         }}
       >
-        <FilterBar activeFilter={activeFilter} onFilterChange={setActiveFilter} />
+        <FilterBar
+          categories={categories}
+          activeFilter={activeFilter}
+          onFilterChange={setActiveFilter}
+        />
       </section>
 
       <section
@@ -50,6 +78,13 @@ export const ProjectGrid = () => {
 export const registerProjectGrid = () => {
   Builder.registerComponent(ProjectGrid, {
     name: 'ProjectGrid',
+    inputs: [
+      {
+        name: 'projectItems',
+        type: 'list',
+        subFields: [{ name: 'project', type: 'reference', model: BUILDER_IO_MODELS.PROJECT }],
+      },
+    ],
     models: [BUILDER_IO_MODELS.PAGE],
   })
 }
