@@ -2,6 +2,7 @@ export const BUILDER_IO_MODELS = {
   PAGE: 'page',
   HERO: 'hero',
   EXPERIENCE_ITEM: 'experience-item',
+  PROJECT: 'project',
   SITE_SETTINGS: 'site-settings',
 } as const
 
