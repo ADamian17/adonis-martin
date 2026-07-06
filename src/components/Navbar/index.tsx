@@ -5,23 +5,19 @@ import { useState } from 'react'
 import { Button as AriaButton } from 'react-aria-components'
 
 import { Logo } from '@/components/Logo'
+import { type MenuItem, useMenus } from '@/store/menus'
+import { MenuLink } from '@/ui/MenuLink'
 
-type NavLinkItem = { label: string; to: string }
+type NavLinkProps = MenuItem & { mobile?: boolean; onClick?: () => void }
 
-const navLinks: NavLinkItem[] = [
-  { label: 'About Me', to: '/about-me' },
-  { label: 'Contact Me', to: '/contact-me' },
-  { label: 'Portfolio', to: '/portfolio' },
-]
-
-type NavLinkProps = NavLinkItem & { mobile?: boolean; onClick?: () => void }
-
-const NavLink = ({ label, to, mobile = false, onClick }: NavLinkProps) => {
+const NavLink = ({ label, url, target, ariaLabel, mobile = false, onClick }: NavLinkProps) => {
   const pathname = useRouterState({ select: (s) => s.location.pathname })
-  const isActive = pathname === to
+  const isActive = pathname === url
   return (
-    <Link
-      to={to}
+    <MenuLink
+      url={url}
+      target={target}
+      ariaLabel={ariaLabel}
       onClick={onClick}
       className={clsx(
         'font-medium text-[18px] rounded-lg whitespace-nowrap',
@@ -32,11 +28,12 @@ const NavLink = ({ label, to, mobile = false, onClick }: NavLinkProps) => {
       )}
     >
       {label}
-    </Link>
+    </MenuLink>
   )
 }
 
 export const Navbar = () => {
+  const { mainNav } = useMenus()
   const [open, setOpen] = useState(false)
   const close = () => setOpen(false)
 
@@ -54,8 +51,8 @@ export const Navbar = () => {
       </Link>
 
       <ul className="hidden md:flex items-center gap-1">
-        {navLinks.map((link) => (
-          <li key={link.to}>
+        {mainNav.map((link) => (
+          <li key={link.url}>
             <NavLink {...link} />
           </li>
         ))}
@@ -72,8 +69,8 @@ export const Navbar = () => {
 
       {open && (
         <div className="absolute top-full left-0 right-0 bg-beige border-b border-border flex flex-col py-2 md:hidden">
-          {navLinks.map((link) => (
-            <NavLink key={link.to} {...link} mobile onClick={close} />
+          {mainNav.map((link) => (
+            <NavLink key={link.url} {...link} mobile onClick={close} />
           ))}
         </div>
       )}

@@ -3,17 +3,14 @@ import { Mail, MapPin, Phone } from 'lucide-react'
 
 import { Logo } from '@/components/Logo'
 import { GithubIcon, LinkedinIcon } from '@/components/SocialIcons'
+import { useMenus } from '@/store/menus'
 import { useSiteSettings } from '@/store/siteSettings'
 import { IconLink } from '@/ui/IconLink'
-
-const navLinks = [
-  { label: 'About Me', to: '/about-me' },
-  { label: 'Portfolio', to: '/portfolio' },
-  { label: 'Contact Me', to: '/contact-me' },
-]
+import { MenuLink } from '@/ui/MenuLink'
 
 export const Footer = () => {
   const { contact, social } = useSiteSettings()
+  const { footerNav } = useMenus()
 
   const contactItems = [
     { icon: Mail, label: contact.email, href: contact.emailHref },
@@ -39,14 +36,16 @@ export const Footer = () => {
         </Link>
 
         <nav className="flex flex-wrap gap-6">
-          {navLinks.map(({ label, to }) => (
-            <Link
-              key={to}
-              to={to}
+          {footerNav.map((item) => (
+            <MenuLink
+              key={item.url}
+              url={item.url}
+              target={item.target}
+              ariaLabel={item.ariaLabel}
               className="font-medium text-[17px] text-muted hover:text-heading transition-colors"
             >
-              {label}
-            </Link>
+              {item.label}
+            </MenuLink>
           ))}
         </nav>
 
@@ -67,7 +66,7 @@ export const Footer = () => {
       </div>
 
       {/* Contact row */}
-      <div className="flex flex-wrap justify-center gap-[30px] my-10">
+      <div className="flex flex-wrap justify-center gap-7.5 my-10">
         {contactItems.map(({ icon: Icon, label, href }) =>
           href ? (
             <a key={label} href={href} className="hover:text-heading transition-colors">
