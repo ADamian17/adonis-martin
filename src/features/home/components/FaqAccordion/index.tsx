@@ -1,12 +1,12 @@
 import { Builder } from '@builder.io/react'
 import { Star } from 'lucide-react'
-import { faqItems } from '@/data/faq'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { Accordion } from '@/ui/Accordion'
 import { Card } from '@/ui/Card'
 import { GradientIconBox } from '@/ui/GradientIconBox'
 import { Link } from '@/ui/Link'
 import { SectionHeading } from '@/ui/SectionHeading'
+import type { FaqItem, FaqItemsType } from './faq-types'
 
 const CtaCard = () => (
   <Card tone="purple" className="flex flex-col gap-6 border border-purple-border">
@@ -24,27 +24,58 @@ const CtaCard = () => (
   </Card>
 )
 
-export const FaqAccordion = () => (
-  <section style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
-    <SectionHeading
-      title="Frequently Asked Questions"
-      description="Here are answers to some common questions."
-    />
+interface FaqAccordionProps {
+  headline: string
+  subheadline: string
+  faqItems: FaqItemsType
+}
 
-    <div
-      className="grid gap-[30px] items-start"
-      style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}
-    >
-      <Accordion items={faqItems} />
+export const FaqAccordion = ({ headline, subheadline, faqItems = [] }: FaqAccordionProps) => {
+  const items: FaqItem[] = faqItems.map((item) => {
+    const data = item.faq?.value?.data
 
-      <CtaCard />
-    </div>
-  </section>
-)
+    return {
+      question: data?.question ?? '',
+      answer: data?.answer ?? '',
+    }
+  })
+
+  return (
+    <section style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
+      <SectionHeading title={headline} description={subheadline} />
+
+      <div
+        className="grid gap-[30px] items-start"
+        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}
+      >
+        <Accordion items={items} />
+
+        <CtaCard />
+      </div>
+    </section>
+  )
+}
 
 export const registerFaqAccordion = () => {
   Builder.registerComponent(FaqAccordion, {
     name: 'FaqAccordion',
+    inputs: [
+      {
+        name: 'headline',
+        type: 'text',
+        defaultValue: 'Frequently Asked Questions',
+      },
+      {
+        name: 'subheadline',
+        type: 'text',
+        defaultValue: 'Here are answers to some common questions.',
+      },
+      {
+        name: 'faqItems',
+        type: 'list',
+        subFields: [{ name: 'faq', type: 'reference', model: BUILDER_IO_MODELS.FAQ_ITEM }],
+      },
+    ],
     models: [BUILDER_IO_MODELS.PAGE],
   })
 }

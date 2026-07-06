@@ -1,8 +1,8 @@
 import { Activity, CheckSquare, Code2, LayoutGrid, MonitorSmartphone, Terminal } from 'lucide-react'
 
-import type { Skill } from '@/data/skills'
 import { Card } from '@/ui/Card'
 import { GradientIconBox } from '@/ui/GradientIconBox'
+import type { Skill } from './skill-types'
 
 const iconMap: Record<string, React.ReactNode> = {
   code: <Code2 size={40} strokeWidth={1.6} className="text-white" />,

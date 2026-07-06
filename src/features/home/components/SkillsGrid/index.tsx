@@ -1,32 +1,63 @@
 import { Builder } from '@builder.io/react'
 
-import { skills } from '@/data/skills'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { SectionHeading } from '@/ui/SectionHeading'
 import { SkillCard } from './SkillCard'
+import type { Skill, SkillItemsType } from './skill-types'
 
-export const SkillsGrid = () => (
-  <section id="about" style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
-    <SectionHeading
-      align="center"
-      title="Creative Skills"
-      description="A focused toolkit for building fast, reliable, accessible frontends."
-    />
+interface SkillsGridProps {
+  headline: string
+  subheadline: string
+  skillItems: SkillItemsType
+}
 
-    <div
-      className="grid gap-[30px]"
-      style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}
-    >
-      {skills.map((skill) => (
-        <SkillCard key={skill.title} skill={skill} />
-      ))}
-    </div>
-  </section>
-)
+export const SkillsGrid = ({ headline, subheadline, skillItems = [] }: SkillsGridProps) => {
+  const skills: Skill[] = skillItems.map((item) => {
+    const data = item.skill?.value?.data
+
+    return {
+      title: data?.title ?? '',
+      description: data?.description ?? '',
+      icon: data?.icon ?? '',
+    }
+  })
+
+  return (
+    <section id="about" style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
+      <SectionHeading align="center" title={headline} description={subheadline} />
+
+      <div
+        className="grid gap-[30px]"
+        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}
+      >
+        {skills.map((skill) => (
+          <SkillCard key={skill.title} skill={skill} />
+        ))}
+      </div>
+    </section>
+  )
+}
 
 export const registerSkillsGrid = () => {
   Builder.registerComponent(SkillsGrid, {
     name: 'SkillsGrid',
+    inputs: [
+      {
+        name: 'headline',
+        type: 'text',
+        defaultValue: 'Creative Skills',
+      },
+      {
+        name: 'subheadline',
+        type: 'text',
+        defaultValue: 'A focused toolkit for building fast, reliable, accessible frontends.',
+      },
+      {
+        name: 'skillItems',
+        type: 'list',
+        subFields: [{ name: 'skill', type: 'reference', model: BUILDER_IO_MODELS.SKILL_ITEM }],
+      },
+    ],
     models: [BUILDER_IO_MODELS.PAGE],
   })
 }

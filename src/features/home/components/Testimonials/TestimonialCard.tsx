@@ -1,5 +1,5 @@
 import { GithubIcon, LinkedinIcon, TwitterIcon } from '@/components/SocialIcons'
-import type { Testimonial } from '@/data/testimonials'
+import type { Testimonial } from './testimonial-types'
 
 const stars = '★★★★★'
 

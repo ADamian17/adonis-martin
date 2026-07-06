@@ -1,4 +1,4 @@
-import type { Benefit } from '@/data/benefits'
+import type { Benefit } from './benefit-types'
 
 type Props = { benefit: Benefit }
 
