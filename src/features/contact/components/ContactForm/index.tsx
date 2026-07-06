@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { Button } from '@/ui/Button'
 import { TextField } from '@/ui/TextField'
-import { validateEmail } from '@/utils/validateEmail'
+import { required, validateEmail } from '@/utils/form-validation'
 import { SuccessState } from './SuccessState'
 
 type FormState = {
@@ -15,34 +15,24 @@ type FormState = {
   subject: string
 }
 
-const emptyForm: FormState = { email: '', message: '', name: '', subject: '' }
-const formkeepUrl = import.meta.env.VITE_FORMKEEP_URL ?? ''
-
-const required =
-  (message: string) =>
-  ({ value }: { value: string }) =>
-    value.trim() ? undefined : message
-
 export const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false)
   const [sentInfo, setSentInfo] = useState({ email: '', name: '' })
   const [submitError, setSubmitError] = useState('')
 
   const { mutateAsync } = useMutation({
-    mutationFn: async (value: {
-      email: string
-      message: string
-      name: string
-      subject: string
-    }) => {
-      const response = await fetch(formkeepUrl, {
+    mutationFn: async (variables: FormState) => {
+      const response = await fetch(import.meta.env.VITE_FORMKEEP_URL, {
         method: 'POST',
-        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        headers: { 
+          Accept: 'application/json', 
+          'Content-Type': 'application/json' 
+        },
         body: JSON.stringify({
-          email: value.email.trim(),
-          message: value.message.trim(),
-          name: value.name.trim(),
-          subject: value.subject.trim(),
+          email: variables.email.trim(),
+          message: variables.message.trim(),
+          name: variables.name.trim(),
+          subject: variables.subject.trim(),
         }),
       })
 
@@ -61,7 +51,7 @@ export const ContactForm = () => {
   })
 
   const { Subscribe, handleSubmit, Field } = useForm({
-    defaultValues: emptyForm,
+    defaultValues: { email: '', message: '', name: '', subject: '' },
     onSubmit: async ({ value, formApi }) => {
       setSubmitError('')
 
@@ -94,8 +84,8 @@ export const ContactForm = () => {
       <Field
         name="name"
         validators={{
-          onChange: required('Please enter your name.'),
-          onSubmit: required('Please enter your name.'),
+          onChange: ({ value }) => required({ value, message: 'Please enter your name.' }),
+          onSubmit: ({ value }) => required({ value, message: 'Please enter your name.' }),
         }}
       >
         {(field) => (
@@ -119,7 +109,7 @@ export const ContactForm = () => {
             onChange={field.handleChange}
             placeholder="you@company.com"
             isInvalid={field.state.meta.errors.length > 0}
-            errorMessage={field.state.meta.errors[0]}
+            errorMessage={field.state.meta.errors[0] ?? ''}
           />
         )}
       </Field>
@@ -138,8 +128,8 @@ export const ContactForm = () => {
       <Field
         name="message"
         validators={{
-          onChange: required('Please add a short message.'),
-          onSubmit: required('Please add a short message.'),
+          onChange: ({ value }) => required({ value, message: 'Please add a short message.' }),
+          onSubmit: ({ value }) => required({ value, message: 'Please add a short message.' }),
         }}
       >
         {(field) => (
