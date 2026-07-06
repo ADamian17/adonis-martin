@@ -2,7 +2,7 @@ import { Builder } from '@builder.io/react'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import type { ComponentType } from 'react'
 
-import { GithubIcon, LinkedinIcon, TwitterIcon } from '@/components/SocialIcons'
+import { GithubIcon, LinkedinIcon } from '@/components/SocialIcons'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { useSiteSettings } from '@/store/siteSettings'
 import { IconLink } from '@/ui/IconLink'
@@ -35,7 +35,6 @@ export const ContactInfo = ({
 
   const socialLinks = [
     { Icon: LinkedinIcon, href: social.linkedinUrl, label: 'LinkedIn' },
-    { Icon: TwitterIcon, href: social.twitterUrl, label: 'Twitter/X' },
     { Icon: GithubIcon, href: social.githubUrl, label: 'GitHub' },
   ]
 

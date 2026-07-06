@@ -15,7 +15,6 @@ export type ContactSettings = {
 /** Social profile URLs. */
 export type SocialSettings = {
   linkedinUrl: string
-  twitterUrl: string
   githubUrl: string
 }
 
@@ -38,9 +37,8 @@ export const SITE_SETTINGS_DEFAULTS: SiteSettings = {
     location: 'Remote · Available Worldwide',
   },
   social: {
-    linkedinUrl: 'https://linkedin.com',
-    twitterUrl: 'https://twitter.com',
-    githubUrl: 'https://github.com',
+    linkedinUrl: 'https://www.linkedin.com/in/adonismartin/',
+    githubUrl: 'https://github.com/ADamian17',
   },
 }
 

@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router'
 import { Mail, MapPin, Phone } from 'lucide-react'
 
 import { Logo } from '@/components/Logo'
-import { GithubIcon, LinkedinIcon, TwitterIcon } from '@/components/SocialIcons'
+import { GithubIcon, LinkedinIcon } from '@/components/SocialIcons'
 import { useSiteSettings } from '@/store/siteSettings'
 import { IconLink } from '@/ui/IconLink'
 
@@ -23,7 +23,6 @@ export const Footer = () => {
 
   const socialLinks = [
     { Icon: LinkedinIcon, href: social.linkedinUrl, label: 'LinkedIn' },
-    { Icon: TwitterIcon, href: social.twitterUrl, label: 'Twitter/X' },
     { Icon: GithubIcon, href: social.githubUrl, label: 'GitHub' },
   ]
 
