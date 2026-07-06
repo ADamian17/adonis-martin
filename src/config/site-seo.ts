@@ -13,10 +13,10 @@ export const SITE_SEO = {
   robots: 'index, follow, nocache',
   googleBot: 'index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1',
   ogImage: {
-    url: '/images/android-chrome-512x512.png',
-    width: 512,
-    height: 512,
-    alt: 'Adonis D. Martin',
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Adonis D. Martin — Frontend Engineer',
   },
 } as const
 
