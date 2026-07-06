@@ -5,10 +5,10 @@
  */
 export const SITE_SEO = {
   url: 'https://adonismartin.com',
-  name: 'Adonis D. Martin | Frontend Engineer',
-  title: 'Adonis D. Martin | Frontend Engineer',
+  name: 'Adonis D. Martin | Software Engineer',
+  title: 'Adonis D. Martin | Software Engineer',
   description:
-    'Adonis D. Martin is a frontend engineer and web developer specializing in building performant, accessible, and user-friendly web applications.',
+    'Adonis D. Martin is a software engineer and web developer specializing in building performant, accessible, and user-friendly web applications.',
   locale: 'en_US',
   robots: 'index, follow, nocache',
   googleBot: 'index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1',
