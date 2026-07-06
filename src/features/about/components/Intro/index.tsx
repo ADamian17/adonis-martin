@@ -6,7 +6,7 @@ const DEFAULT_BADGE = 'About Me'
 const DEFAULT_HEADLINE = "I'm Adonis D. Martin"
 const DEFAULT_BIO =
   'A skilled frontend engineer with a passion for creating visually stunning and user-friendly websites. With a keen eye for detail and a commitment to excellence, I specialize in crafting online experiences that leave a lasting impression. From concept to launch, I collaborate closely with clients to bring their visions to life and ensure their digital presence stands out from the crowd.'
-const DEFAULT_IMAGE = '/hero-bg.jpg'
+const DEFAULT_IMAGE = '/images/hero-bg.jpg'
 
 interface IntroProps {
   badge: string
@@ -38,7 +38,7 @@ export const Intro = ({
         minWidth: '300px',
         height: 'clamp(420px, 40vw, 596px)',
         background: `
-          url('/hero-grid.png') top left / 64px 128px repeat,
+          url('/images/hero-grid.png') top left / 64px 128px repeat,
           linear-gradient(220deg, rgba(104,26,255,0.85) -32%, rgba(104,26,255,0) 52%),
           url('${image}') center / cover no-repeat,
           var(--color-dark)
@@ -46,14 +46,14 @@ export const Intro = ({
       }}
     >
       <img
-        src="/abstract-1.svg"
+        src="/images/abstract-1.svg"
         alt=""
         aria-hidden="true"
         className="absolute w-[260px]"
         style={{ top: '-18px', left: '-50px' }}
       />
       <img
-        src="/abstract-2.svg"
+        src="/images/abstract-2.svg"
         alt=""
         aria-hidden="true"
         className="absolute w-[260px] rotate-180"

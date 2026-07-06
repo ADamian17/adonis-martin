@@ -69,22 +69,22 @@ export const HomeHero = ({ greeting, headline, subheading, ctaButton }: Props) =
         minHeight: '480px',
         borderRadius: '0 0 0 30px',
         background: `
-          url('/hero-grid.png') top left / 64px 128px repeat,
+          url('/images/hero-grid.png') top left / 64px 128px repeat,
           linear-gradient(220deg, rgba(104,26,255,0.85) -32%, rgba(104,26,255,0) 52%),
-          url('/hero-bg.jpg') center / cover no-repeat,
+          url('/images/hero-bg.jpg') center / cover no-repeat,
           var(--color-dark)
         `,
       }}
     >
       <img
-        src="/abstract-1.svg"
+        src="/images/abstract-1.svg"
         alt=""
         aria-hidden="true"
         className="absolute w-75"
         style={{ top: '-20px', left: '-60px' }}
       />
       <img
-        src="/abstract-2.svg"
+        src="/images/abstract-2.svg"
         alt=""
         aria-hidden="true"
         className="absolute w-75 rotate-180"

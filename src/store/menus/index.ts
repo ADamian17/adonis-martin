@@ -44,7 +44,7 @@ const DEFAULT_ITEMS: MenuItem[] = [
   { label: 'Contact Me', url: '/contact-me', target: '_self' },
 ]
 
-const DEFAULT_LOGO: MenuLogo = { image: '/logo.svg', alt: 'Adonis D. Martin', url: '/' }
+const DEFAULT_LOGO: MenuLogo = { image: '/brand/logo.svg', alt: 'Adonis D. Martin', url: '/' }
 
 /**
  * Fallback menus rendered until the Builder `menu` entries are fetched (or if the fetch
@@ -53,7 +53,7 @@ const DEFAULT_LOGO: MenuLogo = { image: '/logo.svg', alt: 'Adonis D. Martin', ur
  */
 export const MENUS_DEFAULTS: Menus = {
   mainNav: {
-    logo: { ...DEFAULT_LOGO, mobileImage: '/initials-only-logo.svg' },
+    logo: { ...DEFAULT_LOGO, mobileImage: '/brand/logo-initials.svg' },
     items: DEFAULT_ITEMS,
   },
   footerNav: { logo: DEFAULT_LOGO, items: DEFAULT_ITEMS },
