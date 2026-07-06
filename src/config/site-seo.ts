@@ -16,7 +16,7 @@ export const SITE_SEO = {
     url: '/og-image.png',
     width: 1200,
     height: 630,
-    alt: 'Adonis D. Martin — Frontend Engineer',
+    alt: 'Adonis D. Martin — Software Engineer',
   },
 } as const
 
