@@ -5,7 +5,7 @@ import type { Project } from '@/features/portfolio/components/ProjectGrid/projec
 type Props = { project: Project }
 
 export const ProjectCard = ({ project }: Props) => (
-  <article className="bg-card-alt rounded-xl p-[40px] flex flex-col gap-6">
+  <article className="bg-card-alt rounded-xl p-10 flex flex-col gap-6">
     <h3 className="font-semibold text-[20px] text-muted">{project.title}</h3>
 
     {/* Main image */}
@@ -20,7 +20,7 @@ export const ProjectCard = ({ project }: Props) => (
         href={project.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="absolute bottom-[14px] right-[14px] flex items-center justify-center rounded-lg bg-card-alt w-11 h-11"
+        className="absolute bottom-3.5 right-3.5 flex items-center justify-center rounded-lg bg-card-alt w-11 h-11"
         style={{ boxShadow: 'inset 0 0 0 1px var(--color-border-alt)' }}
         aria-label={`Open ${project.title}`}
       >
@@ -28,13 +28,15 @@ export const ProjectCard = ({ project }: Props) => (
       </a>
     </div>
 
-    {/* Thumbnails */}
-    <div className="grid grid-cols-4 gap-4">
-      {project.thumbnails.map((thumb, i) => (
-        // biome-ignore lint/suspicious/noArrayIndexKey: thumbnails are positional slots with no stable id
-        <div key={i} className="rounded-lg bg-neutral overflow-hidden" style={{ aspectRatio: '1' }}>
-          {thumb && <img src={thumb} alt="" className="w-full h-full object-cover" />}
-        </div>
+    {/* Tags */}
+    <div className="flex flex-wrap gap-2">
+      {project.tags.map((tag) => (
+        <span
+          key={tag}
+          className="py-1.75 px-3 rounded-md bg-white font-medium text-[13px] text-body"
+        >
+          {tag}
+        </span>
       ))}
     </div>
   </article>
