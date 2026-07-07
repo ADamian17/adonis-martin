@@ -49,22 +49,22 @@ export const Intro = ({
         src="/images/abstract-1.svg"
         alt=""
         aria-hidden="true"
-        className="absolute w-[260px]"
+        className="absolute w-65"
         style={{ top: '-18px', left: '-50px' }}
       />
       <img
         src="/images/abstract-2.svg"
         alt=""
         aria-hidden="true"
-        className="absolute w-[260px] rotate-180"
+        className="absolute w-65 rotate-180"
         style={{ bottom: '-18px', right: '-50px' }}
       />
     </div>
 
     {/* Text column */}
-    <div className="flex flex-col gap-[60px]" style={{ flex: '1 1 520px', minWidth: '320px' }}>
+    <div className="flex flex-col gap-15" style={{ flex: '1 1 520px', minWidth: '320px' }}>
       <div className="flex flex-col gap-5">
-        <div className="self-start px-[18px] py-[14px] rounded-lg font-medium text-[18px] text-accent bg-card-ivory">
+        <div className="self-start px-4.5 py-3.5 rounded-lg font-medium text-[18px] text-accent bg-card-ivory">
           {badge}
         </div>
 
@@ -75,7 +75,7 @@ export const Intro = ({
           {headline}
         </h1>
 
-        <p className="m-0 font-normal text-[18px] leading-[1.5] text-body">{bio}</p>
+        <p className="m-0 font-normal text-[18px] leading-normal text-body">{bio}</p>
       </div>
     </div>
   </section>

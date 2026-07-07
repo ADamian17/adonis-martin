@@ -84,7 +84,7 @@ export const Values = ({ headline, subheadline, valueItems = [] }: ValuesProps) 
       <SectionHeading align="center" title={headline} description={subheadline} />
 
       <div
-        className="grid gap-[30px]"
+        className="grid gap-7.5"
         style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}
       >
         {values.map((item) => (
