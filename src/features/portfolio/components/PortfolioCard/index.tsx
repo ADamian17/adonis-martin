@@ -6,7 +6,7 @@ import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 type Props = { project: Project }
 
 export const PortfolioCard = ({ project }: Props) => (
-  <article className="flex flex-col gap-[22px] rounded-xl bg-card-alt" style={{ padding: '30px' }}>
+  <article className="flex flex-col gap-5.5 rounded-xl bg-card-alt" style={{ padding: '30px' }}>
     {/* Image with overlaid category badge */}
     <div className="relative">
       <div
@@ -18,7 +18,7 @@ export const PortfolioCard = ({ project }: Props) => (
         )}
       </div>
       <div
-        className="absolute left-[14px] top-[14px] px-[14px] py-[8px] rounded-lg font-medium text-[14px] text-accent"
+        className="absolute left-3.5 top-3.5 px-3.5 py-2 rounded-lg font-medium text-[14px] text-accent"
         style={{ background: 'rgba(238,235,229,0.92)', backdropFilter: 'blur(6px)' }}
       >
         {project.category}
@@ -30,7 +30,7 @@ export const PortfolioCard = ({ project }: Props) => (
       {project.tags.map((tag) => (
         <span
           key={tag}
-          className="py-[7px] px-[12px] rounded-md bg-white font-medium text-[13px] text-body"
+          className="py-1.75 px-3 rounded-md bg-white font-medium text-[13px] text-body"
         >
           {tag}
         </span>

@@ -58,7 +58,7 @@ export const ProjectGrid = ({ projectItems = [] }: ProjectGridProps) => {
         }}
       >
         <div
-          className="grid gap-[30px]"
+          className="grid gap-7.5"
           style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))' }}
         >
           {filtered.map((p) => (
@@ -66,7 +66,7 @@ export const ProjectGrid = ({ projectItems = [] }: ProjectGridProps) => {
           ))}
         </div>
         {filtered.length === 0 && (
-          <p className="text-center py-[60px] font-normal text-[18px] text-faint">
+          <p className="text-center py-15 font-normal text-[18px] text-faint">
             No projects in this category yet.
           </p>
         )}
