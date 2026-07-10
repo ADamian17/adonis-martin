@@ -9,18 +9,18 @@ import { Section } from '@/ui/Section'
 import { SectionHeading } from '@/ui/SectionHeading'
 import type { FaqItem, FaqItemsType } from './faq-types'
 
-const CtaCard = () => (
+const CtaCard = ({ faqCta }: { faqCta: { title: string; description: string; ctaText: string; ctaLink: string } }) => (
   <Card tone="purple" className="flex flex-col gap-6 border border-purple-border">
     <GradientIconBox size={60}>
       <Star size={28} strokeWidth={1.6} className="text-white" />
     </GradientIconBox>
-    <h3 className="font-semibold text-[24px] text-heading">Still have any Questions?</h3>
+    <h3 className="font-semibold text-[24px] text-heading">{faqCta?.title}</h3>
     <p className="text-body text-[16px] leading-[1.6]">
-      Let's collaborate to build something exceptional. Contact me today to discuss your project and
-      bring your digital vision to life.
+      {faqCta?.description}
     </p>
-    <Link href="#contact" className="self-start px-6 py-4.5">
-      Contact Me
+
+    <Link href={faqCta?.ctaLink} className="self-start px-6 py-4.5">
+      {faqCta?.ctaText}
     </Link>
   </Card>
 )
@@ -29,9 +29,15 @@ interface FaqAccordionProps {
   headline: string
   subheadline: string
   faqItems: FaqItemsType
+  faqCta: {
+    title: string
+    description: string
+    ctaText: string
+    ctaLink: string
+  }
 }
 
-export const FaqAccordion = ({ headline, subheadline, faqItems = [] }: FaqAccordionProps) => {
+export const FaqAccordion = ({ headline, subheadline, faqItems = [], faqCta }: FaqAccordionProps) => {
   const items: FaqItem[] = faqItems.map((item) => {
     const data = item.faq?.value?.data
 
@@ -51,7 +57,7 @@ export const FaqAccordion = ({ headline, subheadline, faqItems = [] }: FaqAccord
       >
         <Accordion items={items} />
 
-        <CtaCard />
+        <CtaCard faqCta={faqCta} />
       </div>
     </Section>
   )
@@ -70,6 +76,32 @@ export const registerFaqAccordion = () => {
         name: 'subheadline',
         type: 'text',
         defaultValue: 'Here are answers to some common questions.',
+      },
+      {
+        name: 'faqCta',
+        type: 'object',
+        subFields: [
+          {
+            name: 'title',
+            type: 'text',
+            defaultValue: 'Still have any Questions?',
+          },
+          {
+            name: 'description',
+            type: 'text',
+            defaultValue: "Let's collaborate to build something exceptional. Contact me today to discuss your project and bring your digital vision to life.",
+          },
+          {
+            name: 'ctaText',
+            type: 'text',
+            defaultValue: 'Contact Me',
+          },
+          {
+            name: 'ctaLink',
+            type: 'text',
+            defaultValue: '/contact-me',
+          },
+        ],
       },
       {
         name: 'faqItems',

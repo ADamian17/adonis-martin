@@ -2,6 +2,7 @@ import { Builder } from '@builder.io/react'
 import { ContactForm } from '@/features/contact/components/ContactForm'
 import { ContactInfo } from '@/features/contact/components/ContactInfo'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+import { Section } from '@/ui/Section'
 
 type Props = {
   availabilityStatus: string
@@ -14,12 +15,9 @@ export const ContactGrid = ({
   availabilitySubtext,
   withAvailabilityStatus,
 }: Props) => (
-  <section
-    className="grid items-start gap-7.5 max-w-[1596px] mx-auto"
-    style={{
-      gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-      padding: '50px clamp(20px, 8.4vw, 162px) 80px',
-    }}
+  <Section
+    py="pt-12.5 pb-20"
+    className="grid items-start gap-7.5 grid-cols-[repeat(auto-fit,minmax(340px,1fr))]"
   >
     <div className="rounded-xl bg-card-warm" style={{ padding: '50px' }}>
       <h2 className="m-0 mb-5.5 font-semibold text-[26px] text-heading">Send a message</h2>
@@ -31,7 +29,7 @@ export const ContactGrid = ({
       availabilitySubtext={availabilitySubtext}
       withAvailabilityStatus={withAvailabilityStatus}
     />
-  </section>
+  </Section>
 )
 
 export const registerContactGrid = () => {

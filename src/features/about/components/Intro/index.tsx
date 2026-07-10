@@ -1,6 +1,7 @@
 import { Builder } from '@builder.io/react'
 
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+import { Section } from '@/ui/Section'
 
 const DEFAULT_BADGE = 'About Me'
 const DEFAULT_HEADLINE = "I'm Adonis D. Martin"
@@ -21,7 +22,7 @@ export const Intro = ({
   bio = DEFAULT_BIO,
   image = DEFAULT_IMAGE,
 }: IntroProps) => (
-  <section className="max-w-[1596px] mx-auto flex flex-wrap items-center gap-[clamp(40px,4vw,80px)] p-[80px_clamp(20px,8.4vw,162px)_60px]">
+  <Section py="pt-20 pb-15" className="flex flex-wrap items-center gap-[clamp(40px,4vw,80px)]">
     {/* Faceted graphic */}
     <div
       className="relative overflow-hidden rounded-[20px]"
@@ -70,7 +71,7 @@ export const Intro = ({
         <p className="m-0 font-normal text-[18px] leading-normal text-body">{bio}</p>
       </div>
     </div>
-  </section>
+  </Section>
 )
 
 export const registerIntro = () => {

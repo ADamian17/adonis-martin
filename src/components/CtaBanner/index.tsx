@@ -4,6 +4,7 @@ import clsx from 'clsx'
 
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { ctaClassName } from '@/ui/ctaClassName'
+import { Section } from '@/ui/Section'
 
 type CtaButton = {
   label?: string
@@ -19,7 +20,7 @@ type Props = {
 }
 
 export const CtaBanner = ({ title, description, ctaButton }: Props) => (
-  <section className="max-w-[1596px] mx-auto" style={{ padding: '30px clamp(20px, 8.4vw, 162px) 90px' }}>
+  <Section py="pt-7.5 pb-22.5">
     <div
       className="flex flex-wrap items-center justify-between gap-[30px] rounded-xl bg-purple-fill border border-purple-border"
       style={{ padding: '60px' }}
@@ -47,7 +48,7 @@ export const CtaBanner = ({ title, description, ctaButton }: Props) => (
         </Link>
       )}
     </div>
-  </section>
+  </Section>
 )
 
 export const registerCtaBanner = () => {

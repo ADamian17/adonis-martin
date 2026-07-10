@@ -1,4 +1,5 @@
 import { format } from 'date-fns'
+import { Section } from '@/ui/Section'
 import type { ExperienceItemsType } from './experience-types'
 
 interface ExperienceProps {
@@ -14,10 +15,7 @@ export const Experience = ({ headline, copy, experienceItems }: ExperienceProps)
   }))
 
   return (
-    <section
-      className="max-w-[1596px] mx-auto"
-      style={{ padding: '70px clamp(20px, 8.4vw, 162px)' }}
-    >
+    <Section py="py-17.5">
       <div className="text-center mx-auto mb-15" style={{ maxWidth: '640px' }}>
         <h2
           className="m-0 mb-1.5 font-semibold text-heading"
@@ -63,6 +61,6 @@ export const Experience = ({ headline, copy, experienceItems }: ExperienceProps)
           </div>
         ))}
       </div>
-    </section>
+    </Section>
   )
 }

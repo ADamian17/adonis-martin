@@ -1,6 +1,7 @@
 import { Builder } from '@builder.io/react'
 
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+import { Section } from '@/ui/Section'
 import { SectionBadge } from '@/ui/SectionBadge'
 
 type Props = {
@@ -10,10 +11,7 @@ type Props = {
 }
 
 export const PageHeader = ({ badge, title, description }: Props) => (
-  <section
-    className="text-center max-w-[1596px] mx-auto"
-    style={{ padding: '80px clamp(20px, 8.4vw, 162px) 30px' }}
-  >
+  <Section py="pt-20 pb-7.5" className="text-center">
     <div className="mb-6">
       <SectionBadge>{badge}</SectionBadge>
     </div>
@@ -29,7 +27,7 @@ export const PageHeader = ({ badge, title, description }: Props) => (
     >
       {description}
     </p>
-  </section>
+  </Section>
 )
 
 export const registerPageHeader = () => {

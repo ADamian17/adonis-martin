@@ -1,6 +1,7 @@
 import { Builder } from '@builder.io/react'
 
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+import { Section } from '@/ui/Section'
 import { SectionHeading } from '@/ui/SectionHeading'
 import type { StackCategory, TechItemsType } from './tech-types'
 
@@ -21,7 +22,7 @@ export const TechStack = ({ headline, subheadline, techItems = [] }: TechStackPr
   })
 
   return (
-    <section className="max-w-[1596px] mx-auto px-[clamp(20px,8.4vw,162px)] py-17.5">
+    <Section py="py-17.5">
       <SectionHeading align="center" title={headline} description={subheadline} />
 
       <div className="grid gap-7.5 grid-cols-[repeat(auto-fit,minmax(280px,1fr))]">
@@ -44,7 +45,7 @@ export const TechStack = ({ headline, subheadline, techItems = [] }: TechStackPr
           </div>
         ))}
       </div>
-    </section>
+    </Section>
   )
 }
 

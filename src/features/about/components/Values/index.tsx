@@ -3,6 +3,7 @@ import type { ReactElement } from 'react'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { Card } from '@/ui/Card'
 import { GradientIconBox } from '@/ui/GradientIconBox'
+import { Section } from '@/ui/Section'
 import { SectionHeading } from '@/ui/SectionHeading'
 import type { ValueIcon, ValueItem, ValueItemsType } from './value-types'
 
@@ -74,7 +75,7 @@ export const Values = ({ headline, subheadline, valueItems = [] }: ValuesProps) 
   })
 
   return (
-    <section className="max-w-[1596px] mx-auto px-[clamp(20px,8.4vw,162px)] py-17.5">
+    <Section py="py-17.5">
       <SectionHeading align="center" title={headline} description={subheadline} />
 
       <div className="grid gap-7.5 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
@@ -89,7 +90,7 @@ export const Values = ({ headline, subheadline, valueItems = [] }: ValuesProps) 
           </Card>
         ))}
       </div>
-    </section>
+    </Section>
   )
 }
 

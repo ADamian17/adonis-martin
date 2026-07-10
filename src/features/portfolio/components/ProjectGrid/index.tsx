@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { FilterBar, type FilterCategory } from '@/features/portfolio/components/FilterBar'
 import { PortfolioCard } from '@/features/portfolio/components/PortfolioCard'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+import { Section } from '@/ui/Section'
 import type { Project, ProjectItemsType } from './project-types'
 
 interface ProjectGridProps {
@@ -36,21 +37,15 @@ export const ProjectGrid = ({ projectItems = [] }: ProjectGridProps) => {
 
   return (
     <>
-      <section
-        className="max-w-[1596px] mx-auto"
-        style={{ padding: '20px clamp(20px, 8.4vw, 162px) 10px' }}
-      >
+      <Section py="pt-5 pb-2.5">
         <FilterBar
           categories={categories}
           activeFilter={activeFilter}
           onFilterChange={setActiveFilter}
         />
-      </section>
+      </Section>
 
-      <section
-        className="max-w-[1596px] mx-auto"
-        style={{ padding: '40px clamp(20px, 8.4vw, 162px) 70px' }}
-      >
+      <Section py="pt-10 pb-17.5">
         <div
           className="grid gap-7.5"
           style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))' }}
@@ -64,7 +59,7 @@ export const ProjectGrid = ({ projectItems = [] }: ProjectGridProps) => {
             No projects in this category yet.
           </p>
         )}
-      </section>
+      </Section>
     </>
   )
 }
