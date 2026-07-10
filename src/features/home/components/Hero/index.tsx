@@ -48,11 +48,11 @@ export const HomeHero = ({ greeting, headline, subheading, ctaButton }: Props) =
       {ctaButton?.url && (
         <div>
           <Link
-            href={ctaButton.url}
+            to={ctaButton.url}
             target={ctaButton.target}
             aria-label={ctaButton.ariaLabel}
-            icon={<ArrowRight size={18} />}
             className="px-7 py-4.5 text-[16px]"
+            icon={<ArrowRight size={18} />}
           >
             {ctaButton.label}
           </Link>

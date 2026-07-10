@@ -1,13 +1,11 @@
 import { Builder } from '@builder.io/react'
-import { Link } from '@tanstack/react-router'
-import clsx from 'clsx'
 import { ArrowRight } from 'lucide-react'
 import type {
   Project,
   ProjectItemsType,
 } from '@/features/portfolio/components/ProjectGrid/project-types'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
-import { ctaClassName } from '@/ui/ctaClassName'
+import { Link } from '@/ui/Link'
 import { Section } from '@/ui/Section'
 import { SectionHeading } from '@/ui/SectionHeading'
 import { ProjectCard } from './ProjectCard'
@@ -49,12 +47,8 @@ export const WorksGrid = ({ cta, headline, subheadline, projectItems = [] }: Wor
       </div>
 
       <div className="flex justify-center mt-12.5">
-        <Link
-          to={cta?.url}
-          className={clsx(ctaClassName, 'transition-colors hover:bg-accent/90 px-6 py-4.5')}
-        >
+        <Link to={cta?.url} className="px-6 py-4.5" icon={<ArrowRight size={18} />}>
           {cta?.text}
-          <ArrowRight size={18} />
         </Link>
       </div>
     </Section>

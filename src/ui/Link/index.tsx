@@ -1,29 +1,31 @@
+import { Link as RouterLink } from '@tanstack/react-router'
 import clsx from 'clsx'
 import type { ReactNode } from 'react'
-import { Link as AriaLink, type LinkProps as AriaLinkProps } from 'react-aria-components'
 import { ctaClassName } from '@/ui/ctaClassName'
 
 type Props = {
+  to: string
   children: ReactNode
   icon?: ReactNode
   className?: string
-} & Omit<AriaLinkProps, 'children' | 'className'>
+  target?: '_self' | '_blank'
+  'aria-label'?: string
+}
 
 /**
- * Accent CTA link for same-page anchors and external URLs, built on react-aria's Link.
- * For internal app routes use TanStack Router's Link with `ctaClassName` directly —
- * react-aria's Link has no client-side routing of its own.
+ * Accent CTA link built on TanStack Router's Link so internal navigation stays
+ * client-side. Pass `to` for the destination and an optional trailing `icon`.
  */
-export const Link = ({ icon, children, className = '', ...rest }: Props) => (
-  <AriaLink
+export const Link = ({ icon, children, className, ...rest }: Props) => (
+  <RouterLink
     className={clsx(
       ctaClassName,
-      'transition-colors data-[hovered]:bg-accent/90 data-[pressed]:bg-accent/80 data-[focus-visible]:outline-2 data-[focus-visible]:outline-accent data-[focus-visible]:outline-offset-2',
+      'transition-colors hover:bg-accent/90 focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2',
       className,
     )}
     {...rest}
   >
     {children}
     {icon}
-  </AriaLink>
+  </RouterLink>
 )

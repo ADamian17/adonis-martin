@@ -1,9 +1,7 @@
 import { Builder } from '@builder.io/react'
-import { Link } from '@tanstack/react-router'
-import clsx from 'clsx'
 
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
-import { ctaClassName } from '@/ui/ctaClassName'
+import { Link } from '@/ui/Link'
 import { Section } from '@/ui/Section'
 
 type CtaButton = {
@@ -39,10 +37,7 @@ export const CtaBanner = ({ title, description, ctaButton }: Props) => (
           to={ctaButton.url}
           target={ctaButton.target}
           aria-label={ctaButton.ariaLabel}
-          className={clsx(
-            ctaClassName,
-            'transition-colors hover:bg-accent/90 no-underline px-7 py-[18px] text-[18px] whitespace-nowrap',
-          )}
+          className="no-underline px-7 py-[18px] text-[18px] whitespace-nowrap"
         >
           {ctaButton.label}
         </Link>

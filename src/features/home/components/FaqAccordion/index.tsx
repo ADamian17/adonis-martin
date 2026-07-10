@@ -19,7 +19,7 @@ const CtaCard = ({ faqCta }: { faqCta: { title: string; description: string; cta
       {faqCta?.description}
     </p>
 
-    <Link href={faqCta?.ctaLink} className="self-start px-6 py-4.5">
+    <Link to={faqCta?.ctaLink} className="self-start px-6 py-4.5">
       {faqCta?.ctaText}
     </Link>
   </Card>
