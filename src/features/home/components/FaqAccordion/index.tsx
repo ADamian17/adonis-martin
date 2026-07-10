@@ -41,7 +41,7 @@ export const FaqAccordion = ({ headline, subheadline, faqItems = [] }: FaqAccord
   })
 
   return (
-    <section style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
+    <section className="max-w-[1596px] mx-auto" style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
       <SectionHeading align='center' title={headline} description={subheadline} />
 
       <div

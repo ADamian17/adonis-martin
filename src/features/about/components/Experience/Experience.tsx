@@ -15,11 +15,8 @@ export const Experience = ({ headline, copy, experienceItems }: ExperienceProps)
 
   return (
     <section
-      style={{
-        padding: '70px clamp(20px, 8.4vw, 162px)',
-        maxWidth: '1920px',
-        marginInline: 'auto',
-      }}
+      className="max-w-[1596px] mx-auto"
+      style={{ padding: '70px clamp(20px, 8.4vw, 162px)' }}
     >
       <div className="text-center mx-auto mb-15" style={{ maxWidth: '640px' }}>
         <h2

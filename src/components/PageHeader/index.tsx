@@ -11,12 +11,8 @@ type Props = {
 
 export const PageHeader = ({ badge, title, description }: Props) => (
   <section
-    className="text-center"
-    style={{
-      padding: '80px clamp(20px, 8.4vw, 162px) 30px',
-      maxWidth: '1920px',
-      marginInline: 'auto',
-    }}
+    className="text-center max-w-[1596px] mx-auto"
+    style={{ padding: '80px clamp(20px, 8.4vw, 162px) 30px' }}
   >
     <div className="mb-6">
       <SectionBadge>{badge}</SectionBadge>

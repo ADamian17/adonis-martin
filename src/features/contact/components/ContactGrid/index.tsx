@@ -15,12 +15,10 @@ export const ContactGrid = ({
   withAvailabilityStatus,
 }: Props) => (
   <section
-    className="grid items-start gap-7.5"
+    className="grid items-start gap-7.5 max-w-[1596px] mx-auto"
     style={{
       gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
       padding: '50px clamp(20px, 8.4vw, 162px) 80px',
-      maxWidth: '1920px',
-      marginInline: 'auto',
     }}
   >
     <div className="rounded-xl bg-card-warm" style={{ padding: '50px' }}>

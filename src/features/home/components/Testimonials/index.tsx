@@ -27,7 +27,7 @@ export const Testimonials = ({
   })
 
   return (
-    <section style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
+    <section className="max-w-[1596px] mx-auto" style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
       <SectionHeading title={headline} description={subheadline} />
 
       <div className="flex items-center justify-between mb-[30px]">

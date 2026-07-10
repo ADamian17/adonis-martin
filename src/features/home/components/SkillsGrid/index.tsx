@@ -23,7 +23,7 @@ export const SkillsGrid = ({ headline, subheadline, skillItems = [] }: SkillsGri
   })
 
   return (
-    <section id="about" style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
+    <section id="about" className="max-w-[1596px] mx-auto" style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
       <SectionHeading align="center" title={headline} description={subheadline} />
 
       <div className="grid gap-7.5 grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">

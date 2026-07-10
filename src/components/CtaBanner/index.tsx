@@ -19,7 +19,7 @@ type Props = {
 }
 
 export const CtaBanner = ({ title, description, ctaButton }: Props) => (
-  <section style={{ padding: '30px clamp(20px, 8.4vw, 162px) 90px' }}>
+  <section className="max-w-[1596px] mx-auto" style={{ padding: '30px clamp(20px, 8.4vw, 162px) 90px' }}>
     <div
       className="flex flex-wrap items-center justify-between gap-[30px] rounded-xl bg-purple-fill border border-purple-border"
       style={{ padding: '60px' }}

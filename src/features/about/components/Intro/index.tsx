@@ -21,15 +21,7 @@ export const Intro = ({
   bio = DEFAULT_BIO,
   image = DEFAULT_IMAGE,
 }: IntroProps) => (
-  <section
-    className="flex flex-wrap items-center"
-    style={{
-      gap: 'clamp(40px, 4vw, 80px)',
-      padding: '80px clamp(20px, 8.4vw, 162px) 60px',
-      maxWidth: '1920px',
-      marginInline: 'auto',
-    }}
-  >
+  <section className="max-w-[1596px] mx-auto flex flex-wrap items-center gap-[clamp(40px,4vw,80px)] p-[80px_clamp(20px,8.4vw,162px)_60px]">
     {/* Faceted graphic */}
     <div
       className="relative overflow-hidden rounded-[20px]"

@@ -7,7 +7,7 @@ const RootLayout = () => (
     <HeadContent />
     <Navbar />
 
-    <main className="max-w-[1596px] mx-auto">
+    <main>
       <Outlet />
     </main>
 

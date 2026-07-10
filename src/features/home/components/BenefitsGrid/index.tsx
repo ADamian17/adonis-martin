@@ -21,7 +21,7 @@ export const BenefitsGrid = ({ headline, subheadline, benefitItems = [] }: Benef
   })
 
   return (
-    <section style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
+    <section className="max-w-[1596px] mx-auto" style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
       <SectionHeading align="center" title={headline} description={subheadline} />
 
       <div className="flex flex-col gap-7.5">
