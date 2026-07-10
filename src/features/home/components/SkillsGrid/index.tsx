@@ -27,7 +27,7 @@ export const SkillsGrid = ({ headline, subheadline, skillItems = [] }: SkillsGri
     <Section id="skills-list">
       <SectionHeading align="center" title={headline} description={subheadline} />
 
-      <div className="grid gap-7.5 grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
+      <div className="grid gap-7.5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {skills.map((skill) => (
           <SkillCard key={skill.title} skill={skill} />
         ))}

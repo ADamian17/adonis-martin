@@ -14,7 +14,7 @@ interface SectionProps {
 export const Section = ({ children, id, className }: SectionProps) => (
   <section
     id={id}
-    className={clsx('mx-auto max-w-[1596px] py-[90px] px-[clamp(20px,8.4vw,162px)]', className)}
+    className={clsx('mx-auto max-w-[1596px] py-22.5 px-[clamp(20px,8.4vw,162px)]', className)}
   >
     {children}
   </section>
