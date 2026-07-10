@@ -8,6 +8,7 @@ import type {
 } from '@/features/portfolio/components/ProjectGrid/project-types'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { ctaClassName } from '@/ui/ctaClassName'
+import { Section } from '@/ui/Section'
 import { SectionHeading } from '@/ui/SectionHeading'
 import { ProjectCard } from './ProjectCard'
 
@@ -38,7 +39,7 @@ export const WorksGrid = ({ cta, headline, subheadline, projectItems = [] }: Wor
   })
 
   return (
-    <section id="portfolio" className="max-w-[1596px] mx-auto" style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
+    <Section id="portfolio">
       <SectionHeading align="center" title={headline} description={subheadline} />
 
       <div className="grid gap-7.5 grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
@@ -56,7 +57,7 @@ export const WorksGrid = ({ cta, headline, subheadline, projectItems = [] }: Wor
           <ArrowRight size={18} />
         </Link>
       </div>
-    </section>
+    </Section>
   )
 }
 

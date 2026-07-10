@@ -5,6 +5,7 @@ import { Accordion } from '@/ui/Accordion'
 import { Card } from '@/ui/Card'
 import { GradientIconBox } from '@/ui/GradientIconBox'
 import { Link } from '@/ui/Link'
+import { Section } from '@/ui/Section'
 import { SectionHeading } from '@/ui/SectionHeading'
 import type { FaqItem, FaqItemsType } from './faq-types'
 
@@ -41,7 +42,7 @@ export const FaqAccordion = ({ headline, subheadline, faqItems = [] }: FaqAccord
   })
 
   return (
-    <section className="max-w-[1596px] mx-auto" style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
+    <Section id="faqs">
       <SectionHeading align='center' title={headline} description={subheadline} />
 
       <div
@@ -52,7 +53,7 @@ export const FaqAccordion = ({ headline, subheadline, faqItems = [] }: FaqAccord
 
         <CtaCard />
       </div>
-    </section>
+    </Section>
   )
 }
 

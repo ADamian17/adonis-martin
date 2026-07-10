@@ -1,6 +1,7 @@
 import { Builder } from '@builder.io/react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+import { Section } from '@/ui/Section'
 import { SectionHeading } from '@/ui/SectionHeading'
 import { TestimonialCard } from './TestimonialCard'
 import type { Testimonial, TestimonialItemsType } from './testimonial-types'
@@ -27,10 +28,10 @@ export const Testimonials = ({
   })
 
   return (
-    <section className="max-w-[1596px] mx-auto" style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
+    <Section id="testimonials">
       <SectionHeading title={headline} description={subheadline} />
 
-      <div className="flex items-center justify-between mb-[30px]">
+      <div className="flex items-center justify-between mb-7.5">
         <p className="font-medium text-[16px] text-body">37 Total Reviews</p>
         <div className="flex gap-3">
           {(
@@ -52,14 +53,14 @@ export const Testimonials = ({
       </div>
 
       <div
-        className="grid gap-[30px]"
+        className="grid gap-7.5"
         style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}
       >
         {testimonials.map((testimonial) => (
           <TestimonialCard key={testimonial.name} testimonial={testimonial} />
         ))}
       </div>
-    </section>
+    </Section>
   )
 }
 

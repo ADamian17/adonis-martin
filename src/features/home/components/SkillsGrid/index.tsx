@@ -1,6 +1,7 @@
 import { Builder } from '@builder.io/react'
 
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+import { Section } from '@/ui/Section'
 import { SectionHeading } from '@/ui/SectionHeading'
 import { SkillCard } from './SkillCard'
 import type { Skill, SkillItemsType } from './skill-types'
@@ -23,7 +24,7 @@ export const SkillsGrid = ({ headline, subheadline, skillItems = [] }: SkillsGri
   })
 
   return (
-    <section id="about" className="max-w-[1596px] mx-auto" style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
+    <Section id="skills-list">
       <SectionHeading align="center" title={headline} description={subheadline} />
 
       <div className="grid gap-7.5 grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
@@ -31,7 +32,7 @@ export const SkillsGrid = ({ headline, subheadline, skillItems = [] }: SkillsGri
           <SkillCard key={skill.title} skill={skill} />
         ))}
       </div>
-    </section>
+    </Section>
   )
 }
 

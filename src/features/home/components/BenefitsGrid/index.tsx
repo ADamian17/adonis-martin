@@ -1,5 +1,6 @@
 import { Builder } from '@builder.io/react'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+import { Section } from '@/ui/Section'
 import { SectionHeading } from '@/ui/SectionHeading'
 import { BenefitCard } from './BenefitCard'
 import type { Benefit, BenefitItemsType } from './benefit-types'
@@ -21,7 +22,7 @@ export const BenefitsGrid = ({ headline, subheadline, benefitItems = [] }: Benef
   })
 
   return (
-    <section className="max-w-[1596px] mx-auto" style={{ padding: '90px clamp(20px, 8.4vw, 162px)' }}>
+    <Section id="benefits">
       <SectionHeading align="center" title={headline} description={subheadline} />
 
       <div className="flex flex-col gap-7.5">
@@ -45,7 +46,7 @@ export const BenefitsGrid = ({ headline, subheadline, benefitItems = [] }: Benef
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   )
 }
 
