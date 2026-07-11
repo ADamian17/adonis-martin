@@ -24,7 +24,9 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # isolated-vm (a transitive dep) requires Node >=22 and fails to build
+          # its native addon on 20, so pin the CI runtime to 22.
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
