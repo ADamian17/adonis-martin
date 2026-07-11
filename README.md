@@ -1,5 +1,9 @@
 # Adonis D. Martin — Portfolio
 
+<p align="center">
+  <img src="public/images/og-image.png" alt="Adonis D. Martin — Software Engineer" width="100%" />
+</p>
+
 [![E2E](https://github.com/ADamian17/adonis-martin/actions/workflows/e2e.yml/badge.svg)](https://github.com/ADamian17/adonis-martin/actions/workflows/e2e.yml)
 
 Hi, I'm **Adonis D. Martin** — a frontend-focused software engineer who builds fast, accessible, and maintainable web interfaces. This is the source for my personal portfolio: a content-driven single-page app whose pages are composed in [Builder.io](https://www.builder.io/) and rendered by a small, strongly-typed React shell.
