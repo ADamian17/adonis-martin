@@ -32,7 +32,7 @@ export const Footer = () => {
       <div className="flex flex-wrap items-center justify-between gap-6 mb-10">
         <BrandLogo logo={footerNav.logo} />
 
-        <nav className="flex flex-wrap gap-6">
+        <nav aria-label="Footer" className="flex flex-wrap gap-6">
           {footerNav.items.map((item) => (
             <MenuLink
               key={item.url}

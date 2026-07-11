@@ -13,6 +13,7 @@ export const Navbar = () => {
 
   return (
     <nav
+      aria-label="Primary"
       className="sticky top-0 z-50 flex items-center justify-between border-b border-border"
       style={{
         padding: '20px clamp(20px, 8.4vw, 162px)',
