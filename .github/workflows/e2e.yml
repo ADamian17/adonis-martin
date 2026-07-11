@@ -1,0 +1,61 @@
+name: E2E
+
+# Gate for the main branch: run the Playwright suite on every PR into main and on
+# direct pushes to main. Make this a required status check in the repo's branch
+# protection rules so a red run blocks merging.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+# Cancel superseded runs on the same branch/PR to save CI minutes.
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  e2e:
+    name: Playwright
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      # The Vite dev server (started by playwright.config.ts) reads these from a
+      # .env file. VITE_BUILDER_API_KEY must be a real key so Builder content
+      # loads; VITE_FORMKEEP_URL only needs a formkeep.com host so the contact
+      # test's request interception matches — the real endpoint is never called.
+      - name: Create .env for the dev server
+        env:
+          VITE_BUILDER_API_KEY: ${{ secrets.VITE_BUILDER_API_KEY }}
+          VITE_FORMKEEP_URL: https://formkeep.com/f/ci-placeholder
+        run: |
+          {
+            echo "VITE_BUILDER_API_KEY=$VITE_BUILDER_API_KEY"
+            echo "VITE_FORMKEEP_URL=$VITE_FORMKEEP_URL"
+          } > .env
+
+      - name: Run E2E tests
+        run: npm run test:e2e
+
+      # Publish the HTML report (and traces/screenshots) so failures are
+      # debuggable from the run's Artifacts section.
+      - name: Upload Playwright report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
