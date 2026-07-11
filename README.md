@@ -1,7 +1,4 @@
-<h1>
-  <img src="https://raw.githubusercontent.com/ADamian17/adonis-martin/main/public/brand/logo.svg" alt="Adonis D. Martin" height="28" />
-  &nbsp;— Portfolio
-</h1>
+# Adonis D. Martin — Portfolio
 
 [![E2E](https://github.com/ADamian17/adonis-martin/actions/workflows/e2e.yml/badge.svg)](https://github.com/ADamian17/adonis-martin/actions/workflows/e2e.yml)
 
