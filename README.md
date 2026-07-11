@@ -1,9 +1,6 @@
 <h1>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="public/brand/logo-dark.svg" />
-    <img src="public/brand/logo.svg" alt="Adonis D. Martin" height="28" />
-  </picture>
-  — Portfolio
+  <img src="https://raw.githubusercontent.com/ADamian17/adonis-martin/main/public/brand/logo.svg" alt="Adonis D. Martin" height="28" />
+  &nbsp;— Portfolio
 </h1>
 
 [![E2E](https://github.com/ADamian17/adonis-martin/actions/workflows/e2e.yml/badge.svg)](https://github.com/ADamian17/adonis-martin/actions/workflows/e2e.yml)
