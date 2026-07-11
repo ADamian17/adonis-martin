@@ -1,8 +1,10 @@
-# Adonis D. Martin — Portfolio
-
-<p align="center">
-  <img src="public/brand/logo.svg" alt="Adonis D. Martin" width="320" />
-</p>
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="public/brand/logo-dark.svg" />
+    <img src="public/brand/logo.svg" alt="Adonis D. Martin" height="28" />
+  </picture>
+  — Portfolio
+</h1>
 
 [![E2E](https://github.com/ADamian17/adonis-martin/actions/workflows/e2e.yml/badge.svg)](https://github.com/ADamian17/adonis-martin/actions/workflows/e2e.yml)
 
@@ -57,7 +59,7 @@ cp env.example .env
 npm run dev
 ```
 
-The app runs at http://localhost:5173.
+The app runs at <http://localhost:5173>.
 
 ### Environment variables
 
