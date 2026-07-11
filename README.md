@@ -1,7 +1,7 @@
 # Adonis D. Martin — Portfolio
 
 <p align="center">
-  <img src="public/images/og-image.png" alt="Adonis D. Martin — Software Engineer" width="100%" />
+  <img src="public/brand/logo.svg" alt="Adonis D. Martin" width="320" />
 </p>
 
 [![E2E](https://github.com/ADamian17/adonis-martin/actions/workflows/e2e.yml/badge.svg)](https://github.com/ADamian17/adonis-martin/actions/workflows/e2e.yml)
