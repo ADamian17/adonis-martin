@@ -15,7 +15,10 @@ interface SectionProps {
  * Used by every page section except the hero.
  */
 export const Section = ({ children, id, className, py = 'py-22.5' }: SectionProps) => (
-  <section id={id} className={clsx('mx-auto max-w-[1596px] px-[clamp(20px,8.4vw,162px)]', py, className)}>
+  <section
+    id={id}
+    className={clsx('mx-auto max-w-[1596px] px-[clamp(20px,8.4vw,162px)]', py, className)}
+  >
     {children}
   </section>
 )

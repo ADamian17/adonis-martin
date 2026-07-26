@@ -14,7 +14,7 @@ interface ValidationParams {
 export const validateEmail = ({ value, message }: ValidationParams) => {
   const emailRe = /^[^@\s]+@[^@\s]+\.[^@\s]+$/
 
-  return emailRe.test(value.trim()) ? undefined : message ?? 'Please enter a valid email address.'
+  return emailRe.test(value.trim()) ? undefined : (message ?? 'Please enter a valid email address.')
 }
 
 /**
@@ -25,4 +25,5 @@ export const validateEmail = ({ value, message }: ValidationParams) => {
  * @param params.message - Optional custom error message to return when validation fails.
  * @returns `undefined` when the value is non-empty, otherwise the error message.
  */
-export const required = ({ value, message }: ValidationParams) => value.trim() ? undefined : message ?? 'This field is required.'
+export const required = ({ value, message }: ValidationParams) =>
+  value.trim() ? undefined : (message ?? 'This field is required.')

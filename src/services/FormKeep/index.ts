@@ -10,7 +10,7 @@ export const submitToFormKeep = async (data: FormKeepData) => {
     method: 'POST',
     headers: {
       Accept: 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       email: data.email.trim(),
@@ -20,7 +20,7 @@ export const submitToFormKeep = async (data: FormKeepData) => {
     }),
   })
 
-  if (!response.ok) throw new Error(`FormKeep responded with ${response.status}`);
+  if (!response.ok) throw new Error(`FormKeep responded with ${response.status}`)
 
   return response.json()
 }

@@ -27,10 +27,7 @@ export const TechStack = ({ headline, subheadline, techItems = [] }: TechStackPr
 
       <div className="grid gap-7.5 grid-cols-[repeat(auto-fit,minmax(280px,1fr))]">
         {stack.map((cat) => (
-          <div
-            key={cat.category}
-            className="rounded-xl bg-card-warm flex flex-col gap-4.5 p-10"
-          >
+          <div key={cat.category} className="rounded-xl bg-card-warm flex flex-col gap-4.5 p-10">
             <h3 className="m-0 font-semibold text-[20px] text-heading">{cat.category}</h3>
             <div className="flex flex-wrap gap-2.5">
               {cat.items.map((item) => (
