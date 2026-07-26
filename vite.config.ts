@@ -26,6 +26,16 @@ export default defineConfig(({ command, mode }) => {
         host: SITE_SEO.url,
         changefreq: 'monthly',
         priorities: { '/': 1.0 },
+        prerender: {
+          // Prerendering crawls a preview server this build starts. Racing it
+          // with too many parallel requests produces ECONNREFUSED on whichever
+          // page happens to be in flight — seen in CI on the two-core runners,
+          // where the default concurrency is already low. Retries cover the
+          // residual flake rather than masking a real failure, since a page
+          // that genuinely cannot render fails every attempt.
+          concurrency: 2,
+          retryCount: 3,
+        },
         // Rendered through the splat route, which has no Builder content at this
         // path and so falls through to the app's not-found view. Written to the
         // output root because that is the file a static host serves for unknown
