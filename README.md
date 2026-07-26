@@ -1,6 +1,6 @@
 # Adonis D. Martin — Portfolio
 
-[![E2E](https://github.com/ADamian17/adonis-martin/actions/workflows/e2e.yml/badge.svg)](https://github.com/ADamian17/adonis-martin/actions/workflows/e2e.yml)
+[![ci](https://github.com/ADamian17/adonis-martin/actions/workflows/ci.yml/badge.svg)](https://github.com/ADamian17/adonis-martin/actions/workflows/ci.yml)
 
 Hi, I'm **Adonis D. Martin** — a frontend-focused software engineer who builds fast, accessible, and maintainable web interfaces. This is the source for my personal portfolio: a content-driven single-page app whose pages are composed in [Builder.io](https://www.builder.io/) and rendered by a small, strongly-typed React shell.
 
@@ -36,21 +36,21 @@ Pages are **modeled and edited in Builder.io**, not hardcoded. A single catch-al
 
 ### Prerequisites
 
-- **Node.js ≥ 22** (a native dependency, `isolated-vm`, requires it)
-- **npm** (this repo is npm-managed — do not use pnpm/yarn)
+- **Node.js 24** (see `.nvmrc`; `engines` enforces it and `.npmrc` sets `engine-strict`)
+- **pnpm** (this repo is pnpm-managed — the lockfile and the `packageManager` field pin it)
 
 ### Setup
 
 ```bash
 # 1. Install dependencies
-npm install
+pnpm install
 
 # 2. Configure environment variables
 cp env.example .env
 #    then fill in the values (see below)
 
 # 3. Start the dev server
-npm run dev
+pnpm run dev
 ```
 
 The app runs at <http://localhost:5173>.
@@ -69,27 +69,32 @@ Copy `env.example` to `.env` and provide:
 
 | Command | Description |
 | --- | --- |
-| `npm run dev` | Start the Vite dev server |
-| `npm run build` | Type-check (`tsc -b`) and build for production |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint` | Lint with Biome |
-| `npm run format` | Format with Biome |
-| `npm run test:e2e` | Run the Playwright end-to-end suite |
-| `npm run test:e2e:ui` | Open Playwright's interactive UI mode |
-| `npm run test:e2e:report` | Open the last HTML test report |
+| `pnpm run dev` | Start the Vite dev server |
+| `pnpm run build` | Type-check (`tsc -b`) and build for production |
+| `pnpm run preview` | Preview the production build locally |
+| `pnpm run lint` | Lint with Biome |
+| `pnpm run format` | Format with Biome |
+| `pnpm run test:e2e` | Run the Playwright end-to-end suite |
+| `pnpm run test:e2e:ui` | Open Playwright's interactive UI mode |
+| `pnpm run test:e2e:report` | Open the last HTML test report |
 
 ## Testing
 
 End-to-end tests live in [`e2e/`](./e2e) and run with Playwright against the real dev server (auto-started by `playwright.config.ts`). They cover page loads, client-side routing, and the contact form (whose external submission is intercepted so no real request is sent).
 
 ```bash
-npm run test:e2e        # headless run
-npm run test:e2e:ui     # watch it interactively — best for debugging
+pnpm run test:e2e        # headless run
+pnpm run test:e2e:ui     # watch it interactively — best for debugging
 ```
 
-Every pull request into `main` runs this suite via GitHub Actions
-([`.github/workflows/e2e.yml`](./.github/workflows/e2e.yml)), and a passing run is
-required before merging.
+Every pull request into `main` runs this suite via GitHub Actions alongside a
+build job that prerenders every page and asserts the output
+([`.github/workflows/ci.yml`](./.github/workflows/ci.yml)). Both are required
+checks, so a red run blocks merging.
+
+Note the suite runs against the dev server, so it covers routing and behaviour
+but never the built `404.html` — that is what the build job's output assertions
+are for.
 
 ## Project structure
 
