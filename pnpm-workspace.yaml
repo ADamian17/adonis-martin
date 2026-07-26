@@ -6,3 +6,9 @@
 # imposed on CI.
 allowBuilds:
   isolated-vm: false
+
+# Temporary: vite-plugin-builder-io-start 0.1.4 is newer than the configured
+# maturity window, and 0.1.3+ carries the notFound output-path support this
+# deploy needs. Drop once the version ages past the threshold.
+minimumReleaseAgeExclude:
+  - vite-plugin-builder-io-start@0.1.4

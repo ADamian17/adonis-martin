@@ -4,5 +4,6 @@
       "ENABLE_EXPERIMENTAL_COREPACK": "1",
       "COREPACK_ENABLE_DOWNLOAD_PROMPT": "0"
     }
-  }
+  },
+  "outputDirectory": "dist/client"
 }

@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test'
 
+import { gotoHydrated } from './helpers'
+
 /**
  * Routing tests.
  *
@@ -14,7 +16,7 @@ const routes = ['/about-me', '/portfolio', '/contact-me']
 test.describe('Site navigation', () => {
   for (const path of routes) {
     test(`renders ${path}`, async ({ page }) => {
-      const response = await page.goto(path)
+      const response = await gotoHydrated(page, path)
 
       // `goto` returns the main navigation response — assert it was not a 4xx/5xx.
       expect(response?.status() ?? 0).toBeLessThan(400)
@@ -26,7 +28,7 @@ test.describe('Site navigation', () => {
   }
 
   test('navigates between pages client-side, without a full reload', async ({ page }) => {
-    await page.goto('/')
+    await gotoHydrated(page, '/')
 
     // Tag the live document. A client-side SPA navigation keeps the same document,
     // so this marker survives; a full browser reload would wipe it. This is a
