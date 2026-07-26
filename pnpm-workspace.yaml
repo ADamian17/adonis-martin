@@ -1,0 +1,8 @@
+# pnpm settings (pnpm 11 no longer reads the "pnpm" field in package.json).
+#
+# isolated-vm is pulled in by @builder.io/react to evaluate Builder bindings
+# server-side. Skipping its install script avoids a slow C++ compile on every
+# install and deploy, and removes the Node >=22 constraint its native addon
+# imposed on CI.
+allowBuilds:
+  isolated-vm: false

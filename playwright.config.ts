@@ -47,7 +47,7 @@ export default defineConfig({
 
   // Start the dev server before tests and reuse it locally between runs.
   webServer: {
-    command: `npm run dev -- --port ${PORT} --strictPort`,
+    command: `pnpm run dev -- --port ${PORT} --strictPort`,
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
