@@ -4,7 +4,13 @@
  * Per-page values come from the Builder `page` model and override these.
  */
 export const SITE_SEO = {
-  url: 'https://adonismartin.com',
+  /**
+   * Canonical host — must stay `www`. The apex 308-redirects here, so dropping
+   * the subdomain would point every canonical tag, OpenGraph URL, and sitemap
+   * entry at a URL that immediately redirects. Search Console reports those as
+   * "Page with redirect" and they burn crawl budget for no reason.
+   */
+  url: 'https://www.adonismartin.com',
   name: 'Adonis D. Martin | Software Engineer',
   title: 'Adonis D. Martin | Software Engineer',
   description:
