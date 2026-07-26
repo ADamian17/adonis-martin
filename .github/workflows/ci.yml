@@ -1,0 +1,116 @@
+name: CI
+
+# Gate for the main branch: runs on every PR into main and on direct pushes to
+# main. Make both jobs required status checks in the repo's branch protection
+# rules so a red run blocks merging.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+# Cancel superseded runs on the same branch/PR to save CI minutes.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Prerendering queries the Builder Content API for the list of published
+      # pages, so the build needs a real key. Unlike a client-rendered build,
+      # this one fails if the CMS is unreachable — which is the point: a deploy
+      # that silently dropped pages from the crawlable surface is worse.
+      - name: Create .env for the build
+        env:
+          VITE_BUILDER_API_KEY: ${{ secrets.VITE_BUILDER_API_KEY }}
+        run: echo "VITE_BUILDER_API_KEY=$VITE_BUILDER_API_KEY" > .env
+
+      - name: Typecheck and build
+        run: pnpm run build
+
+      # A green build only proves nothing threw. Vercel serves dist/client, so
+      # assert the files it needs are actually present: an empty client output
+      # would deploy a blank site while the build still reported success.
+      - name: Assert prerendered output
+        run: |
+          cd dist/client
+
+          for file in index.html about-me/index.html portfolio/index.html \
+                      contact-me/index.html 404.html sitemap.xml; do
+            test -f "$file" || { echo "::error::missing $file"; exit 1; }
+          done
+
+          # Guards against shipping an empty SPA shell: the whole point of the
+          # migration is that markup exists before JavaScript runs.
+          node -e "
+            const html = require('node:fs').readFileSync('index.html', 'utf8')
+            if (!/<h1/.test(html)) {
+              console.error('::error::index.html has no <h1> — not server-rendered')
+              process.exit(1)
+            }
+          "
+
+          echo 'prerendered output verified'
+
+  e2e:
+    name: Playwright
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browser
+        run: pnpm exec playwright install --with-deps chromium
+
+      # The Vite dev server (started by playwright.config.ts) reads these from a
+      # .env file. VITE_BUILDER_API_KEY must be a real key so Builder content
+      # loads; VITE_FORMKEEP_URL only needs a formkeep.com host so the contact
+      # test's request interception matches — the real endpoint is never called.
+      - name: Create .env for the dev server
+        env:
+          VITE_BUILDER_API_KEY: ${{ secrets.VITE_BUILDER_API_KEY }}
+          VITE_FORMKEEP_URL: https://formkeep.com/f/ci-placeholder
+        run: |
+          {
+            echo "VITE_BUILDER_API_KEY=$VITE_BUILDER_API_KEY"
+            echo "VITE_FORMKEEP_URL=$VITE_FORMKEEP_URL"
+          } > .env
+
+      - name: Run E2E tests
+        run: pnpm run test:e2e
+
+      # Publish the HTML report (and traces/screenshots) so failures are
+      # debuggable from the run's Artifacts section.
+      - name: Upload Playwright report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
