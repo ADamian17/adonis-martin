@@ -2,9 +2,9 @@
 
 [![ci](https://github.com/ADamian17/adonis-martin/actions/workflows/ci.yml/badge.svg)](https://github.com/ADamian17/adonis-martin/actions/workflows/ci.yml)
 
-Hi, I'm **Adonis D. Martin** — a frontend-focused software engineer who builds fast, accessible, and maintainable web interfaces. This is the source for my personal portfolio: a content-driven single-page app whose pages are composed in [Builder.io](https://www.builder.io/) and rendered by a small, strongly-typed React shell.
+Hi, I'm **Adonis D. Martin** — a frontend-focused software engineer who builds fast, accessible, and maintainable web interfaces. This is the source for my personal portfolio: a content-driven site whose pages are composed in [Builder.io](https://www.builder.io/), prerendered to static HTML at build time, and rendered by a small, strongly-typed React shell.
 
-🔗 **Live site:** [adonismartin.com](https://adonismartin.com)
+🔗 **Live site:** [adonismartin.com](https://www.adonismartin.com)
 
 ## Tech stack
 
@@ -13,7 +13,7 @@ Hi, I'm **Adonis D. Martin** — a frontend-focused software engineer who builds
 | Build tool | [Vite](https://vitejs.dev/) |
 | Language | [TypeScript](https://www.typescriptlang.org/) (strict) |
 | UI | [React 19](https://react.dev/) |
-| Routing | [TanStack Router](https://tanstack.com/router) (file-based) |
+| Framework | [TanStack Start](https://tanstack.com/start) (file-based routing, prerendered) |
 | Data / forms | [TanStack Query](https://tanstack.com/query) · [TanStack Form](https://tanstack.com/form) |
 | State | [Valtio](https://valtio.pmnd.rs/) |
 | Styling | [Tailwind CSS v4](https://tailwindcss.com/) |
@@ -98,7 +98,7 @@ are for.
 
 ## Project structure
 
-```
+```txt
 src/
 ├── components/    # Shared, cross-page components (Navbar, Footer, …)
 ├── config/        # App configuration
