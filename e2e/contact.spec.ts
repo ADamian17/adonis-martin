@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test'
 
+import { gotoHydrated } from './helpers'
+
 /**
  * Contact form tests.
  *
@@ -10,7 +12,7 @@ import { expect, test } from '@playwright/test'
  */
 test.describe('Contact form', () => {
   test('shows validation errors when submitted empty', async ({ page }) => {
-    await page.goto('/contact-me')
+    await gotoHydrated(page, '/contact-me')
 
     // Locate the submit button by its accessible name (case-insensitive regex).
     await page.getByRole('button', { name: /send message/i }).click()
@@ -27,7 +29,7 @@ test.describe('Contact form', () => {
       route.fulfill({ status: 200, contentType: 'application/json', body: '{}' }),
     )
 
-    await page.goto('/contact-me')
+    await gotoHydrated(page, '/contact-me')
 
     // `getByLabel` matches the field via its <label> — the asterisk is part of
     // the visible label text ("Name*", "Email*", "Message*").

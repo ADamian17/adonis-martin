@@ -13,10 +13,11 @@ export const Route = createFileRoute('/$')({
       pageContent,
     }
   },
-  head: ({ loaderData, params }) => buildPageHead({
-    pageContent: loaderData?.pageContent ?? null,
-    urlPath: `/${params._splat}`.trim(),
-  }),
+  head: ({ loaderData, params }) =>
+    buildPageHead({
+      pageContent: loaderData?.pageContent ?? null,
+      urlPath: `/${params._splat}`.trim(),
+    }),
   component: RouteComponent,
 })
 

@@ -9,15 +9,17 @@ import { Section } from '@/ui/Section'
 import { SectionHeading } from '@/ui/SectionHeading'
 import type { FaqItem, FaqItemsType } from './faq-types'
 
-const CtaCard = ({ faqCta }: { faqCta: { title: string; description: string; ctaText: string; ctaLink: string } }) => (
+const CtaCard = ({
+  faqCta,
+}: {
+  faqCta: { title: string; description: string; ctaText: string; ctaLink: string }
+}) => (
   <Card tone="purple" className="flex flex-col gap-6 border border-purple-border">
     <GradientIconBox size={60}>
       <Star size={28} strokeWidth={1.6} className="text-white" />
     </GradientIconBox>
     <h3 className="font-semibold text-[24px] text-heading">{faqCta?.title}</h3>
-    <p className="text-body text-[16px] leading-[1.6]">
-      {faqCta?.description}
-    </p>
+    <p className="text-body text-[16px] leading-[1.6]">{faqCta?.description}</p>
 
     <Link to={faqCta?.ctaLink} className="self-start px-6 py-4.5">
       {faqCta?.ctaText}
@@ -37,7 +39,12 @@ interface FaqAccordionProps {
   }
 }
 
-export const FaqAccordion = ({ headline, subheadline, faqItems = [], faqCta }: FaqAccordionProps) => {
+export const FaqAccordion = ({
+  headline,
+  subheadline,
+  faqItems = [],
+  faqCta,
+}: FaqAccordionProps) => {
   const items: FaqItem[] = faqItems.map((item) => {
     const data = item.faq?.value?.data
 
@@ -49,7 +56,7 @@ export const FaqAccordion = ({ headline, subheadline, faqItems = [], faqCta }: F
 
   return (
     <Section id="faqs">
-      <SectionHeading align='center' title={headline} description={subheadline} />
+      <SectionHeading align="center" title={headline} description={subheadline} />
 
       <div
         className="grid gap-7.5 items-start"
@@ -89,7 +96,8 @@ export const registerFaqAccordion = () => {
           {
             name: 'description',
             type: 'text',
-            defaultValue: "Let's collaborate to build something exceptional. Contact me today to discuss your project and bring your digital vision to life.",
+            defaultValue:
+              "Let's collaborate to build something exceptional. Contact me today to discuss your project and bring your digital vision to life.",
           },
           {
             name: 'ctaText',

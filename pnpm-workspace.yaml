@@ -1,0 +1,14 @@
+# pnpm settings (pnpm 11 no longer reads the "pnpm" field in package.json).
+#
+# isolated-vm is pulled in by @builder.io/react to evaluate Builder bindings
+# server-side. Skipping its install script avoids a slow C++ compile on every
+# install and deploy, and removes the Node >=22 constraint its native addon
+# imposed on CI.
+allowBuilds:
+  isolated-vm: false
+
+# Temporary: vite-plugin-builder-io-start 0.1.4 is newer than the configured
+# maturity window, and 0.1.3+ carries the notFound output-path support this
+# deploy needs. Drop once the version ages past the threshold.
+minimumReleaseAgeExclude:
+  - vite-plugin-builder-io-start@0.1.4

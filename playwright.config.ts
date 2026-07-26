@@ -47,7 +47,10 @@ export default defineConfig({
 
   // Start the dev server before tests and reuse it locally between runs.
   webServer: {
-    command: `npm run dev -- --port ${PORT} --strictPort`,
+    // `pnpm exec vite` rather than `pnpm run dev -- …`: pnpm forwards the `--`
+    // to the script verbatim instead of stripping it the way npm does, and vite
+    // then reads it as a positional root argument.
+    command: `pnpm exec vite --port ${PORT} --strictPort`,
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,

@@ -83,7 +83,7 @@ export const Values = ({ headline, subheadline, valueItems = [] }: ValuesProps) 
           <Card key={item.title} className="flex flex-col gap-5">
             <GradientIconBox>{iconMap[item.icon]}</GradientIconBox>
             <h3 className="m-0 font-semibold text-[22px] text-heading">{item.title}</h3>
-            
+
             <p className="m-0 font-normal text-[16px] leading-[1.6] text-body">
               {item.description}
             </p>
