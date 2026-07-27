@@ -2,6 +2,7 @@ import { Builder } from '@builder.io/react'
 
 import type { Project } from '@/features/portfolio/components/ProjectGrid/project-types'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+import { TextLink } from '@/ui/TextLink'
 
 type Props = { project: Project }
 
@@ -18,8 +19,8 @@ export const PortfolioCard = ({ project }: Props) => (
         )}
       </div>
       <div
-        className="absolute left-3.5 top-3.5 px-3.5 py-2 rounded-lg font-medium text-[14px] text-accent"
-        style={{ background: 'rgba(238,235,229,0.92)', backdropFilter: 'blur(6px)' }}
+        className="absolute left-3.5 top-3.5 px-3.5 py-2 rounded-lg bg-nav font-medium text-[14px] text-accent"
+        style={{ backdropFilter: 'blur(6px)' }}
       >
         {project.category}
       </div>
@@ -30,7 +31,7 @@ export const PortfolioCard = ({ project }: Props) => (
       {project.tags.map((tag) => (
         <span
           key={tag}
-          className="py-1.75 px-3 rounded-md bg-white font-medium text-[13px] text-body"
+          className="py-1.75 px-3 rounded-md bg-card-raised font-medium text-[13px] text-body"
         >
           {tag}
         </span>
@@ -40,9 +41,11 @@ export const PortfolioCard = ({ project }: Props) => (
     <h3 className="m-0 font-semibold text-[21px] text-heading">{project.title}</h3>
     <p className="m-0 font-normal text-[16px] leading-[1.6] text-body">{project.description}</p>
 
-    <a
-      href={project.url}
-      className="mt-auto no-underline inline-flex items-center gap-2 font-medium text-[16px] text-accent"
+    <TextLink
+      to={project.url}
+      className="mt-auto self-start text-[16px]"
+      target="_blank"
+      rel="noopener noreferrer"
     >
       View Project
       <svg
@@ -58,7 +61,7 @@ export const PortfolioCard = ({ project }: Props) => (
       >
         <path d="M7 17 17 7M9 7h8v8" />
       </svg>
-    </a>
+    </TextLink>
   </article>
 )
 

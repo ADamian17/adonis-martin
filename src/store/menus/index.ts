@@ -16,6 +16,9 @@ export type MenuLogo = {
   image: string
   /** Optional alternate mark shown on small screens (e.g. initials only). */
   mobileImage?: string
+  /** Light-on-dark variants, swapped in by the `dark` theme. Falls back to the light-mode mark. */
+  imageDark?: string
+  mobileImageDark?: string
   alt: string
   url: string
 }
@@ -44,7 +47,12 @@ const DEFAULT_ITEMS: MenuItem[] = [
   { label: 'Contact Me', url: '/contact-me', target: '_self' },
 ]
 
-const DEFAULT_LOGO: MenuLogo = { image: '/brand/logo.svg', alt: 'Adonis D. Martin', url: '/' }
+const DEFAULT_LOGO: MenuLogo = {
+  image: '/brand/logo.svg',
+  imageDark: '/brand/logo-light.svg',
+  alt: 'Adonis D. Martin',
+  url: '/',
+}
 
 /**
  * Fallback menus rendered until the Builder `menu` entries are fetched (or if the fetch
@@ -53,7 +61,11 @@ const DEFAULT_LOGO: MenuLogo = { image: '/brand/logo.svg', alt: 'Adonis D. Marti
  */
 export const MENUS_DEFAULTS: Menus = {
   mainNav: {
-    logo: { ...DEFAULT_LOGO, mobileImage: '/brand/logo-initials.svg' },
+    logo: {
+      ...DEFAULT_LOGO,
+      mobileImage: '/brand/logo-initials.svg',
+      mobileImageDark: '/brand/logo-initials-light.svg',
+    },
     items: DEFAULT_ITEMS,
   },
   footerNav: { logo: DEFAULT_LOGO, items: DEFAULT_ITEMS },

@@ -1,6 +1,9 @@
 import { Builder } from '@builder.io/react'
 import { ArrowRight } from 'lucide-react'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+import { HeroCorners } from '@/ui/HeroCorners'
+import { HeroPortrait } from '@/ui/HeroPortrait'
+import { heroBackdrop } from '@/ui/heroBackdrop'
 import { Link } from '@/ui/Link'
 import { SectionBadge } from '@/ui/SectionBadge'
 
@@ -16,10 +19,19 @@ type Props = {
   headline: string
   subheading: string
   ctaButton?: CtaButton
+  portrait?: string
+  portraitAlt?: string
 }
 
-export const HomeHero = ({ greeting, headline, subheading, ctaButton }: Props) => (
-  <section id="home" className="flex flex-wrap" style={{ minHeight: '880px' }}>
+export const HomeHero = ({
+  greeting,
+  headline,
+  subheading,
+  ctaButton,
+  portrait,
+  portraitAlt,
+}: Props) => (
+  <section id="home" className="flex flex-wrap items-stretch" style={{ minHeight: '880px' }}>
     {/* Left column */}
     <div
       className="flex flex-col justify-center gap-12.5"
@@ -29,11 +41,11 @@ export const HomeHero = ({ greeting, headline, subheading, ctaButton }: Props) =
         padding: '60px clamp(20px, 8.4vw, 162px)',
       }}
     >
-      <SectionBadge align="start" size="lg">
-        {greeting}
-      </SectionBadge>
-
       <div className="flex flex-col gap-5">
+        <SectionBadge align="start" size="lg">
+          {greeting}
+        </SectionBadge>
+
         <h1
           className="font-semibold text-heading leading-[1.18]"
           style={{ fontSize: 'clamp(40px, 4vw, 58px)', maxWidth: '12ch' }}
@@ -46,13 +58,13 @@ export const HomeHero = ({ greeting, headline, subheading, ctaButton }: Props) =
       </div>
 
       {ctaButton?.url && (
-        <div>
+        <div className="flex flex-wrap items-center gap-10">
           <Link
             to={ctaButton.url}
             target={ctaButton.target}
             aria-label={ctaButton.ariaLabel}
-            className="px-7 py-4.5 text-[16px]"
-            icon={<ArrowRight size={18} />}
+            className="px-7 py-4.5 text-[18px]"
+            icon={<ArrowRight size={20} />}
           >
             {ctaButton.label}
           </Link>
@@ -68,28 +80,12 @@ export const HomeHero = ({ greeting, headline, subheading, ctaButton }: Props) =
         minWidth: '320px',
         minHeight: '480px',
         borderRadius: '0 0 0 30px',
-        background: `
-          url('/images/hero-grid.png') top left / 64px 128px repeat,
-          linear-gradient(220deg, rgba(104,26,255,0.85) -32%, rgba(104,26,255,0) 52%),
-          url('/images/hero-bg.jpg') center / cover no-repeat,
-          var(--color-dark)
-        `,
+        background: heroBackdrop,
       }}
     >
-      <img
-        src="/images/abstract-1.svg"
-        alt=""
-        aria-hidden="true"
-        className="absolute w-75"
-        style={{ top: '-20px', left: '-60px' }}
-      />
-      <img
-        src="/images/abstract-2.svg"
-        alt=""
-        aria-hidden="true"
-        className="absolute w-75 rotate-180"
-        style={{ bottom: '0', right: '-60px' }}
-      />
+      {portrait && <HeroPortrait src={portrait} alt={portraitAlt ?? ''} />}
+
+      <HeroCorners width="clamp(150px, 26vw, 210px)" zIndex={2} />
     </div>
   </section>
 )
@@ -119,6 +115,8 @@ export const registerHomeHero = () => {
           { name: 'ariaLabel', type: 'text', defaultValue: '' },
         ],
       },
+      { name: 'portrait', type: 'file', allowedFileTypes: ['png', 'webp', 'svg'] },
+      { name: 'portraitAlt', type: 'text' },
     ],
   })
 }

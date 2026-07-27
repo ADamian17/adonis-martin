@@ -49,7 +49,7 @@ export const ContactInfo = ({
 
         {contactDetails.map(({ Icon, sublabel, value, href }) => (
           <div key={sublabel} className="flex items-center gap-4">
-            <div className="flex-none w-12 h-12 flex items-center justify-center rounded-lg bg-white">
+            <div className="flex-none w-12 h-12 flex items-center justify-center rounded-lg bg-card-raised">
               <Icon size={22} stroke="var(--color-accent)" strokeWidth={1.8} />
             </div>
             <div>

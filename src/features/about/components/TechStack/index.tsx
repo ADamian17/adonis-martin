@@ -33,7 +33,7 @@ export const TechStack = ({ headline, subheadline, techItems = [] }: TechStackPr
               {cat.items.map((item) => (
                 <span
                   key={item}
-                  className="py-2.5 px-4 rounded-lg bg-white font-medium text-[15px] text-muted"
+                  className="py-2.5 px-4 rounded-lg bg-card-raised font-medium text-[15px] text-muted"
                 >
                   {item}
                 </span>

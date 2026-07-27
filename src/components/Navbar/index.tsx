@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Button as AriaButton } from 'react-aria-components'
 
 import { BrandLogo } from '@/components/BrandLogo'
+import { ThemeToggle } from '@/components/ThemeToggle'
 import { useMenus } from '@/store/menus'
 import { NavLink } from './NavLink'
 
@@ -14,31 +15,34 @@ export const Navbar = () => {
   return (
     <nav
       aria-label="Primary"
-      className="sticky top-0 z-50 flex items-center justify-between border-b border-border"
+      className="sticky top-0 z-50 flex items-center justify-between border-b border-border bg-nav"
       style={{
         padding: '20px clamp(20px, 8.4vw, 162px)',
-        background: 'rgba(238,235,229,0.86)',
         backdropFilter: 'blur(12px)',
       }}
     >
       <BrandLogo logo={mainNav.logo} />
 
-      <ul className="hidden md:flex items-center gap-1">
-        {mainNav.items.map((link) => (
-          <li key={link.url}>
-            <NavLink {...link} />
-          </li>
-        ))}
-      </ul>
+      <div className="flex items-center gap-3.5">
+        <ul className="hidden md:flex items-center gap-1">
+          {mainNav.items.map((link) => (
+            <li key={link.url}>
+              <NavLink {...link} />
+            </li>
+          ))}
+        </ul>
 
-      <AriaButton
-        className="md:hidden p-2 text-heading"
-        onPress={() => setOpen((o) => !o)}
-        aria-label={open ? 'Close menu' : 'Open menu'}
-        aria-expanded={open}
-      >
-        {open ? <X size={24} /> : <Menu size={24} />}
-      </AriaButton>
+        <ThemeToggle />
+
+        <AriaButton
+          className="md:hidden p-2 text-heading"
+          onPress={() => setOpen((o) => !o)}
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+        >
+          {open ? <X size={24} /> : <Menu size={24} />}
+        </AriaButton>
+      </div>
 
       {open && (
         <div className="absolute top-full left-0 right-0 bg-beige border-b border-border flex flex-col py-2 md:hidden">
