@@ -2,7 +2,7 @@ import { Builder } from '@builder.io/react'
 
 import type { Project } from '@/features/portfolio/components/ProjectGrid/project-types'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
-import { Link } from '@/ui/Link'
+import { TextLink } from '@/ui/TextLink'
 
 type Props = { project: Project }
 
@@ -41,9 +41,9 @@ export const PortfolioCard = ({ project }: Props) => (
     <h3 className="m-0 font-semibold text-[21px] text-heading">{project.title}</h3>
     <p className="m-0 font-normal text-[16px] leading-[1.6] text-body">{project.description}</p>
 
-    <Link
+    <TextLink
       to={project.url}
-      className="justify-self-start mt-auto no-underline inline-flex items-center gap-2 font-medium text-[16px] text-accent"
+      className="mt-auto self-start text-[16px]"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -61,7 +61,7 @@ export const PortfolioCard = ({ project }: Props) => (
       >
         <path d="M7 17 17 7M9 7h8v8" />
       </svg>
-    </Link>
+    </TextLink>
   </article>
 )
 
