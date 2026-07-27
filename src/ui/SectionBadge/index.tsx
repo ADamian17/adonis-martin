@@ -25,10 +25,10 @@ export const SectionBadge = ({ children, align = 'center', size = 'sm' }: Props)
   <span
     className={clsx(
       alignClasses[align],
-      'rounded-[13px] bg-white px-[18px] py-[10px] font-medium',
+      'rounded-[13px] bg-card-raised px-[18px] py-[10px] font-medium',
       sizeClasses[size],
     )}
-    style={{ boxShadow: '0 8px 30px rgba(0,0,0,0.04)' }}
+    style={{ boxShadow: '0 8px 30px var(--color-shadow)' }}
   >
     {children}
   </span>

@@ -19,8 +19,8 @@ export const PortfolioCard = ({ project }: Props) => (
         )}
       </div>
       <div
-        className="absolute left-3.5 top-3.5 px-3.5 py-2 rounded-lg font-medium text-[14px] text-accent"
-        style={{ background: 'rgba(238,235,229,0.92)', backdropFilter: 'blur(6px)' }}
+        className="absolute left-3.5 top-3.5 px-3.5 py-2 rounded-lg bg-nav font-medium text-[14px] text-accent"
+        style={{ backdropFilter: 'blur(6px)' }}
       >
         {project.category}
       </div>
@@ -31,7 +31,7 @@ export const PortfolioCard = ({ project }: Props) => (
       {project.tags.map((tag) => (
         <span
           key={tag}
-          className="py-1.75 px-3 rounded-md bg-white font-medium text-[13px] text-body"
+          className="py-1.75 px-3 rounded-md bg-card-raised font-medium text-[13px] text-body"
         >
           {tag}
         </span>

@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/*
+ * Dark mode is driven by a `dark` class on <html>, set before paint by the inline
+ * script in the document shell. This variant lets components opt into
+ * theme-specific styling for the few things tokens cannot express.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: "Manrope", sans-serif;
 
@@ -17,6 +24,7 @@
   --color-card-alt: #f7f6f3;
   --color-card-cream: #fcfbf8;
   --color-card-ivory: #faf7f1;
+  --color-card-raised: #ffffff;
 
   --color-purple-fill: #f5f0ff;
   --color-purple-open: #f3eeff;
@@ -34,10 +42,56 @@
   --color-placeholder: #a8a39a;
   --color-danger: #c0392b;
   --color-success: #1f8a5b;
+
+  --color-nav: rgba(238, 235, 229, 0.86);
+  --color-shadow: rgba(0, 0, 0, 0.04);
+}
+
+/*
+ * Dark theme. Only the surface, text, and border tokens flip — the brand accent,
+ * the cream used for text on accent fills, and the dark hero panel base are
+ * deliberately identical in both themes.
+ */
+:root.dark {
+  --color-beige: #121118;
+  --color-heading: #f2f0ec;
+  --color-body: #b3aebd;
+  --color-faint: #8a8492;
+  --color-muted: #d8d4de;
+  --color-placeholder: #6f6a78;
+
+  --color-card-warm: #1c1a24;
+  --color-card-light: #19171f;
+  --color-card-alt: #1a1822;
+  --color-card-ivory: #211f2e;
+  --color-card-raised: #211f2b;
+
+  --color-purple-fill: #241f36;
+  --color-purple-open: #241f36;
+  --color-purple-border: #3c3358;
+
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-soft: rgba(255, 255, 255, 0.08);
+  --color-border-alt: rgba(255, 255, 255, 0.08);
+  --color-border-pale: rgba(255, 255, 255, 0.14);
+  --color-border-warm: rgba(255, 255, 255, 0.14);
+
+  --color-neutral: #2a2833;
+
+  --color-nav: rgba(18, 17, 24, 0.86);
+  --color-shadow: rgba(0, 0, 0, 0.3);
 }
 
 body {
   font-family: var(--font-sans);
   background-color: var(--color-beige);
   color: var(--color-heading);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
 }

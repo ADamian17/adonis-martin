@@ -20,7 +20,7 @@ type Props = {
 }
 
 const fieldClass =
-  'w-full py-[16px] px-[18px] rounded-lg border border-border-warm bg-white font-[Manrope] text-[16px] text-heading outline-none placeholder:text-placeholder transition-colors data-[focused]:border-accent data-[invalid]:border-danger'
+  'w-full py-[16px] px-[18px] rounded-lg border border-border-warm bg-card-raised font-[Manrope] text-[16px] text-heading outline-none placeholder:text-placeholder transition-colors data-[focused]:border-accent data-[invalid]:border-danger'
 
 /** Labeled form field; owns the input border/focus/placeholder theming for the whole app. */
 export const TextField = ({

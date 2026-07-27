@@ -34,7 +34,7 @@ export const FilterBar = ({
           'cursor-pointer px-5 py-[11px] rounded-lg font-medium text-[15px] border transition-colors',
           category === activeFilter
             ? 'bg-accent text-card-cream border-accent'
-            : 'bg-white text-muted border-border-warm data-[hovered]:border-accent',
+            : 'bg-card-raised text-muted border-border-warm data-[hovered]:border-accent',
         )}
       >
         {category}

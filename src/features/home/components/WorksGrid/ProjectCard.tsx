@@ -33,7 +33,7 @@ export const ProjectCard = ({ project }: Props) => (
       {project.tags.map((tag) => (
         <span
           key={tag}
-          className="py-1.75 px-3 rounded-md bg-white font-medium text-[13px] text-body"
+          className="py-1.75 px-3 rounded-md bg-card-raised font-medium text-[13px] text-body"
         >
           {tag}
         </span>

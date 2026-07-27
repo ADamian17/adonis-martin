@@ -1,6 +1,11 @@
 import { builder } from '@builder.io/react'
 import { QueryClientProvider } from '@tanstack/react-query'
-import { createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router'
+import {
+  createRootRouteWithContext,
+  HeadContent,
+  ScriptOnce,
+  Scripts,
+} from '@tanstack/react-router'
 import type { ReactNode } from 'react'
 
 import RootLayout from '@/layouts/RootLayout'
@@ -8,6 +13,7 @@ import type { RouterContext } from '@/router'
 import { hydrateStores, snapshotStores } from '@/store/hydrate-stores'
 import { loadMenus } from '@/store/menus'
 import { loadSiteSettings } from '@/store/siteSettings'
+import { THEME_INIT_SCRIPT } from '@/utils/theme'
 
 import '@/assets/styles/main.css'
 
@@ -22,11 +28,13 @@ const FONT_HREF =
  * `<HeadContent />`.
  */
 const RootDocument = ({ children }: { children: ReactNode }) => (
-  <html lang="en">
+  // The theme script sets `className` on <html> before React hydrates.
+  <html lang="en" suppressHydrationWarning>
     <head>
       <HeadContent />
     </head>
     <body>
+      <ScriptOnce children={THEME_INIT_SCRIPT} />
       {children}
       <Scripts />
     </body>
