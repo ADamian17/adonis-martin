@@ -11,12 +11,15 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "gen:types": "graphql-codegen --config codegen.ts",
     "lint": "biome check .",
     "format": "biome format --write .",
     "preview": "vite preview",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "test:e2e:report": "playwright show-report"
+    "test:e2e:report": "playwright show-report",
+    "predev": "pnpm gen:types",
+    "prebuild": "pnpm gen:types"
   },
   "dependencies": {
     "@builder.io/react": "latest",
@@ -25,10 +28,11 @@
     "@tanstack/react-form": "^1.33.0",
     "@tanstack/react-query": "^5.101.1",
     "@tanstack/react-router": "^1.170.16",
+    "@tanstack/react-router-ssr-query": "^1.167.1",
     "@tanstack/react-start": "^1.168.32",
     "clsx": "^2.1.1",
     "date-fns": "^4.4.0",
-    "dotenv": "^17.4.2",
+    "graphql-request": "^7.4.0",
     "lucide-react": "^1.21.0",
     "react": "19.2.7",
     "react-aria-components": "^1.19.0",
@@ -38,11 +42,16 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.1",
+    "@graphql-codegen/cli": "^7.2.0",
+    "@graphql-codegen/typescript": "^6.1.0",
+    "@graphql-codegen/typescript-operations": "^6.1.2",
+    "@graphql-typed-document-node/core": "3.2.0",
     "@playwright/test": "^1.61.1",
     "@types/node": "^26.0.1",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
+    "dotenv": "^17.4.2",
     "typescript": "6.0.3",
     "vite": "^8.1.0",
     "vite-plugin-builder-io-start": "^0.1.4"
