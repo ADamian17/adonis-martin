@@ -34,7 +34,7 @@ const RootDocument = ({ children }: { children: ReactNode }) => (
       <HeadContent />
     </head>
     <body>
-      <ScriptOnce children={THEME_INIT_SCRIPT} />
+      <ScriptOnce>{THEME_INIT_SCRIPT}</ScriptOnce>
       {children}
       <Scripts />
     </body>
