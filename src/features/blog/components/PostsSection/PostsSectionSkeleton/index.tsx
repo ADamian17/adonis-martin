@@ -11,10 +11,7 @@ export const PostsSectionSkeleton = ({ count = 3 }: PostsSectionSkeletonProps) =
   )
 
   return (
-    <div
-      className="grid gap-7.5"
-      style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))' }}
-    >
+    <>
       {skeletonKeys.map((key) => (
         <div
           key={key}
@@ -22,6 +19,6 @@ export const PostsSectionSkeleton = ({ count = 3 }: PostsSectionSkeletonProps) =
           className="h-105 animate-pulse rounded-[14px] border border-border bg-card-alt"
         />
       ))}
-    </div>
+    </>
   )
 }

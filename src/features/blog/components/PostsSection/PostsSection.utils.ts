@@ -1,9 +1,14 @@
-import { queryOptions } from '@tanstack/react-query'
-import type { BlogPostQueryVariables } from '@/.gql/graphql'
+import { infiniteQueryOptions } from '@tanstack/react-query'
+import type { BlogPostQuery, BlogPostQueryVariables } from '@/.gql/graphql'
 import { graphqlClient } from '@/config/graphql-request'
+import { ITEMS_PER_PAGE } from '@/services/builderIO/fetchContent'
 import { POSTS_QUERY, POSTS_QUERY_KEY } from './PostsSection.query'
 
 export const ALL_CATEGORIES = 'All'
+
+export const getCategories = (
+  posts: NonNullable<NonNullable<NonNullable<BlogPostQuery['blogPost']>[number]>['data']>[],
+) => [ALL_CATEGORIES, ...new Set(posts.filter((post) => post != null).map((post) => post.category))]
 
 /**
  * Fetch ceiling for the listing.
@@ -18,22 +23,40 @@ export const getBlogPosts = (externalQuery: Pick<BlogPostQueryVariables, 'query'
     ...(externalQuery?.query ? { query: externalQuery?.query } : {}),
   } satisfies BlogPostQueryVariables
 
-  return queryOptions({
+  return infiniteQueryOptions({
+    initialPageParam: {
+      limit: ITEMS_PER_PAGE,
+      offset: 0,
+      ...dynamicVariables,
+    },
     queryKey: [POSTS_QUERY_KEY, dynamicVariables],
-    queryFn: () => graphqlClient.request(POSTS_QUERY, dynamicVariables),
+    queryFn: async ({ pageParam }) => {
+      const apiKey = import.meta.env.VITE_BUILDER_API_KEY
+
+      if (!apiKey) {
+        throw new Error('Builder.io API key is not configured')
+      }
+
+      return await graphqlClient.request(POSTS_QUERY, pageParam)
+    },
+    getNextPageParam: (lastPage, allPages) => {
+      // If last page has fewer results than ITEMS_PER_PAGE, there are no more pages
+      if (!lastPage?.blogPost?.length || lastPage.blogPost.length < ITEMS_PER_PAGE) {
+        return undefined
+      }
+
+      // Offset is how many posts are already loaded, so the reduce is the count
+      // itself — multiplying it by the page size again would skip past them.
+      return {
+        limit: ITEMS_PER_PAGE,
+        offset: allPages.reduce((acc, page) => acc + (page?.blogPost?.length ?? 0), 0),
+        ...dynamicVariables,
+      }
+    },
     select: (data) =>
-      (data.blogPost ?? [])
-        .map((entry) => entry?.data)
-        .filter((entry) => entry != null)
-        .map((entry) => ({
-          title: entry.title ?? '',
-          excerpt: entry.excerpt ?? '',
-          category: entry.category ?? '',
-          publishedDate: entry.publishedDate ?? '',
-          readMinutes: entry.readMinutes ?? 0,
-          coverGradient: entry.coverGradient ?? 'linear-gradient(90deg, #FF7A00 0%, #FFB800 100%)',
-          featured: entry.featured ?? false,
-          url: entry.url ?? '',
-        })),
+      data?.pages
+        .flatMap((page) => page?.blogPost ?? [])
+        .map((item) => item?.data)
+        .filter((post): post is NonNullable<typeof post> => post != null),
   })
 }

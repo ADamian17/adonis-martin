@@ -1,47 +1,38 @@
 import { Builder } from '@builder.io/react'
-import { useQuery } from '@tanstack/react-query'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { useMemo, useState } from 'react'
 
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { FilterBar } from '@/ui/FilterBar'
 import { Section } from '@/ui/Section'
-import { PostCard } from './PostCard'
-import { ALL_CATEGORIES, getBlogPosts } from './PostsSection.utils'
-import { PostsSectionSkeleton } from './PostsSectionSkeleton'
-
-const gridClassName = 'grid gap-7.5'
-const gridStyle = { gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))' }
-
-const PostsEmpty = ({ message }: { message: string }) => (
-  <p className="py-15 text-center text-[18px] text-faint">{message}</p>
-)
+import { PostCardGrid } from './PostCardGrid'
+import { ALL_CATEGORIES, getBlogPosts, getCategories } from './PostsSection.utils'
+import { PostsSectionEmpty } from './PostsSectionEmpty'
+import { PostsSectionPending } from './PostsSectionPending'
 
 const PostsSection = () => {
   const [query, setQuery] = useState<Record<string | 'data.category', string>>({})
-  const { data: posts, isLoading } = useQuery(getBlogPosts({ query }))
+  const {
+    data: posts,
+    fetchNextPage,
+    hasNextPage,
+    isPending,
+    isFetchingNextPage,
+  } = useInfiniteQuery(getBlogPosts({ query }))
 
-  const categories = useMemo(
-    () => [ALL_CATEGORIES, ...new Set((posts ?? []).map((post) => post.category).filter(Boolean))],
-    [posts],
-  )
+  const categories = useMemo(() => getCategories(posts ?? []), [posts])
 
-  if (isLoading) {
+  if (isPending) return <PostsSectionPending />
+
+  if (!posts?.length) {
     return (
       <Section py="pt-5 pb-10">
-        <PostsSectionSkeleton />
+        <PostsSectionEmpty message="No posts published yet — check back soon." />
       </Section>
     )
   }
 
-  if (!posts || posts.length === 0) {
-    return (
-      <Section py="pt-5 pb-10">
-        <PostsEmpty message="No posts published yet — check back soon." />
-      </Section>
-    )
-  }
-
-  const handleCategoryChange = (category: string) => {
+  const handleCategoryChange = (category: string | null) => {
     setQuery((prev) => {
       if (category === ALL_CATEGORIES) return {}
 
@@ -59,17 +50,13 @@ const PostsSection = () => {
         />
       </Section>
 
-      <Section py="pt-10 pb-10">
-        {posts.length === 0 ? (
-          <PostsEmpty message="No posts in this category yet — check back soon." />
-        ) : (
-          <div className={gridClassName} style={gridStyle}>
-            {posts.map((post) => (
-              <PostCard key={post.url} post={post} />
-            ))}
-          </div>
-        )}
-      </Section>
+      <PostCardGrid
+        category={query['data.category']}
+        fetchNextPage={fetchNextPage}
+        hasNextPage={hasNextPage}
+        isFetchingNextPage={isFetchingNextPage}
+        posts={posts}
+      />
     </>
   )
 }
@@ -80,6 +67,6 @@ export const registerPostsSection = () => {
   Builder.registerComponent(PostsSection, {
     name: 'PostsSection',
     models: [BUILDER_IO_MODELS.PAGE],
-    inputs: [],
+    inputs: [{ name: 'featuredPost', type: 'reference', model: BUILDER_IO_MODELS.BLOG_POST }],
   })
 }

@@ -1,10 +1,10 @@
 import clsx from 'clsx'
 import { Button as AriaButton } from 'react-aria-components'
 
-type Props = {
-  categories: string[]
+type FilterBarProps = {
+  categories: (string | null)[]
   activeCategory: string
-  onCategoryChange: (category: string) => void
+  onCategoryChange: (category: string | null) => void
   /** Spacing for the row itself, which belongs to the surrounding section. */
   className?: string
 }
@@ -18,7 +18,12 @@ const optionClassName =
  * Owns its own look on purpose: it is the same control doing the same job on
  * sibling pages, so two shapes would read as an accident rather than a choice.
  */
-export const FilterBar = ({ categories, activeCategory, onCategoryChange, className }: Props) => (
+export const FilterBar = ({
+  categories,
+  activeCategory,
+  onCategoryChange,
+  className,
+}: FilterBarProps) => (
   <div className={clsx('flex flex-wrap justify-center gap-3', className)}>
     {categories.map((category) => (
       <AriaButton

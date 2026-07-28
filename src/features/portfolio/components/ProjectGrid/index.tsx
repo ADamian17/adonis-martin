@@ -39,7 +39,9 @@ export const ProjectGrid = ({ projectItems = [] }: ProjectGridProps) => {
         <FilterBar
           categories={categories}
           activeCategory={activeFilter}
-          onCategoryChange={setActiveFilter}
+          // FilterBar allows a null category for the blog, whose GraphQL rows
+          // may have none; the portfolio's own list never contains one.
+          onCategoryChange={(category) => setActiveFilter(category ?? 'All')}
           className="mb-2"
         />
       </Section>
