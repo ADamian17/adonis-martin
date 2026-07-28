@@ -11,6 +11,7 @@ export const BUILDER_IO_MODELS = {
   TECH_ITEM: 'tech-item',
   VALUE_ITEM: 'value-item',
   SITE_SETTINGS: 'site-settings',
+  BLOG_POST: 'blog-post',
 } as const
 
 export type BuilderIOModel = (typeof BUILDER_IO_MODELS)[keyof typeof BUILDER_IO_MODELS]
