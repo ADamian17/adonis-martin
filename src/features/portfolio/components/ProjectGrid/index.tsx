@@ -1,8 +1,8 @@
 import { Builder } from '@builder.io/react'
 import { useState } from 'react'
-import { FilterBar, type FilterCategory } from '@/features/portfolio/components/FilterBar'
 import { PortfolioCard } from '@/features/portfolio/components/PortfolioCard'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
+import { FilterBar } from '@/ui/FilterBar'
 import { Section } from '@/ui/Section'
 import type { Project, ProjectItemsType } from './project-types'
 
@@ -28,9 +28,7 @@ export const ProjectGrid = ({ projectItems = [] }: ProjectGridProps) => {
     }
   })
 
-  const categories: FilterCategory[] = ['All', ...new Set(projects.map((p) => p.category))]
-    .filter(Boolean)
-    .map((category) => ({ category }))
+  const categories = ['All', ...new Set(projects.map((p) => p.category))].filter(Boolean)
 
   const filtered =
     activeFilter === 'All' ? projects : projects.filter((p) => p.category === activeFilter)
@@ -40,8 +38,9 @@ export const ProjectGrid = ({ projectItems = [] }: ProjectGridProps) => {
       <Section py="pt-5 pb-2.5">
         <FilterBar
           categories={categories}
-          activeFilter={activeFilter}
-          onFilterChange={setActiveFilter}
+          activeCategory={activeFilter}
+          onCategoryChange={setActiveFilter}
+          className="mb-2"
         />
       </Section>
 
