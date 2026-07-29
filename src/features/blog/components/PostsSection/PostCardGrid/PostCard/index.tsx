@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 import { ArrowUpRight } from 'lucide-react'
 import type { BlogPostQuery } from '@/.gql/graphql'
 import { toRouterPath } from '@/ui/routerLinkProps'
-import { getCategoryLabel } from '../../PostsSection.utils'
+import { getCategoryLabel, gridOverlay } from '../../PostsSection.utils'
 
 type PostCardProps = {
   post: NonNullable<NonNullable<NonNullable<BlogPostQuery['blogPost']>[number]>['data']>
@@ -23,7 +23,11 @@ export const PostCard = ({ post }: PostCardProps) => {
   return (
     <RouterLink to={toRouterPath(post?.url ?? '')} className={cardClassName}>
       <div className="relative h-47.5" style={{ background: post?.coverGradient ?? undefined }}>
-        <div aria-hidden="true" className="absolute inset-0 opacity-[0.18]" />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-[0.18]"
+          style={{ background: gridOverlay('48px 96px') }}
+        />
         <span className="absolute top-4 left-4 rounded-lg bg-card-raised px-3.25 py-1.5 font-semibold text-[13px] text-accent">
           {getCategoryLabel(post.category)}
         </span>

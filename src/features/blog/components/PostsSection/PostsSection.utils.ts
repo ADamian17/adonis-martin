@@ -12,6 +12,14 @@ import {
 export const ALL_CATEGORIES = 'All'
 
 /**
+ * Faint grid texture the design lays over every gradient cover. Sized per
+ * surface: 64px 128px on the featured hero, 48px 96px on the smaller cards.
+ * Only used with gradients — an image cover is shown plain, as the post page does.
+ */
+export const gridOverlay = (size: string) =>
+  `url('/images/hero-grid.png') top left / ${size} repeat`
+
+/**
  * A `post-category` resolved onto a post by `options: { includeRefs: true }`.
  *
  * Builder exposes reference fields as an untyped JSON scalar, so codegen emits

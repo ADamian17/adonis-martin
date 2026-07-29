@@ -4,7 +4,7 @@ import { ArrowRight, Star } from 'lucide-react'
 import type { BlogPost } from '@/.gql/graphql'
 import { toRouterPath } from '@/ui/routerLinkProps'
 import { Section } from '@/ui/Section'
-import { getCategoryLabel } from '../PostsSection.utils'
+import { getCategoryLabel, gridOverlay } from '../PostsSection.utils'
 
 /**
  * A `blog-post` picked on the page through Builder's reference input, which
@@ -36,10 +36,21 @@ export const FeaturedPost = ({ featuredPost }: FeaturedPostProps) => {
         style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}
       >
         <div
-          className="flex min-h-85 items-end p-8.5"
+          className="relative flex min-h-85 items-end overflow-hidden p-8.5"
           style={{ background: post.coverGradient ?? undefined }}
         >
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 font-semibold text-[14px] text-white backdrop-blur-xs">
+          {post.coverImage ? (
+            // Decorative here: the headline beside it already names the post.
+            <img src={post.coverImage} alt="" className="absolute inset-0 size-full object-cover" />
+          ) : (
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 opacity-25"
+              style={{ background: gridOverlay('64px 128px') }}
+            />
+          )}
+
+          <span className="relative inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 font-semibold text-[14px] text-white tracking-[0.02em] backdrop-blur-xs">
             <Star size={14} fill="currentColor" aria-hidden="true" />
             Featured
           </span>
