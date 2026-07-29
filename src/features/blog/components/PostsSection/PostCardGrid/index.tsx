@@ -8,6 +8,8 @@ import { PostCard } from './PostCard'
 type PostCardGridProps = {
   posts: NonNullable<NonNullable<NonNullable<BlogPostQuery['blogPost']>[number]>['data']>[]
   category?: string
+  /** The hero is showing a post, so an empty grid is not an empty blog. */
+  hasFeaturedPost?: boolean
   isFetchingNextPage: boolean
   hasNextPage: boolean
   fetchNextPage: () => void
@@ -16,11 +18,25 @@ type PostCardGridProps = {
 export const PostCardGrid = ({
   posts,
   category,
+  hasFeaturedPost,
   isFetchingNextPage,
   hasNextPage,
   fetchNextPage,
 }: PostCardGridProps) => {
   const { loadMoreRef } = useWaypoint({ isFetchingNextPage, hasNextPage, fetchNextPage })
+
+  if (!posts?.length && !category && !isFetchingNextPage) {
+    // The featured post is excluded from this query, so when it is the only
+    // post the grid is empty while the blog plainly is not. Say nothing rather
+    // than contradict the hero directly above.
+    if (hasFeaturedPost) return null
+
+    return (
+      <Section py="pt-5 pb-10">
+        <PostsSectionEmpty message="No posts published yet — check back soon." />
+      </Section>
+    )
+  }
 
   if (!posts || (posts.length === 0 && category && !isFetchingNextPage)) {
     return (

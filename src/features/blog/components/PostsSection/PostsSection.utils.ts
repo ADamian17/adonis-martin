@@ -1,23 +1,54 @@
-import { infiniteQueryOptions } from '@tanstack/react-query'
+import { infiniteQueryOptions, queryOptions } from '@tanstack/react-query'
 import type { BlogPostQuery, BlogPostQueryVariables } from '@/.gql/graphql'
 import { graphqlClient } from '@/config/graphql-request'
 import { ITEMS_PER_PAGE } from '@/services/builderIO/fetchContent'
-import { POSTS_QUERY, POSTS_QUERY_KEY } from './PostsSection.query'
+import {
+  POST_CATEGORIES_QUERY,
+  POST_CATEGORIES_QUERY_KEY,
+  POSTS_QUERY,
+  POSTS_QUERY_KEY,
+} from './PostsSection.query'
 
 export const ALL_CATEGORIES = 'All'
 
-export const getCategories = (
-  posts: NonNullable<NonNullable<NonNullable<BlogPostQuery['blogPost']>[number]>['data']>[],
-) => [ALL_CATEGORIES, ...new Set(posts.filter((post) => post != null).map((post) => post.category))]
+/**
+ * A `post-category` resolved onto a post by `options: { includeRefs: true }`.
+ *
+ * Builder exposes reference fields as an untyped JSON scalar, so codegen emits
+ * `unknown`. This is the one place that shape is asserted.
+ */
+type CategoryReference = {
+  id?: string | null
+  value?: { data?: { category?: string | null } | null } | null
+}
+
+const toCategoryReference = (category: unknown) => category as CategoryReference | null
+
+/** Label to print on a card, empty when the post has no category picked. */
+export const getCategoryLabel = (category: unknown) =>
+  toCategoryReference(category)?.value?.data?.category ?? ''
+
+export type PostCategory = { id: string; label: string }
 
 /**
- * Fetch ceiling for the listing.
+ * Filter options, read from the `post-category` model rather than from the
+ * posts on screen.
  *
- * Deliberately not paged, unlike margot-site's property grid: the category
- * filter runs client-side, so paging would filter only the posts loaded so far
- * and quietly hide the rest. Fetching the set whole also puts every post in the
- * prerendered HTML, which is the point of a blog index.
+ * Deriving them from the listing collapsed the bar to whichever category was
+ * selected — and since the bar is what clears the filter, that left no way back
+ * to "All". Reading the model also means the list is complete no matter how far
+ * the listing has paged.
  */
+export const getPostCategories = () =>
+  queryOptions({
+    queryKey: [POST_CATEGORIES_QUERY_KEY],
+    queryFn: () => graphqlClient.request(POST_CATEGORIES_QUERY, { limit: 100 }),
+    select: (data): PostCategory[] =>
+      (data.postCategory ?? [])
+        .map((entry) => ({ id: entry?.id ?? '', label: entry?.data?.category ?? '' }))
+        .filter((category) => category.id !== '' && category.label !== ''),
+  })
+
 export const getBlogPosts = (externalQuery: Pick<BlogPostQueryVariables, 'query'>) => {
   const dynamicVariables = {
     ...(externalQuery?.query ? { query: externalQuery?.query } : {}),
@@ -60,3 +91,7 @@ export const getBlogPosts = (externalQuery: Pick<BlogPostQueryVariables, 'query'
         .filter((post): post is NonNullable<typeof post> => post != null),
   })
 }
+
+export type BlogPostData = NonNullable<
+  NonNullable<NonNullable<BlogPostQuery['blogPost']>[number]>['data']
+>
