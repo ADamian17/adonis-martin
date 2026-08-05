@@ -1,10 +1,11 @@
-import { queryOptions } from '@tanstack/react-query'
-import type { BlogPostByUrlQuery } from '@/.gql/graphql'
-import { graphqlClient } from '@/config/graphql-request'
-import { POST_QUERY, POST_QUERY_KEY } from './PostArticle.query'
+import type { BlogPost } from '@/.gql/graphql'
 
-/** One `blog-post` entry as the Content API returns it: the record wrapping `data`. */
-export type PostArticleEntry = NonNullable<NonNullable<BlogPostByUrlQuery['blogPost']>[number]>
+/**
+ * One `blog-post` entry as the Content API returns it: the record wrapping
+ * `data`. Taken from the generated schema type rather than a query result, since
+ * the route reads the post through `fetchContent`, not GraphQL.
+ */
+export type PostArticleEntry = BlogPost
 
 /** The post's own fields, unwrapped from the entry. */
 export type PostArticleData = NonNullable<PostArticleEntry['data']>
@@ -32,14 +33,3 @@ export const getPostTags = (tags: unknown): string[] =>
         .map((entry) => (entry as { tag?: string } | null)?.tag)
         .filter((tag): tag is string => typeof tag === 'string' && tag !== '')
     : []
-
-/** `select` only applies to `useQuery`, so the loader unwraps with this too. */
-export const selectPost = (data: BlogPostByUrlQuery): PostArticleData | null =>
-  data.blogPost?.[0]?.data ?? null
-
-export const getPostByUrl = (url: string) =>
-  queryOptions({
-    queryKey: [POST_QUERY_KEY, url],
-    queryFn: () => graphqlClient.request(POST_QUERY, { query: { 'data.url': url } }),
-    select: selectPost,
-  })
