@@ -1,92 +1,40 @@
-import { Mail, MapPin, Phone } from 'lucide-react'
-
 import { BrandLogo } from '@/components/BrandLogo'
-import { GithubIcon, LinkedinIcon } from '@/components/SocialIcons'
 import { useMenus } from '@/store/menus'
 import { useSiteSettings } from '@/store/siteSettings'
-import { IconLink } from '@/ui/IconLink'
-import { MenuLink } from '@/ui/MenuLink'
+import { FooterBottomBar } from './FooterBottomBar'
+import { FooterContact } from './FooterContact'
+import { FooterNav } from './FooterNav'
+import { FooterSocial } from './FooterSocial'
 
+/**
+ * Site footer: a brand column beside the Navigate / Get in touch / Follow link columns,
+ * closed by the copyright rule. Copy comes from the Builder `Footer Nav` menu and the
+ * `site-settings` entry.
+ */
 export const Footer = () => {
-  const { contact, social } = useSiteSettings()
   const { footerNav } = useMenus()
-
-  const contactItems = [
-    { icon: Mail, label: contact.email, href: contact.emailHref },
-    { icon: Phone, label: contact.phone, href: contact.phoneHref },
-    { icon: MapPin, label: contact.location, href: null },
-  ]
-
-  const socialLinks = [
-    { Icon: LinkedinIcon, href: social.linkedinUrl, label: 'LinkedIn' },
-    { Icon: GithubIcon, href: social.githubUrl, label: 'GitHub' },
-  ]
+  const { brand } = useSiteSettings()
 
   return (
     <footer
       id="contact"
-      className="border-t border-border"
-      style={{ padding: '70px clamp(20px, 8.4vw, 162px) 50px' }}
+      className="mx-auto max-w-[1920px] border-t border-border"
+      style={{ padding: '88px clamp(20px, 8.4vw, 162px) 44px' }}
     >
-      {/* Top row */}
-      <div className="flex flex-wrap items-center justify-between gap-6 mb-10">
-        <BrandLogo logo={footerNav.logo} />
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(min(360px,100%),1fr))] items-start gap-[clamp(48px,6vw,120px)]">
+        <div>
+          <BrandLogo logo={footerNav.logo} />
+          <p className="mt-5.5 max-w-85 text-[16px] leading-[1.65] text-body">{brand.tagline}</p>
+        </div>
 
-        <nav aria-label="Footer" className="flex flex-wrap gap-6">
-          {footerNav.items.map((item) => (
-            <MenuLink
-              key={item.url}
-              url={item.url}
-              target={item.target}
-              ariaLabel={item.ariaLabel}
-              className="font-medium text-[17px] text-muted hover:text-heading transition-colors"
-            >
-              {item.label}
-            </MenuLink>
-          ))}
-        </nav>
-
-        <div className="flex gap-3">
-          {socialLinks.map(({ Icon, href, label }) => (
-            <IconLink
-              key={label}
-              size={40}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-            >
-              <Icon size={18} />
-            </IconLink>
-          ))}
+        <div className="flex flex-wrap items-start justify-between gap-x-[clamp(40px,5vw,64px)] gap-y-[clamp(28px,3vw,56px)]">
+          <FooterNav items={footerNav.items} />
+          <FooterContact />
+          <FooterSocial />
         </div>
       </div>
 
-      {/* Contact row */}
-      <div className="flex flex-wrap justify-center gap-7.5 my-10">
-        {contactItems.map(({ icon: Icon, label, href }) =>
-          href ? (
-            <a key={label} href={href} className="hover:text-heading transition-colors">
-              <span className="flex items-center gap-2 text-body text-[15px]">
-                <Icon size={16} className="text-accent shrink-0" />
-                {label}
-              </span>
-            </a>
-          ) : (
-            <span key={label} className="flex items-center gap-2 text-body text-[15px]">
-              <Icon size={16} className="text-accent shrink-0" />
-              {label}
-            </span>
-          ),
-        )}
-      </div>
-
-      {/* Copyright */}
-      <div className="border-t border-border pt-6 text-center">
-        <p className="text-faint text-[15px]">
-          Copyright © {new Date().getFullYear()} Adonis D. Martin. All rights reserved.
-        </p>
-      </div>
+      <FooterBottomBar />
     </footer>
   )
 }

@@ -3,6 +3,11 @@ import { proxy, useSnapshot } from 'valtio'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { hydrateGroup } from './site-settings-utils'
 
+/** Brand copy shown alongside the logo. */
+export type BrandSettings = {
+  tagline: string
+}
+
 /** Contact details surfaced in the footer and contact page. */
 export type ContactSettings = {
   email: string
@@ -20,6 +25,7 @@ export type SocialSettings = {
 
 /** Site-wide settings sourced from the Builder `site-settings` model, grouped by purpose. */
 export type SiteSettings = {
+  brand: BrandSettings
   contact: ContactSettings
   social: SocialSettings
 }
@@ -29,6 +35,10 @@ export type SiteSettings = {
  * fetch fails / the entry does not exist yet). Acts as the single source of fallback data.
  */
 export const SITE_SETTINGS_DEFAULTS: SiteSettings = {
+  brand: {
+    tagline:
+      'Software engineer building thoughtful, human-centered products. From stage to standup — always learning, always shipping.',
+  },
   contact: {
     email: 'adonismartin90@gmail.com',
     emailHref: 'mailto:adonismartin90@gmail.com',
@@ -69,6 +79,7 @@ export const loadSiteSettings = async () => {
     const data = entry?.data
 
     if (data) {
+      hydrateGroup(siteSettingsStore.brand, data.brand)
       hydrateGroup(siteSettingsStore.contact, data.contact)
       hydrateGroup(siteSettingsStore.social, data.social)
     }
