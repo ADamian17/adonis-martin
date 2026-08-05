@@ -36,10 +36,18 @@ jobs:
       # pages, so the build needs a real key. Unlike a client-rendered build,
       # this one fails if the CMS is unreachable — which is the point: a deploy
       # that silently dropped pages from the crawlable surface is worse.
+      # `prebuild` runs GraphQL codegen, which reads the schema from the endpoint
+      # below, so the build needs it too — without it codegen stops before Vite
+      # ever starts.
       - name: Create .env for the build
         env:
           VITE_BUILDER_API_KEY: ${{ secrets.VITE_BUILDER_API_KEY }}
-        run: echo "VITE_BUILDER_API_KEY=$VITE_BUILDER_API_KEY" > .env
+          VITE_BUILDER_GQL_ENDPOINT: ${{ secrets.VITE_BUILDER_GQL_ENDPOINT }}
+        run: |
+          {
+            echo "VITE_BUILDER_API_KEY=$VITE_BUILDER_API_KEY"
+            echo "VITE_BUILDER_GQL_ENDPOINT=$VITE_BUILDER_GQL_ENDPOINT"
+          } > .env
 
       - name: Typecheck and build
         run: pnpm run build
@@ -92,15 +100,27 @@ jobs:
       # .env file. VITE_BUILDER_API_KEY must be a real key so Builder content
       # loads; VITE_FORMKEEP_URL only needs a formkeep.com host so the contact
       # test's request interception matches — the real endpoint is never called.
+      # VITE_BUILDER_GQL_ENDPOINT is what codegen reads the schema from in the
+      # next step.
       - name: Create .env for the dev server
         env:
           VITE_BUILDER_API_KEY: ${{ secrets.VITE_BUILDER_API_KEY }}
+          VITE_BUILDER_GQL_ENDPOINT: ${{ secrets.VITE_BUILDER_GQL_ENDPOINT }}
           VITE_FORMKEEP_URL: https://formkeep.com/f/ci-placeholder
         run: |
           {
             echo "VITE_BUILDER_API_KEY=$VITE_BUILDER_API_KEY"
+            echo "VITE_BUILDER_GQL_ENDPOINT=$VITE_BUILDER_GQL_ENDPOINT"
             echo "VITE_FORMKEEP_URL=$VITE_FORMKEEP_URL"
           } > .env
+
+      # `**/.gql/` is gitignored, so the generated types must be produced here.
+      # Unlike the build job, this cannot ride on `prebuild`: playwright.config.ts
+      # starts the server with `pnpm exec vite`, which bypasses the `predev` hook.
+      # Without this, `@/.gql` fails to resolve and the custom-component registry
+      # throws — taking down every page, not just /blog.
+      - name: Generate GraphQL types
+        run: pnpm run gen:types
 
       - name: Run E2E tests
         run: pnpm run test:e2e

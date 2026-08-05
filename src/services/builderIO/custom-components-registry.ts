@@ -8,6 +8,8 @@ import { registerIntro } from '@/features/about/components/Intro'
 import { registerTechStack } from '@/features/about/components/TechStack'
 import { registerValues } from '@/features/about/components/Values'
 
+import { registerPostsSection } from '@/features/blog/components/PostsSection/PostsSection'
+
 import { registerContactGrid } from '@/features/contact/components/ContactGrid'
 
 import { registerBenefitsGrid } from '@/features/home/components/BenefitsGrid'
@@ -39,6 +41,9 @@ registerContactGrid()
 /* Portfolio page */
 registerProjectGrid()
 
+/* Blog page */
+registerPostsSection()
+
 /* Shared sections */
 registerCtaBanner()
 registerPageHeader()
@@ -67,6 +72,11 @@ Builder.register('insertMenu', {
 Builder.register('insertMenu', {
   name: 'Portfolio Page components',
   items: [{ name: 'ProjectGrid', item: { component: { name: 'ProjectGrid' } } }],
+})
+
+Builder.register('insertMenu', {
+  name: 'Blog Page components',
+  items: [{ name: 'PostsSection', item: { component: { name: 'PostsSection' } } }],
 })
 
 Builder.register('insertMenu', {
