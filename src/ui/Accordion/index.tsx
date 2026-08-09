@@ -13,7 +13,7 @@ type AccordionItem = { question: string; answer: string }
 type Props = { items: AccordionItem[] }
 
 const triggerClass =
-  'flex w-full items-center justify-between gap-4 p-4 text-left bg-transparent cursor-pointer outline-none transition-colors data-[hovered]:bg-black/[0.03] data-[focus-visible]:outline-2 data-[focus-visible]:outline-accent data-[focus-visible]:outline-offset-[-2px]'
+  'flex w-full items-center justify-between gap-4 px-6 py-5.5 text-left bg-transparent cursor-pointer outline-none transition-colors data-[hovered]:bg-black/[0.03] data-[focus-visible]:outline-2 data-[focus-visible]:outline-accent data-[focus-visible]:outline-offset-[-2px]'
 
 /** Single-expand FAQ accordion built on react-aria-components; owns hover/focus/press theming for the trigger. */
 export const Accordion = ({ items }: Props) => (
@@ -25,8 +25,8 @@ export const Accordion = ({ items }: Props) => (
           id={String(i)}
           className={({ isExpanded }) =>
             clsx(
-              'rounded-xl border-b border-border-soft overflow-hidden',
-              isExpanded && 'bg-purple-open',
+              'rounded-xl border-b border-border-warm overflow-hidden',
+              isExpanded && 'bg-purple-fill',
             )
           }
         >
@@ -42,7 +42,7 @@ export const Accordion = ({ items }: Props) => (
                   )}
                 </AriaButton>
               </Heading>
-              <DisclosurePanel className="p-4 text-body text-[16px] leading-[1.6]">
+              <DisclosurePanel className="px-6 pb-6 text-body text-[16px] leading-[1.6]">
                 {item.answer}
               </DisclosurePanel>
             </>

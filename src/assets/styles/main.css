@@ -27,11 +27,9 @@
   --color-card-raised: #ffffff;
 
   --color-purple-fill: #f5f0ff;
-  --color-purple-open: #f3eeff;
   --color-purple-border: #ddccff;
 
   --color-border: #dad9d3;
-  --color-border-soft: #ddd8cf;
   --color-border-alt: #ebe7e0;
   --color-border-pale: #d9d6cf;
   --color-border-warm: #e4e0d8;
@@ -67,11 +65,9 @@
   --color-card-raised: #211f2b;
 
   --color-purple-fill: #241f36;
-  --color-purple-open: #241f36;
   --color-purple-border: #3c3358;
 
   --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-soft: rgba(255, 255, 255, 0.08);
   --color-border-alt: rgba(255, 255, 255, 0.08);
   --color-border-pale: rgba(255, 255, 255, 0.14);
   --color-border-warm: rgba(255, 255, 255, 0.14);

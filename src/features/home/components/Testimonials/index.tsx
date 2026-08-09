@@ -29,7 +29,7 @@ export const Testimonials = ({
 
   return (
     <Section id="testimonials">
-      <SectionHeading title={headline} description={subheadline} />
+      <SectionHeading align="center" title={headline} description={subheadline} />
 
       <div className="flex items-center justify-between mb-7.5">
         <p className="font-medium text-[16px] text-body">37 Total Reviews</p>

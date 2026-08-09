@@ -85,7 +85,7 @@ export const HomeHero = ({
     >
       {portrait && <HeroPortrait src={portrait} alt={portraitAlt ?? ''} />}
 
-      <HeroCorners width="clamp(150px, 26vw, 210px)" zIndex={2} />
+      <HeroCorners width="clamp(150px, 47%, 300px)" zIndex={2} />
     </div>
   </section>
 )
