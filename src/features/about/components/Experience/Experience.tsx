@@ -1,5 +1,6 @@
 import { format } from 'date-fns'
 import { Section } from '@/ui/Section'
+import { SectionHeading } from '@/ui/SectionHeading'
 import type { ExperienceItemsType } from './experience-types'
 
 interface ExperienceProps {
@@ -16,15 +17,7 @@ export const Experience = ({ headline, copy, experienceItems }: ExperienceProps)
 
   return (
     <Section py="py-17.5">
-      <div className="text-center mx-auto mb-15" style={{ maxWidth: '640px' }}>
-        <h2
-          className="m-0 mb-1.5 font-semibold text-heading"
-          style={{ fontSize: 'clamp(34px, 3.4vw, 48px)' }}
-        >
-          {headline}
-        </h2>
-        <p className="m-0 font-normal text-[18px] text-body">{copy}</p>
-      </div>
+      <SectionHeading align="center" title={headline} description={copy} />
 
       <div className="flex flex-col gap-5 mx-auto" style={{ maxWidth: '880px' }}>
         {experience.map((item) => (

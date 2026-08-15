@@ -17,10 +17,10 @@ const alignClasses: Record<Align, string> = {
 export const SectionHeading = ({ title, description, align = 'left' }: Props) => (
   <div
     className={clsx('mb-15', alignClasses[align])}
-    style={align === 'center' ? { maxWidth: 650 } : undefined}
+    style={align === 'center' ? { maxWidth: 640 } : undefined}
   >
     <h2
-      className="font-semibold text-heading mb-4"
+      className="font-semibold text-heading mb-1.5"
       style={{ fontSize: 'clamp(34px, 3.4vw, 48px)' }}
     >
       {title}

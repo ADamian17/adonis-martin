@@ -3,7 +3,7 @@ import { Builder } from '@builder.io/react'
 import { BUILDER_IO_MODELS } from '@/services/builderIO/models'
 import { HeroCorners } from '@/ui/HeroCorners'
 import { HeroPortrait } from '@/ui/HeroPortrait'
-import { heroBackdrop } from '@/ui/heroBackdrop'
+import { heroBackdropUnwashed, heroWash } from '@/ui/heroBackdrop'
 import { Section } from '@/ui/Section'
 
 interface IntroProps {
@@ -16,19 +16,25 @@ interface IntroProps {
 
 export const Intro = ({ badge, headline, bio, portrait, portraitAlt }: IntroProps) => (
   <Section py="pt-20 pb-15" className="flex flex-wrap items-center gap-[clamp(40px,4vw,80px)]">
-    {/* Faceted graphic: textured backdrop, then the portrait and notches over it */}
+    {/* Faceted graphic: textured backdrop, then the portrait and notches, washed purple on top */}
     <div
       className="relative overflow-hidden rounded-[20px]"
       style={{
         flex: '1 1 460px',
         minWidth: '300px',
         height: 'clamp(420px, 40vw, 596px)',
-        background: heroBackdrop,
+        background: heroBackdropUnwashed,
       }}
     >
       {portrait && <HeroPortrait src={portrait} alt={portraitAlt} />}
 
-      <HeroCorners width="clamp(130px, 22vw, 200px)" zIndex={2} />
+      <HeroCorners width="clamp(130px, 46%, 260px)" zIndex={2} />
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-3"
+        style={{ background: heroWash }}
+      />
     </div>
 
     {/* Text column */}
