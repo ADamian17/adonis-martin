@@ -26,9 +26,9 @@ export const Intro = ({ badge, headline, bio, portrait, portraitAlt }: IntroProp
         background: heroBackdropUnwashed,
       }}
     >
-      {portrait && <HeroPortrait src={portrait} alt={portraitAlt} />}
+      {portrait && <HeroPortrait src={portrait} alt={portraitAlt} insetX="4%" />}
 
-      <HeroCorners width="clamp(130px, 46%, 260px)" zIndex={2} />
+      <HeroCorners width="clamp(130px, 46%, 260px)" zIndex={10} />
 
       <div
         aria-hidden="true"
